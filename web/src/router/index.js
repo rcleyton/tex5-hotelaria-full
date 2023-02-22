@@ -1,16 +1,30 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
 
 const routes = [
 	{
 		path: '/',
-		name: 'home',
-		component: HomeView,
+		name: 'inicio',
+		component: () => import('../views/InicioView.vue'),
 	},
 	{
-		path: '/about',
-		name: 'about',
-		component: () => import('../views/AboutView.vue'),
+		path: '/acomodacoes',
+		name: 'acomodacoes',
+		component: () => import('../views/AcomodacoesView.vue'),
+	},
+	{
+		path: '/reservas',
+		name: 'reservas',
+		component: () => import('../views/ReservasView.vue'),
+	},
+	{
+		path: '/sobre',
+		name: 'sobre',
+		component: () => import('../views/SobreView.vue'),
+	},
+	{
+		path: '/contato',
+		name: 'contato',
+		component: () => import('../views/ContatoView.vue'),
 	},
 ];
 
@@ -20,4 +34,3 @@ const router = createRouter({
 });
 
 export default router;
-
