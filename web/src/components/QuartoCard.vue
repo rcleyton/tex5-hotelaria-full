@@ -17,6 +17,7 @@
 			type="radio"
 			:id="quarto.id"
 			:value="quarto.id"
+			:checked="dadosReserva.acomodacaoId == quarto.id"
 			name="acomodacaoId"
 			@change="handleInputChange($event)"
 		/>
@@ -27,11 +28,14 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
 	name: 'RoomCard',
 	props: ['quarto'],
+	computed: {
+		...mapGetters(['dadosReserva']),
+	},
 	methods: {
 		...mapActions(['handleInputChange']),
 	},

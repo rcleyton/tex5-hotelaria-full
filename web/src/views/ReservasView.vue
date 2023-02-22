@@ -73,11 +73,6 @@ export default {
 	computed: {
 		...mapGetters(['quartosHotel', 'dadosReserva']),
 	},
-	watch: {
-		dadosReserva(newValue, oldValue) {
-			console.log(`oldValue: ${oldValue} \n newValue: ${newValue}`);
-		},
-	},
 };
 </script>
 <style lang="scss" scoped>

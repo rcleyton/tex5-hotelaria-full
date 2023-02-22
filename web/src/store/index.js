@@ -97,20 +97,18 @@ export default createStore({
 			checkOut: '',
 			quantidadeDePessoas: '',
 			acomodacaoId: '',
-			servicosAdicionais: new Map(),
+			servicosAdicionais: {},
 		},
 	},
 	getters: {
 		dadosReserva: (state) => state.dadosReserva,
 		quartosHotel: (state) => state.quartosHotel,
 		acomodacao: (state) => {
-			if (state.dadosReserva.acomodacaoId === '') {
-				return '';
-			} else {
-				return state.quartosHotel.find(
+			return (
+				state.quartosHotel.find(
 					(q) => q.id == state.dadosReserva.acomodacaoId
-				);
-			}
+				) ?? ''
+			);
 		},
 		diarias: (state) => {
 			if (
@@ -126,13 +124,15 @@ export default createStore({
 			}
 		},
 		totalAdicionais: (state) => {
-			if (state.dadosReserva.servicosAdicionais.size > 0) {
-				let total = 0;
-				for (let [key, value] of state.dadosReserva.servicosAdicionais) {
-					total += value.price;
+			let total = 0;
+			for (const [key, value] of Object.entries(
+				state.dadosReserva.servicosAdicionais
+			)) {
+				if (value) {
+					total += state.servicosAdicionais.find((s) => s.id == key).price;
 				}
-				return total;
 			}
+			return total;
 		},
 		totalHospedagem: (state) => {
 			const diarias = calculaTotalDeDias(
@@ -152,9 +152,13 @@ export default createStore({
 			let totalAdicionais = 0;
 			let totalHospedagem = 0;
 
-			if (state.dadosReserva.servicosAdicionais.size > 0) {
-				for (let [key, value] of state.dadosReserva.servicosAdicionais) {
-					totalAdicionais += value.price;
+			for (const [key, value] of Object.entries(
+				state.dadosReserva.servicosAdicionais
+			)) {
+				if (value) {
+					totalAdicionais += state.servicosAdicionais.find(
+						(s) => s.id == key
+					).price;
 				}
 			}
 
@@ -175,20 +179,20 @@ export default createStore({
 	mutations: {
 		onInputChange(state, event) {
 			if (event.target.name === 'additionalServices') {
-				const additionalService = state.servicosAdicionais.find(
-					(s) => s.id == event.target.value
-				);
-				if (event.target.checked) {
-					state.dadosReserva.servicosAdicionais.set(
-						event.target.value,
-						additionalService
-					);
+				if (state.dadosReserva.servicosAdicionais[event.target.value]) {
+					state.dadosReserva.servicosAdicionais = {
+						...state.dadosReserva.servicosAdicionais,
+						[event.target.value]: false,
+					};
 				} else {
-					state.dadosReserva.servicosAdicionais.delete(event.target.value);
+					state.dadosReserva.servicosAdicionais = {
+						...state.dadosReserva.servicosAdicionais,
+						[event.target.value]: true,
+					};
 				}
-				return;
 			}
 			state.dadosReserva[event.target.name] = event.target.value;
+			localStorage.setItem('reserva', JSON.stringify(state.dadosReserva));
 			return;
 		},
 	},
