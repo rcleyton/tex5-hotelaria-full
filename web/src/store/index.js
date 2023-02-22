@@ -101,6 +101,7 @@ export default createStore({
 		},
 	},
 	getters: {
+		dadosReserva: (state) => state.dadosReserva,
 		quartosHotel: (state) => state.quartosHotel,
 		acomodacao: (state) => {
 			if (state.dadosReserva.acomodacaoId === '') {

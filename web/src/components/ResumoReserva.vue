@@ -5,46 +5,38 @@
 				<h2 class="resume__title">Resumo da reserva</h2>
 				<ul class="resume__l">
 					<li class="resume__listItem">
-						Data de Entrada: {{ $store.state.dadosReserva.checkIn }}
+						Data de Entrada: {{ dadosReserva.checkIn }}
 					</li>
 					<li class="resume__listItem">
-						Data de Saída: {{ $store.state.dadosReserva.checkOut }}
+						Data de Saída: {{ dadosReserva.checkOut }}
 					</li>
 					<li class="resume__listItem">
 						Número de Hóspedes:
-						{{ $store.state.dadosReserva.quantidadeDePessoas }}
+						{{ dadosReserva.quantidadeDePessoas }}
 					</li>
 					<li class="resume__listItem">
-						Diárias: {{ $store.getters.diarias }}
-						{{
-							!$store.getters.diarias
-								? ''
-								: $store.getters.diarias > 1
-								? 'dias'
-								: 'dia'
-						}}
+						Diárias: {{ diarias }}
+						{{ !diarias ? '' : diarias > 1 ? 'dias' : 'dia' }}
 					</li>
-					<li class="resume__listItem">
-						Quarto: {{ $store.getters.acomodacao?.nome }}
-					</li>
+					<li class="resume__listItem">Quarto: {{ acomodacao?.nome }}</li>
 					<li class="resume__listItem">
 						Valor do quarto:
-						{{ formatCurrency($store.getters.acomodacao?.preco) }}
+						{{ formatCurrency(acomodacao?.preco) }}
 					</li>
 					<li class="resume__listItem">
 						Valor da hospedagem:
-						{{ formatCurrency($store.getters.totalHospedagem) }}
+						{{ formatCurrency(totalHospedagem) }}
 					</li>
 				</ul>
 				<AditionalServicesModal />
 				<ul class="resume__total">
 					<li class="resume__listItem">
 						Total Adicionais:
-						{{ formatCurrency($store.getters.totalAdicionais) }}
+						{{ formatCurrency(totalAdicionais) }}
 					</li>
 					<li class="resume__listItem">
 						Valor total:
-						{{ formatCurrency($store.getters.total) }}
+						{{ formatCurrency(total) }}
 					</li>
 				</ul>
 			</div>
@@ -59,13 +51,16 @@ export default {
 	name: 'ResumoReserva',
 	components: { AditionalServicesModal },
 	computed: {
-		acomodacao() {
-			return this.acomodacao;
-		},
+		...mapGetters([
+			'acomodacao',
+			'dadosReserva',
+			'diarias',
+			'totalAdicionais',
+			'totalHospedagem',
+			'total',
+		]),
 	},
-	getters: {
-		...mapGetters(['total', 'acomodacao', 'totalHospedagem']),
-	},
+	getters: {},
 	methods: {
 		formatCurrency(value) {
 			if (!value) return '';

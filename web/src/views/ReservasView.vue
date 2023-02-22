@@ -13,7 +13,7 @@
 				<input
 					type="date"
 					name="checkIn"
-					:value="$store.state.dadosReserva.checkIn"
+					:value="dadosReserva.checkIn"
 					class="form-control"
 					@change="handleInputChange($event)"
 				/>
@@ -23,7 +23,7 @@
 				<input
 					type="date"
 					name="checkOut"
-					:value="$store.state.dadosReserva.checkOut"
+					:value="dadosReserva.checkOut"
 					class="form-control"
 					@change="handleInputChange($event)"
 				/>
@@ -33,7 +33,7 @@
 				<input
 					type="number"
 					name="quantidadeDePessoas"
-					:value="$store.state.dadosReserva.quantidadeDePessoas"
+					:value="dadosReserva.quantidadeDePessoas"
 					min="1"
 					max="10"
 					class="form-control"
@@ -71,7 +71,12 @@ export default {
 		...mapActions(['handleInputChange']),
 	},
 	computed: {
-		...mapGetters(['quartosHotel']),
+		...mapGetters(['quartosHotel', 'dadosReserva']),
+	},
+	watch: {
+		dadosReserva(newValue, oldValue) {
+			console.log(`oldValue: ${oldValue} \n newValue: ${newValue}`);
+		},
 	},
 };
 </script>
