@@ -26,6 +26,11 @@ const routes = [
 		name: 'contato',
 		component: () => import('../views/ContatoView.vue'),
 	},
+	{
+		path: '/admin',
+		name: 'admin',
+		component: () => import('../views/AdminView.vue'),
+	},
 ];
 
 const router = createRouter({
