@@ -32,9 +32,15 @@ const routes = [
 		component: () => import('../views/AdminView.vue'),
 	},
 	{
+<<<<<<< HEAD
+		path: '/minhasreservas',
+		name: 'MinhasReservas',
+		component: () => import('../views/MinhasReservas.vue'),
+=======
 		path: '/login',
 		name: 'login',
 		component: () => import('../views/LoginView.vue'),
+>>>>>>> 17bc8018e72402a66ba0cfc12d5b106a3b63b9b3
 	},
 ];
 
