@@ -126,7 +126,7 @@ export default {
 	align-items: center;
 	flex-direction: column;
 	text-align: center;
-	background-image: v.$gradient-dark, v-bind(img);
+	background: v.$gradient-dark, v-bind(img) fixed bottom;
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
