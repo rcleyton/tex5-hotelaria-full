@@ -49,9 +49,11 @@ a {
 	cursor: pointer;
 	opacity: 0.9;
 }
+
 a:hover {
 	opacity: 1;
 }
+
 .navbar {
 	display: flex;
 	align-items: center;
@@ -88,9 +90,11 @@ a:hover {
 	gap: 1em;
 	font-size: 18px;
 }
+
 .menu li {
 	padding: 5px 14px;
 }
+
 .menu li:hover {
 	background-color: #516b8a;
 	border-radius: 5px;
@@ -115,11 +119,13 @@ a:hover {
 .dropdown li + li {
 	margin-top: 10px;
 }
+
 .dropdown li {
 	padding: 0.5em 1em;
 	width: 8em;
 	text-align: center;
 }
+
 .dropdown li:hover {
 	background-color: #516b8a;
 }

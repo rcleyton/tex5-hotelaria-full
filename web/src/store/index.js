@@ -99,10 +99,72 @@ export default createStore({
 			acomodacaoId: '',
 			servicosAdicionais: {},
 		},
+		consumoReserva: {
+			frigobar: [
+				{
+					id: 1,
+					item: 'Água',
+					valor: 2,
+					quantidade: 1,
+				},
+				{
+					id: 2,
+					item: 'Refrigerante',
+					valor: 4,
+					quantidade: 3,
+				},
+				{
+					id: 3,
+					item: 'Amendoim',
+					valor: 4,
+					quantidade: 3,
+				},
+			],
+			bar: [
+				{
+					id: 1,
+					item: 'Água',
+					valor: 2,
+					quantidade: 1,
+				},
+				{
+					id: 2,
+					item: 'Refrigerante',
+					valor: 4,
+					quantidade: 4,
+				},
+				{
+					id: 4,
+					item: 'Cerveja',
+					valor: 4,
+					quantidade: 3,
+				},
+			],
+		},
 	},
 	getters: {
 		dadosReserva: (state) => state.dadosReserva,
+		consumoReserva: (state) => state.consumoReserva,
 		quartosHotel: (state) => state.quartosHotel,
+		listaConsumoReserva: (state) => {
+			const consumoObj = state.consumoReserva;
+			const lista = [];
+			const cache = {};
+
+			for (const [key, value] of Object.entries(consumoObj)) {
+				value.forEach((element) => {
+					if (!cache[element.id]) {
+						lista.push(element);
+						cache[element.id] = true;
+					} else {
+						lista.find((item) => item.id == element.id).quantidade +=
+							element.quantidade;
+					}
+				});
+			}
+
+			return lista;
+		},
 		acomodacao: (state) => {
 			return (
 				state.quartosHotel.find(
