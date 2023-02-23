@@ -1,7 +1,8 @@
 <template>
     <div id="modal">
 
-        <button class="button" @click="showModal = true">
+        <button
+        class="button" @click="showModal = true">
             Continue
         </button>
 
@@ -52,7 +53,7 @@
                 </ul>
             </div>
 
-            <button class="button" @click="$router.push('/minhasreservas')">
+            <button class="button" @click="$router.push('minhasreservas')">
                 Continue
             </button>
             <button class="buttonClose" @click="showModal = false">
