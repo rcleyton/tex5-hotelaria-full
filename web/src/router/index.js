@@ -31,6 +31,11 @@ const routes = [
 		name: 'admin',
 		component: () => import('../views/AdminView.vue'),
 	},
+	{
+		path: '/minhasreservas',
+		name: 'MinhasReservas',
+		component: () => import('../views/MinhasReservas.vue'),
+	},
 ];
 
 const router = createRouter({

@@ -39,6 +39,7 @@
 						{{ formatCurrency(total) }}
 					</li>
 				</ul>
+				<ModalReservaContinue />
 			</div>
 		</aside>
 	</div>
@@ -46,10 +47,11 @@
 <script>
 import { mapGetters } from 'vuex';
 import AditionalServicesModal from './AditionalServicesModal.vue';
+import ModalReservaContinue from './ModalReservaContinue.vue';
 
 export default {
 	name: 'ResumoReserva',
-	components: { AditionalServicesModal },
+	components: { AditionalServicesModal, ModalReservaContinue },
 	computed: {
 		...mapGetters([
 			'acomodacao',
