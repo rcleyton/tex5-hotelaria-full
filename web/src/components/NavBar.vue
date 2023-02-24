@@ -43,7 +43,9 @@
 	</header>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
+@use 'src/sass/sass-utils/_colors.scss' as v;
+
 a {
 	text-decoration: none;
 	cursor: pointer;
@@ -89,6 +91,7 @@ a:hover {
 	display: flex;
 	gap: 1em;
 	font-size: 18px;
+	margin: auto 4rem;
 }
 
 .menu li {
@@ -96,7 +99,7 @@ a:hover {
 }
 
 .menu li:hover {
-	background-color: #516b8a;
+	background-color: v.$dark-blue;
 	border-radius: 5px;
 	transition: 0.3s ease;
 }
@@ -108,13 +111,14 @@ a:hover {
 }
 
 .dropdown {
-	background-color: #415a77;
-	padding: 1em 0;
-	position: absolute; /*COM RELAÇÃO AOS PAIS*/
+	margin: auto;
+	background-color: rgba(27, 38, 59, 0.8);
+	position: absolute;
 	display: none;
-	margin-right: 10px;
-	border-radius: 8px;
-	top: 30px;
+	border-radius: 0.5rem;
+	top: auto;
+	right: 0;
+	padding: 1rem;
 }
 .dropdown li + li {
 	margin-top: 10px;
@@ -124,6 +128,7 @@ a:hover {
 	padding: 0.5em 1em;
 	width: 8em;
 	text-align: center;
+	font-size: 1rem;
 }
 
 .dropdown li:hover {
