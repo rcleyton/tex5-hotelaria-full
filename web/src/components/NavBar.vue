@@ -32,7 +32,7 @@
 						<a href="/">Visitante <span class="arrow-icon">&#9660;</span></a>
 						<!-- MENU SUSPENSO OU DROPDOWN MENU -->
 						<ul class="dropdown">
-							<li><a href="#">Entrar </a></li>
+							<li><a href="login">Entrar </a></li>
 							<li><a href="#">Sair</a></li>
 							<li><a href="#">Perfil</a></li>
 						</ul>
