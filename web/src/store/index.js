@@ -141,6 +141,10 @@ export default createStore({
 				},
 			],
 		},
+		usuario: {
+			nome: '',
+			email: ''
+		}
 	},
 	getters: {
 		dadosReserva: (state) => state.dadosReserva,
