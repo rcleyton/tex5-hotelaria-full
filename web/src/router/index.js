@@ -36,11 +36,6 @@ const routes = [
 		name: 'login',
 		component: () => import('../views/LoginView.vue'),
 	},
-	{
-		path: '/minhasreservas',
-		name: 'MinhasReservas',
-		component: () => import('../views/MinhasReservas.vue'),
-	},
 ];
 
 const router = createRouter({

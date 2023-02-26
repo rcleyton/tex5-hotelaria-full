@@ -160,7 +160,7 @@ export default {
 }
 
 .home .btn:hover {
-	background-color: v.$main-blue;
+	background-color: v.$dark-blue;
 	color: #ffffff;
 }
 

@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<button class="resume__addService" @click="showModal = true">
-			Adicionar mais serviços
+			▶ Adicionar mais serviços
 		</button>
 		<div v-if="showModal" @click="showModal = false">
 			<div class="modal-content" @click.stop>
@@ -54,7 +54,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .modal-content {
 	background-color: white;
 	color: blue;
@@ -69,13 +69,14 @@ export default {
 
 .resume__addService {
 	/* width: 100%; */
-	margin: 2rem 0 0 0;
-	padding: 1rem;
+	margin: 1rem 0 0 0;
 	text-transform: uppercase;
 	font-size: 1rem;
 	font-weight: 700;
-	color: #415a77;
+	color: #ddd;
 	cursor: pointer;
+	background: none;
+	border: none;
 }
 
 .resume__titleAddServices {

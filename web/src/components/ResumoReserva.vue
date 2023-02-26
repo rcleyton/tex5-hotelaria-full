@@ -29,6 +29,9 @@
 					</li>
 				</ul>
 				<AditionalServicesModal />
+
+				<DiscountCode />
+
 				<ul class="resume__total">
 					<li class="resume__listItem">
 						Total Adicionais:
@@ -48,10 +51,11 @@
 import { mapGetters } from 'vuex';
 import AditionalServicesModal from './AditionalServicesModal.vue';
 import ModalReservaContinue from './ModalReservaContinue.vue';
+import DiscountCode from './DiscountCode.vue';
 
 export default {
 	name: 'ResumoReserva',
-	components: { AditionalServicesModal, ModalReservaContinue },
+	components: { AditionalServicesModal, ModalReservaContinue, DiscountCode },
 	computed: {
 		...mapGetters([
 			'acomodacao',

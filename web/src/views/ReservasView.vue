@@ -83,7 +83,7 @@ export default {
 .form__title {
 	color: #0c1926;
 	font-size: 2rem;
-	margin: 45px 0 0px 0;
+	// margin: 45px 0 0px 0;
 	text-align: center;
 }
 

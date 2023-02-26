@@ -9,7 +9,7 @@
 				Senha
 				<input type="password" v-model="senha" />
 			</label>
-			<button type="submit" class="botaoLogin">Log in</button>
+			<button type="submit" class="botaoLogin">Entrar</button>
 			<p>
 				Não possui uma conta?
 				<a href="#">Cadastre-se</a>
@@ -20,6 +20,8 @@
 </template>
 
 <script>
+import { registerRuntimeHelpers } from '@vue/compiler-core';
+
 export default {
   name: "LoginView",
   data() {
@@ -35,26 +37,24 @@ export default {
         alert("Por favor, preencha os campos de usuário e senha.");
         return;
       }
+	  
+	  // Verifica se os campos de usuário e senha possuem caracters especiais ou espaço em branco
+	  if (this.usuario === ` ` || this.senha === ` `) {
+		alert("Por favor, nao utilize aspas ou espaços em branco");
+		return;
+	  }
+	  
+	  // Verifica se os campos são validos
+	   if (this.usuario !== "usuario@gmail.com" && this.senha !== "123") {
+		alert("Usuário nao cadastrado")
+		}
 
-      // Envia a requisição de login para o servidor
-      Userfront.login({
-        method: "senha",
-        usuario: this.usuario,
-        senha: this.senha,
-      })
-        .then(() => {
-          // Caso o login seja bem sucedido, redireciona para a página principal
-          this.$router.push("/");
-        })
-        .
-
-        catch((error) => {
-          // Caso contrário, exibe uma mensagem de erro
-          alert("O login falhou. Por favor, verifique suas credenciais.");
-
-
-          console.error(error);
-        });
+	
+	  if (this.usuario === "usuario@gmail.com" && this.senha === "123") {
+		  localStorage.usuario = this.usuario
+		  localStorage.senha = this.senha
+			this.$router.push("/");
+			}
     },
   },
 };
@@ -92,7 +92,7 @@ $background-color_3: #233242;
 	gap: 1.5rem;
 	text-align: left;
 }
-input[type='text'] {
+input{
 	padding: 0.5rem;
 	border: none;
 	border-bottom: 2px solid #ccc;
@@ -100,15 +100,7 @@ input[type='text'] {
 	font-size: 2.5rem;
 	height: 2.5rem;
 }
-input[type='password'] {
-	padding: 0.5rem;
-	border: none;
-	border-bottom: 2px solid #ccc;
-	width: 100%;
-	font-size: 2.5rem;
-	height: 2.5rem;
-}
-.botaoLogin[type='submit'] {
+.botaoLogin{
 	background-color: $background-color_2;
 	color: $color_1;
 	padding: 0.5rem;
