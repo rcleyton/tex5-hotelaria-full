@@ -53,7 +53,7 @@
                 </ul>
             </div>
 
-            <button class="button" @click="$router.push('minhasreservas')">
+            <button class="button" @click="$router.push('login')">
                 Continue
             </button>
             <button class="buttonClose" @click="showModal = false">
