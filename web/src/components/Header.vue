@@ -28,7 +28,7 @@
 								<router-link to="login">Entrar</router-link>
 							</li>
 							<li>
-								<router-link to="#">Cadastrar</router-link>
+								<router-link to="cadastro">Cadastrar</router-link>
 							</li>
 						</ul>
 					</li>

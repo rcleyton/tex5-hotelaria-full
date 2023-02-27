@@ -36,6 +36,11 @@ const routes = [
 		name: 'login',
 		component: () => import('../views/LoginView.vue'),
 	},
+	{
+		path: '/cadastro',
+		name: 'cadastro',
+		component: () => import('../views/CadastroView.vue'),
+	}
 ];
 
 const router = createRouter({
