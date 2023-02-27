@@ -12,7 +12,7 @@
 			<button type="submit" class="botaoLogin">Entrar</button>
 			<p>
 				Não possui uma conta?
-				<a href="#">Cadastre-se</a>
+				<a href="cadastro">Cadastre-se</a>
 			</p>
 			<p><a href="#">Esqueceu a Senha?</a></p>
 		</form>
