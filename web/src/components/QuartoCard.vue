@@ -43,6 +43,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$yellow: #e3bb00ff;
 .roomOptions__room {
 	background-color: #fff;
 	border: 1px solid #415a77;
@@ -75,7 +76,7 @@ export default {
 .roomOptions__roomPrice {
 	display: block;
 	width: 10vw;
-	background-color: #00ff00;
+	background-color: $yellow;
 	text-align: center;
 	padding: 1rem;
 	margin: 0 0 0 1rem;

@@ -14,6 +14,7 @@
 							:value="item.id"
 							:checked="dadosReserva.servicosAdicionais[item.id]"
 							name="additionalServices"
+							class="customize yellow"
 							@change="handleInputChange($event)"
 						/>
 						{{ item.name }} - R$ {{ item.price }}
@@ -54,10 +55,14 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+$main-blue: hsla(212, 29%, 36%, 1);
+$light-gray: #f0f0eeff;
+$yellow: #e3bb00ff;
+$light-yellow: #eacc40ff;
 .modal-content {
-	background-color: white;
-	color: blue;
+	background-color: $main-blue;
+	color: $light-gray;
 	padding: 1rem;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 	border-radius: 4px;
@@ -89,4 +94,48 @@ export default {
 	font-weight: 600;
 	line-height: 1.5rem;
 }
+
+button {
+	background-color: $light-yellow;
+	color: $main-blue;
+	padding: .3rem 1rem;
+	margin-top: .5rem;
+	cursor: pointer;
+	font-weight: 600;
+	border: none;
+	border-radius: .5rem;
+}
+
+.customize{
+  all:unset;
+  position:relative;
+  display: inline-block;
+  border: dashed 1px #CCC;
+  width:15px;
+  height: 15px;
+  background: #EEE;
+  cursor:pointer;
+}
+
+.customize:checked{
+  border: dashed 1px transparent;
+}
+
+.customize:checked::after{
+  content:"";
+  position:absolute;
+  width:12px;
+  height:12px;
+  left: calc(50% - 6px);
+  top: calc(50% - 6px);
+  border-radius:50%;
+}
+
+.customize.yellow:checked{
+  background: $light-yellow;
+}
+.customize.yellow:checked::after{
+  background: $yellow;
+}
+
 </style>

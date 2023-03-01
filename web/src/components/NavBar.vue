@@ -63,7 +63,7 @@ a:hover {
 	width: 100vw;
 	color: #fff;
 	position: fixed;
-	top: 0;
+ 	top: 0;
 	left: 0;
 }
 
