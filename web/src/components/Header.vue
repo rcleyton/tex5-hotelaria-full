@@ -21,17 +21,7 @@
 							route.label
 						}}</router-link>
 					</li>
-					<li class="dropdown">
-						Faça seu login ou cadastre-se
-						<ul>
-							<li>
-								<router-link to="login">Entrar</router-link>
-							</li>
-							<li>
-								<router-link to="cadastro">Cadastrar</router-link>
-							</li>
-						</ul>
-					</li>
+					<Login />
 				</ul>
 			</nav>
 		</div>
@@ -39,25 +29,27 @@
 </template>
 
 <script>
+import Login from './Login.vue';
 export default {
-	name: 'HeaderComponent',
-	data() {
-		return {
-			routes: [
-				{ id: 1, path: '/', label: 'Início ' },
-				{ id: 2, path: 'acomodacoes', label: 'Acomodações ' },
-				{ id: 3, path: 'reservas', label: 'Reservas ' },
-				{ id: 4, path: 'sobre', label: 'Sobre ' },
-				{ id: 5, path: 'contato', label: 'Contato' },
-			],
-			navegacaoAmostra: false,
-		};
-	},
-	methods: {
-		mostrarNavegacao() {
-			this.navegacaoAmostra = !this.navegacaoAmostra;
-		},
-	},
+    name: "HeaderComponent",
+    data() {
+        return {
+            routes: [
+                { id: 1, path: "/", label: "Início " },
+                { id: 2, path: "acomodacoes", label: "Acomodações " },
+                { id: 3, path: "reservas", label: "Reservas " },
+                { id: 4, path: "sobre", label: "Sobre " },
+                { id: 5, path: "contato", label: "Contato" },
+            ],
+            navegacaoAmostra: false,
+        };
+    },
+    methods: {
+        mostrarNavegacao() {
+            this.navegacaoAmostra = !this.navegacaoAmostra;
+        },
+    },
+    components: { Login }
 };
 </script>
 
@@ -174,50 +166,5 @@ nav {
 	}
 }
 
-.dropdown {
-	position: relative;
 
-	&:after {
-		content: '';
-		display: inline-block;
-		background-image: url('../assets/icons/caret-down.svg');
-		background-size: cover;
-		width: 16px;
-		height: 16px;
-	}
-
-	&:hover {
-		&:after {
-			transform: rotate(180deg);
-		}
-
-		ul {
-			display: block;
-		}
-	}
-
-	ul {
-		border-radius: 0.5rem;
-		display: none;
-		padding: 1rem;
-		position: relative;
-
-		@media (min-width: 768px) {
-			background-color: rgba(27, 38, 59, 0.8);
-			position: absolute;
-			left: 0;
-			top: auto;
-		}
-
-		li {
-			padding-inline: 0.5rem;
-			padding-block: 1rem;
-			width: 100%;
-
-			&:hover {
-				background-color: #4c9e9e;
-			}
-		}
-	}
-}
 </style>
