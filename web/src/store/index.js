@@ -264,6 +264,7 @@ export default createStore({
 		},
 		onLogin(state, event) {
 			state.usuario = event;
+			localStorage.setItem('usuario', JSON.stringify(state.usuario));
 		},
 	},
 	actions: {

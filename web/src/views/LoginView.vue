@@ -17,7 +17,6 @@
 			<p><a href="#">Esqueceu a Senha?</a></p>
 		</form>
 	</div>
-	{{ usuario }}
 </template>
 
 <script>
@@ -44,30 +43,8 @@ export default {
 				senha: this.form.senha,
 			};
 			this.handleUserLogin(payload);
-		},
-		loginWithPassword() {
-			// Verifica se os campos de usuário e senha não estão vazios
-			if (this.usuario === '' || this.senha === '') {
-				alert('Por favor, preencha os campos de usuário e senha.');
-				return;
-			}
-
-			// Verifica se os campos de usuário e senha possuem caracters especiais ou espaço em branco
-			if (this.usuario === ` ` || this.senha === ` `) {
-				alert('Por favor, nao utilize aspas ou espaços em branco');
-				return;
-			}
-
-			// Verifica se os campos são validos
-			if (this.usuario !== 'usuario@gmail.com' && this.senha !== '123') {
-				alert('Usuário nao cadastrado');
-			}
-
-			if (this.usuario === 'usuario@gmail.com' && this.senha === '123') {
-				localStorage.usuario = this.usuario;
-				localStorage.senha = this.senha;
-				this.$router.push('/');
-			}
+			/** validar usuario antes de alterar rota */
+			this.$router.push('/');
 		},
 	},
 };

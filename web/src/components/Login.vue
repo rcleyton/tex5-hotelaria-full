@@ -24,8 +24,8 @@ import { mapGetters } from 'vuex';
 export default {
 	name: 'LoginComponent',
 	computed: {
-		...mapGetters(['usuario'])
-	}
+		...mapGetters(['usuario']),
+	},
 };
 </script>
 <style lang="scss">
