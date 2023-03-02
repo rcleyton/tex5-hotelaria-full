@@ -78,8 +78,6 @@ export default {
 
 header {
 	background-color: #415a77;
-	position: fixed;
-	width: 100%;
 
 	.header__container {
 		display: flex;
