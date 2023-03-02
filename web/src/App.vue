@@ -21,6 +21,9 @@ export default {
 		if(window.localStorage.getItem('reserva')) {
 			store.state.dadosReserva = JSON.parse(window.localStorage.getItem('reserva'));
 		}
+		if(window.localStorage.getItem('usuario')) {
+			store.state.usuario = JSON.parse(window.localStorage.getItem('usuario'));
+		}
 	}
 }
 </script>
