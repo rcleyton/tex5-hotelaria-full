@@ -3,7 +3,7 @@
 		<form class="formulario" @submit.prevent="onSubmit">
 			<label class="fraseInp">
 				Usuário
-				<input type="text" name="usuario" v-model="form.usuario" />
+				<input type="text" name="usuario" v-model="form.nome" />
 			</label>
 			<label class="fraseInp">
 				Senha
@@ -17,6 +17,7 @@
 			<p><a href="#">Esqueceu a Senha?</a></p>
 		</form>
 	</div>
+	{{ usuario }}
 </template>
 
 <script>
@@ -27,7 +28,7 @@ export default {
 	data() {
 		return {
 			form: {
-				usuario: '',
+				nome: '',
 				senha: '',
 			},
 		};
@@ -39,7 +40,7 @@ export default {
 		...mapActions(['handleUserLogin']),
 		onSubmit() {
 			const payload = {
-				usuario: this.form.usuario,
+				nome: this.form.nome,
 				senha: this.form.senha,
 			};
 			this.handleUserLogin(payload);

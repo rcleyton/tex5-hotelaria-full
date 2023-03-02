@@ -1,5 +1,5 @@
 <template>
-	<li class="dropdown" v-if="true">
+	<li class="dropdown" v-if="usuario.nome === ''">
 		Faça seu login ou cadastre-se
 		<ul>
 			<li>
@@ -11,7 +11,7 @@
 		</ul>
 	</li>
 	<li class="dropdown" v-else>
-		Nome
+		Olá, {{ usuario.nome }}
 		<ul>
 			<li>Perfil</li>
 			<li>Sair</li>
@@ -19,8 +19,13 @@
 	</li>
 </template>
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
 	name: 'LoginComponent',
+	computed: {
+		...mapGetters(['usuario'])
+	}
 };
 </script>
 <style lang="scss">
