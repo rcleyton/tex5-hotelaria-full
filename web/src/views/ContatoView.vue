@@ -1,9 +1,4 @@
 <template>
-	<Titlecomponent>
-		<h3>{{ titleReservas }}</h3>
-		<h1>{{ subtitleReservas }}</h1>
-	</Titlecomponent>
-
 	<main class="main">
 		<div class="contato">
 			<fieldset class="informacao_de_contato">
