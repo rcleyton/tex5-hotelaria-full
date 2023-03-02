@@ -143,8 +143,8 @@ export default createStore({
 		},
 		usuario: {
 			nome: '',
-			email: ''
-		}
+			email: '',
+		},
 	},
 	getters: {
 		dadosReserva: (state) => state.dadosReserva,
@@ -241,6 +241,7 @@ export default createStore({
 
 			return totalAdicionais + totalHospedagem;
 		},
+		usuario: (state) => state.usuario,
 	},
 	mutations: {
 		onInputChange(state, event) {
@@ -261,10 +262,16 @@ export default createStore({
 			localStorage.setItem('reserva', JSON.stringify(state.dadosReserva));
 			return;
 		},
+		onLogin(state, event) {
+			state.usuario = event;
+		},
 	},
 	actions: {
 		handleInputChange({ commit }, event) {
 			commit('onInputChange', event);
+		},
+		handleUserLogin({ commit }, event) {
+			commit('onLogin', event);
 		},
 	},
 	modules: {},
