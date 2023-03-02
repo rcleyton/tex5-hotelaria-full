@@ -14,15 +14,18 @@
 		Olá, {{ usuario.nome }}
 		<ul>
 			<li>Perfil</li>
-			<li>Sair</li>
+			<button type="button" @click="handleUserLogout">Sair</button>
 		</ul>
 	</li>
 </template>
 <script>
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
 	name: 'LoginComponent',
+	methods: {
+		...mapActions(['handleUserLogout'])
+	},
 	computed: {
 		...mapGetters(['usuario']),
 	},

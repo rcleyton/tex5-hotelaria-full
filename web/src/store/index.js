@@ -266,6 +266,13 @@ export default createStore({
 			state.usuario = event;
 			localStorage.setItem('usuario', JSON.stringify(state.usuario));
 		},
+		onLogout(state, event) {
+			state.usuario = {
+				nome: '',
+				senha: '',
+			};
+			localStorage.removeItem('usuario');
+		},
 	},
 	actions: {
 		handleInputChange({ commit }, event) {
@@ -273,6 +280,9 @@ export default createStore({
 		},
 		handleUserLogin({ commit }, event) {
 			commit('onLogin', event);
+		},
+		handleUserLogout({ commit }, event) {
+			commit('onLogout', event);
 		},
 	},
 	modules: {},
