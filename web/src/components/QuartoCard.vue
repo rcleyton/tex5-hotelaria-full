@@ -42,10 +42,6 @@ export default {
 	},
 	methods: {
 		...mapActions(['handleInputChange']),
-		handleInputChange() {
-			// redirecionar para outra página
-			this.$router.push('/reservas');
-		},
 	},
 };
 </script>
