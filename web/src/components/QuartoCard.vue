@@ -11,19 +11,23 @@
 		<p class="roomOptions__roomDescription">
 			{{ quarto.descricao }}
 		</p>
+
 		<p class="roomOptions__roomPrice">R$ {{ quarto.preco }}</p>
-		<input
-			class="roomOptions__selectRoom reserva"
-			type="radio"
-			:id="quarto.id"
-			:value="quarto.id"
-			:checked="dadosReserva.acomodacaoId == quarto.id"
-			name="acomodacaoId"
-			@change="handleInputChange($event)"
-		/>
-		<label class="roomOptions__selectRoom"
-			>Selecione o quarto {{ quarto.nome }}</label
-		>
+
+		<div class="reserva">
+			<input
+				class="roomOptions__selectRoom reserva"
+				type="radio"
+				:id="quarto.id"
+				:value="quarto.id"
+				:checked="dadosReserva.acomodacaoId == quarto.id"
+				name="acomodacaoId"
+				@change="handleInputChange($event)"
+			/>
+			<label class="roomOptions__selectRoom"
+				>Reservar o quarto {{ quarto.nome }}</label
+			>
+		</div>
 	</div>
 </template>
 
@@ -46,13 +50,17 @@ export default {
 $yellow: #e3bb00ff;
 .roomOptions__room {
 	background-color: #fff;
-	border: 1px solid #415a77;
+	border: 0.1rem solid #415a77;
 	margin-bottom: 2rem;
 	margin-left: 2rem;
 	padding-left: 5rem;
 	padding-bottom: 2rem;
 	border-radius: 5px;
 	box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.07);
+}
+
+.reserva {
+	padding: 1rem;
 }
 
 .roomOptions__roomImagem {
@@ -62,7 +70,7 @@ $yellow: #e3bb00ff;
 
 .roomOptions__roomTitle {
 	font-size: 1.5rem;
-	padding: 0 0 1rem 1rem;
+	padding: 1rem 0 1rem 1rem;
 	color: #0c1926;
 	font-weight: 600;
 }
@@ -74,19 +82,21 @@ $yellow: #e3bb00ff;
 }
 
 .roomOptions__roomPrice {
-	display: block;
-	width: 10vw;
+	display: flex;
+	font-size: 1.2rem;
+	width: 8vw;
 	background-color: $yellow;
+	border-radius: 2rem;
 	text-align: center;
 	padding: 1rem;
-	margin: 0 0 0 1rem;
 	color: #fff;
 	font-weight: bold;
+	align-items: center;
+	justify-content: center;
 }
 
 .roomOptions__selectRoom {
 	padding: 1rem;
-	margin-top: 1.5rem;
 }
 
 .roomOptions__paragraph {
