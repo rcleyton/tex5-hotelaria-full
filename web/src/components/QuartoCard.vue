@@ -1,5 +1,5 @@
 <template>
-	<div class="roomOptions__room">
+	<div class="roomOptions__room reserva">
 		<p class="roomOptions__roomTitle">
 			{{ quarto.nome }}
 		</p>
@@ -14,9 +14,9 @@
 
 		<p class="roomOptions__roomPrice">R$ {{ quarto.preco }}</p>
 
-		<div class="reserva">
+		<div>
 			<input
-				class="roomOptions__selectRoom reserva"
+				class="roomOptions__selectRoom"
 				type="radio"
 				:id="quarto.id"
 				:value="quarto.id"
@@ -42,6 +42,10 @@ export default {
 	},
 	methods: {
 		...mapActions(['handleInputChange']),
+		handleInputChange() {
+			// redirecionar para outra página
+			this.$router.push('/reservas');
+		},
 	},
 };
 </script>
@@ -61,6 +65,9 @@ $yellow: #e3bb00ff;
 
 .reserva {
 	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 .roomOptions__roomImagem {
@@ -76,7 +83,7 @@ $yellow: #e3bb00ff;
 }
 
 .roomOptions__roomDescription {
-	text-align: justify;
+	text-align: center;
 	padding: 0 1rem 1.7rem 1rem;
 	width: 80%;
 }
@@ -96,7 +103,10 @@ $yellow: #e3bb00ff;
 }
 
 .roomOptions__selectRoom {
-	padding: 1rem;
+	padding: 0.5rem;
+	font-weight: 700;
+	margin: 1.2rem 0;
+	font-size: 1.2rem;
 }
 
 .roomOptions__paragraph {

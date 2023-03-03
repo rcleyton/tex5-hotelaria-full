@@ -30,7 +30,8 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@use 'src/sass/sass-utils/_colors.scss' as v;
 .container {
 	color: #25334a;
 	background-color: #ffffff;
