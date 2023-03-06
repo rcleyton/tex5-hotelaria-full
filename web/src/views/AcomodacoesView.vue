@@ -46,13 +46,12 @@ export default {
 	color: v.$main-blue;
 	font-size: 2.4rem;
 	font-weight: 700;
-	margin: 150px 0 35px 0;
+	margin: 4rem;
 	text-align: center;
 	text-transform: uppercase;
 }
 
 .acomodacao_container {
-	width: 80%;
 	margin: 0 auto;
 	display: flex;
 	justify-content: center;
@@ -60,6 +59,16 @@ export default {
 	flex-wrap: wrap;
 	align-items: stretch;
 	gap: 1rem;
+
+	@media (max-width: 768px) {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-content: stretch;
+		justify-content: center;
+		align-items: center;
+		margin: 1rem auto;
+	}
 }
 
 .roomOptions__room {
@@ -68,5 +77,9 @@ export default {
 	align-items: center;
 	flex-direction: column;
 	padding: 0;
+	@media (max-width: 768px) {
+		width: 90%;
+		margin: auto;
+	}
 }
 </style>

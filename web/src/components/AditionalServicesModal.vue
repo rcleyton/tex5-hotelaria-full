@@ -73,20 +73,19 @@ $light-yellow: #eacc40ff;
 }
 
 .resume__addService {
-	/* width: 100%; */
-	margin: 1rem 0 0 0;
 	text-transform: uppercase;
-	font-size: 1rem;
+	font-size: 1.4rem;
 	font-weight: 700;
-	color: #ddd;
+	color: #e3bb00ff;
 	cursor: pointer;
 	background: none;
 	border: none;
+	padding: 1rem 0;
 }
 
 .resume__titleAddServices {
 	text-align: center;
-	margin: 2rem 0;
+	margin: 1rem 0;
 }
 
 .resume__listItem {
@@ -98,44 +97,43 @@ $light-yellow: #eacc40ff;
 button {
 	background-color: $light-yellow;
 	color: $main-blue;
-	padding: .3rem 1rem;
-	margin-top: .5rem;
+	padding: 0.3rem 1rem;
+	margin-top: 0.5rem;
 	cursor: pointer;
 	font-weight: 600;
 	border: none;
-	border-radius: .5rem;
+	border-radius: 0.5rem;
 }
 
-.customize{
-  all:unset;
-  position:relative;
-  display: inline-block;
-  border: dashed 1px #CCC;
-  width:15px;
-  height: 15px;
-  background: #EEE;
-  cursor:pointer;
+.customize {
+	all: unset;
+	position: relative;
+	display: inline-block;
+	border: dashed 1px #ccc;
+	width: 15px;
+	height: 15px;
+	background: #eee;
+	cursor: pointer;
 }
 
-.customize:checked{
-  border: dashed 1px transparent;
+.customize:checked {
+	border: dashed 1px transparent;
 }
 
-.customize:checked::after{
-  content:"";
-  position:absolute;
-  width:12px;
-  height:12px;
-  left: calc(50% - 6px);
-  top: calc(50% - 6px);
-  border-radius:50%;
+.customize:checked::after {
+	content: '';
+	position: absolute;
+	width: 12px;
+	height: 12px;
+	left: calc(50% - 6px);
+	top: calc(50% - 6px);
+	border-radius: 50%;
 }
 
-.customize.yellow:checked{
-  background: $light-yellow;
+.customize.yellow:checked {
+	background: $light-yellow;
 }
-.customize.yellow:checked::after{
-  background: $yellow;
+.customize.yellow:checked::after {
+	background: $yellow;
 }
-
 </style>
