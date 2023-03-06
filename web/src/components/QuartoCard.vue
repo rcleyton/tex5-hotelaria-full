@@ -51,12 +51,12 @@ $yellow: #e3bb00ff;
 .roomOptions__room {
 	background-color: #fff;
 	border: 0.1rem solid #415a77;
-	margin-bottom: 2rem;
-	margin-left: 2rem;
-	padding-left: 5rem;
-	padding-bottom: 2rem;
+	margin: 2rem 3rem;
+	/* margin-left: 2rem; */
+	/* padding-left: 5rem; */
+	/* padding-bottom: 2rem; */
 	border-radius: 5px;
-	box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.07);
+	box-shadow: 2px 2px 7px rgb(0 0 0 / 7%);
 }
 
 .reserva {
@@ -69,6 +69,10 @@ $yellow: #e3bb00ff;
 .roomOptions__roomImagem {
 	padding: 0 0 2rem 0;
 	width: 80%;
+
+	@media (max-width: 768px) {
+		width: 100%;
+	}
 }
 
 .roomOptions__roomTitle {
@@ -82,6 +86,10 @@ $yellow: #e3bb00ff;
 	text-align: center;
 	padding: 0 1rem 1.7rem 1rem;
 	width: 80%;
+
+	@media (max-width: 768px) {
+		width: 100%;
+	}
 }
 
 .roomOptions__roomPrice {
@@ -108,9 +116,11 @@ $yellow: #e3bb00ff;
 	font-weight: 700;
 	margin: 1.2rem 0;
 	font-size: 1.2rem;
+	text-align: center;
 
 	@media (max-width: 768px) {
 		font-weight: 700;
+		text-align: center;
 		margin: 0.5rem 0;
 	}
 }
@@ -119,8 +129,8 @@ $yellow: #e3bb00ff;
 	position: relative;
 	color: #0c1926;
 	font-size: 2rem;
-	margin: 45px 0 5px 0;
-	text-align: left;
+	margin: auto;
+	text-align: center;
 }
 
 .select {
@@ -131,6 +141,7 @@ $yellow: #e3bb00ff;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		text-align: center;
 	}
 }
 

@@ -80,25 +80,48 @@ export default {
 </script>
 <style lang="scss" scoped>
 .resume {
-	align-self: start;
+	display: flex;
+	width: 30vw;
+	height: auto;
+	max-height: 80vh;
+	overflow: auto;
+	position: -webkit-sticky;
 	position: sticky;
+	top: 2%;
+	margin-top: 1rem;
 	background: #0c1926;
 	color: #fff;
-	top: 200px;
-	width: 35vw;
-	margin-bottom: 5.1rem;
-	margin-left: 5rem;
-	border-radius: 5px;
+	margin-bottom: 2rem;
+	margin-left: 2rem;
+	border-radius: 1rem;
 	box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.07);
+
+	@media (max-width: 768px) {
+		position: sticky;
+		width: 100%;
+		margin: 1rem auto;
+		text-align: center;
+	}
 }
 
 .resume__reserve {
 	padding: 2rem;
 }
 
+.resume__l {
+	padding: 0;
+}
+
+.resume__total {
+	padding: 0;
+}
 .resume__title {
-	text-align: center;
+	text-align: left;
 	margin-bottom: 2rem;
+
+	@media (max-width: 768px) {
+		text-align: center;
+	}
 }
 
 .resume__listItem {
