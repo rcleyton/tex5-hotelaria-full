@@ -14,7 +14,7 @@
 
 		<p class="roomOptions__roomPrice">R$ {{ quarto.preco }}</p>
 
-		<div>
+		<div class="select">
 			<input
 				class="roomOptions__selectRoom"
 				type="radio"
@@ -87,7 +87,7 @@ $yellow: #e3bb00ff;
 .roomOptions__roomPrice {
 	display: flex;
 	font-size: 1.2rem;
-	width: 8vw;
+	width: 30%;
 	background-color: $yellow;
 	border-radius: 2rem;
 	text-align: center;
@@ -96,6 +96,11 @@ $yellow: #e3bb00ff;
 	font-weight: bold;
 	align-items: center;
 	justify-content: center;
+
+	@media (max-width: 768px) {
+		width: 50%;
+		margin-bottom: 1rem;
+	}
 }
 
 .roomOptions__selectRoom {
@@ -103,6 +108,11 @@ $yellow: #e3bb00ff;
 	font-weight: 700;
 	margin: 1.2rem 0;
 	font-size: 1.2rem;
+
+	@media (max-width: 768px) {
+		font-weight: 700;
+		margin: 0.5rem 0;
+	}
 }
 
 .roomOptions__paragraph {
@@ -111,5 +121,24 @@ $yellow: #e3bb00ff;
 	font-size: 2rem;
 	margin: 45px 0 5px 0;
 	text-align: left;
+}
+
+.select {
+	display: flex;
+	align-items: center;
+
+	@media (max-width: 768px) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+}
+
+input[type='radio'] {
+	width: 1.5rem;
+	height: 1.5rem;
+	float: left;
+	cursor: pointer;
+	accent-color: #415a77;
 }
 </style>
