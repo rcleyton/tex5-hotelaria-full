@@ -83,7 +83,7 @@ export default {
 	display: flex;
 	width: 30vw;
 	height: auto;
-	max-height: 80vh;
+	max-height: 90vh;
 	overflow: auto;
 	position: -webkit-sticky;
 	position: sticky;
@@ -125,7 +125,7 @@ export default {
 }
 
 .resume__listItem {
-	font-size: 0.9rem;
+	font-size: 1rem;
 	font-weight: 600;
 	line-height: 1.5rem;
 }
