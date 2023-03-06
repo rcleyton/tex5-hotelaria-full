@@ -44,7 +44,7 @@
 	</section>
 	<div class="box">
 		<div class="roomOptions__room">
-			<h3 class="roomOptions__paragraph">Escolha seu quarto</h3>
+			<h3 class="roomOptions__paragraph select_room">Escolha seu quarto</h3>
 			<QuartoCard
 				v-for="quarto in quartosHotel"
 				:quarto="quarto"
@@ -76,8 +76,29 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.containerReserv__form {
+	margin: 1rem;
+	text-align: center;
+
+	h2 {
+		text-align: center;
+		font-size: 2rem;
+		font-weight: 700;
+	}
+}
 .box {
 	display: flex;
+
+	h3 {
+		text-align: center;
+		font-size: 2rem;
+		font-weight: 700;
+		color: #0c1926;
+	}
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+	}
 }
 
 .form__title {
@@ -105,14 +126,18 @@ export default {
 
 .form__date {
 	display: flex;
-	padding: 5rem 0 4rem 0;
-	justify-content: space-evenly;
+	padding: 2rem 0 3rem 0;
+	justify-content: center;
 	align-items: flex-end;
 	column-gap: 1rem;
 }
 
 .form__date label {
 	padding: 0 0 1rem 0;
+
+	@media (max-width: 768px) {
+		font-size: 1rem;
+	}
 }
 
 .form__date input {
