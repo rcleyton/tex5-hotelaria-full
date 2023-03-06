@@ -1,6 +1,6 @@
 <template>
 	<li class="dropdown" v-if="usuario.nome === ''">
-		Faça seu login ou cadastre-se
+		Faça <u>seu login</u> ou <u>cadastre-se</u>
 		<ul>
 			<li>
 				<router-link to="login">Entrar</router-link>
@@ -18,6 +18,7 @@
 		</ul>
 	</li>
 </template>
+
 <script>
 import { mapActions, mapGetters } from 'vuex';
 
@@ -31,6 +32,7 @@ export default {
 	},
 };
 </script>
+
 <style lang="scss">
 .dropdown {
 	position: relative;
