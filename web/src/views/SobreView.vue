@@ -17,27 +17,44 @@
 		<div class="lugares__gridImagens">
 			<div id="card1" class="card">
 				<h2 class="card__titulo"></h2>
-				<img src="../assets/images/pexels-asman-chema-594077.jpg" alt="" />
+				<img
+					class="card_img"
+					src="../assets/images/pexels-asman-chema-594077.jpg"
+					alt=""
+				/>
 			</div>
 			<div id="card2" class="card">
 				<h2 class="card__titulo"></h2>
-				<img src="../assets/images/pexels-naim-benjelloun-2290753.jpg" alt="" />
+				<img
+					class="card_img"
+					src="../assets/images/pexels-naim-benjelloun-2290753.jpg"
+					alt=""
+				/>
 			</div>
 			<div id="card3" class="card">
 				<h2 class="card__titulo"></h2>
-				<img src="../assets/images/pexels-pixabay-161758.jpg" alt="" />
+				<img
+					class="card_img"
+					src="../assets/images/pexels-pixabay-161758.jpg"
+					alt=""
+				/>
 			</div>
 			<div id="card4" class="card">
 				<h2 class="card__titulo"></h2>
-				<img src="../assets/images/pexels-pixabay-262047.jpg" alt="" />
+				<img
+					class="card_img"
+					src="../assets/images/pexels-pixabay-262047.jpg"
+					alt=""
+				/>
 			</div>
 			<div id="card5" class="card">
 				<h2 class="card__titulo"></h2>
-				<img src="../assets/images/swimming-pool.jpg" alt="" />
+				<img class="card_img" src="../assets/images/swimming-pool.jpg" alt="" />
 			</div>
 			<div id="card6" class="card">
 				<h2 class="card__titulo"></h2>
 				<img
+					class="card_img"
 					src="../assets/images/sun-loungers-near-palms-and-swimming-pool-in-sunny-day.jpg"
 					alt=""
 				/>
@@ -47,7 +64,7 @@
 </template>
 
 <script></script>
-<style>
+<style lang="scss" scoped>
 .sobre__nos {
 	display: flex;
 	justify-content: center;
@@ -86,14 +103,16 @@
 	margin: 45px 0 35px 0;
 	color: #0c1926;
 	text-align: center;
+	font-weight: 700;
 }
 
 .lugares__paragrafo {
-	font-size: 1.2rem;
-	max-width: 900px;
+	font-size: 1.1rem;
+	line-height: 1.6rem;
+	max-width: 80%;
 	margin-bottom: 35px;
 	letter-spacing: 1px;
-	color: #999;
+	color: #3b3b3b;
 	text-align: center;
 }
 
@@ -108,13 +127,23 @@
 .lugares__gridImagens {
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: space-around;
 }
 
 .card {
+	aspect-ratio: 4/3;
 	width: 45%;
-	height: 300px;
-	box-shadow: 8px 8px 10px #999;
 	margin: 1rem;
 	border-radius: 5px;
+
+	@media (max-width: 768px) {
+		width: 100%;
+	}
+}
+
+.card_img {
+	height: 100%;
+	box-shadow: 8px 8px 14px #999;
+	object-fit: cover;
 }
 </style>

@@ -5,27 +5,37 @@
 				<h2 class="resume__title">Resumo da reserva</h2>
 				<ul class="resume__l">
 					<li class="resume__listItem">
-						Data de Entrada: {{ dadosReserva.checkIn }}
+						Data de Entrada:
+						<span class="feature_color"> {{ dadosReserva.checkIn }}</span>
 					</li>
 					<li class="resume__listItem">
-						Data de Saída: {{ dadosReserva.checkOut }}
+						Data de Saída:
+						<span class="feature_color"> {{ dadosReserva.checkOut }}</span>
 					</li>
 					<li class="resume__listItem">
 						Número de Hóspedes:
-						{{ dadosReserva.quantidadeDePessoas }}
+						<span class="feature_color">
+							{{ dadosReserva.quantidadeDePessoas }}</span
+						>
 					</li>
 					<li class="resume__listItem">
 						Diárias: {{ diarias }}
-						{{ !diarias ? '' : diarias > 1 ? 'dias' : 'dia' }}
+						<span class="feature_color">
+							{{ !diarias ? '' : diarias > 1 ? 'dias' : 'dia' }}</span
+						>
 					</li>
 					<li class="resume__listItem">Quarto: {{ acomodacao?.nome }}</li>
 					<li class="resume__listItem">
 						Valor do quarto:
-						{{ formatCurrency(acomodacao?.preco) }}
+						<span class="feature_color">
+							{{ formatCurrency(acomodacao?.preco) }}</span
+						>
 					</li>
 					<li class="resume__listItem">
 						Valor da hospedagem:
-						{{ formatCurrency(totalHospedagem) }}
+						<span class="feature_color">
+							{{ formatCurrency(totalHospedagem) }}</span
+						>
 					</li>
 				</ul>
 				<AditionalServicesModal />
@@ -35,11 +45,13 @@
 				<ul class="resume__total">
 					<li class="resume__listItem">
 						Total Adicionais:
-						{{ formatCurrency(totalAdicionais) }}
+						<span class="feature_color">
+							{{ formatCurrency(totalAdicionais) }}</span
+						>
 					</li>
 					<li class="resume__listItem">
-						Valor total:
-						{{ formatCurrency(total) }}
+						Valor total: 
+						<span class="feature_color">{{ formatCurrency(total) }}</span>
 					</li>
 				</ul>
 				<ModalReservaContinue />
@@ -79,6 +91,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@use 'src/sass/sass-utils/_colors.scss' as v;
 .resume {
 	display: flex;
 	width: 30vw;
@@ -150,5 +163,9 @@ export default {
 
 .resume__total {
 	margin: 2rem 0;
+}
+
+.feature_color {
+	color: v.$yellow;
 }
 </style>
