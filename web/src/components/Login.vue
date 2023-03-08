@@ -1,6 +1,6 @@
 <template>
 	<li class="dropdown" v-if="usuario.nome === ''">
-		Faça seu login ou cadastre-se
+		Faça <u>seu login</u> ou <u>cadastre-se</u>
 		<ul>
 			<li>
 				<router-link to="login">Entrar</router-link>
@@ -18,19 +18,21 @@
 		</ul>
 	</li>
 </template>
+
 <script>
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
 	name: 'LoginComponent',
 	methods: {
-		...mapActions(['handleUserLogout'])
+		...mapActions(['handleUserLogout']),
 	},
 	computed: {
 		...mapGetters(['usuario']),
 	},
 };
 </script>
+
 <style lang="scss">
 .dropdown {
 	position: relative;
@@ -59,15 +61,17 @@ export default {
 		display: none;
 		padding: 1rem;
 		position: relative;
+		text-decoration: none;
 
 		@media (min-width: 768px) {
 			background-color: rgba(27, 38, 59, 0.8);
 			position: absolute;
-			left: 0;
+			right: 0;
 			top: auto;
 		}
 
 		li {
+			text-decoration: none;
 			padding-inline: 0.5rem;
 			padding-block: 1rem;
 			width: 100%;
@@ -75,6 +79,9 @@ export default {
 			&:hover {
 				background-color: #4c9e9e;
 			}
+		}
+		a {
+			color: white;
 		}
 	}
 }
