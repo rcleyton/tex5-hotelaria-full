@@ -66,7 +66,7 @@ input {
 .botaoCadastro {
 	background-color: v.$yellow;
 	color: v.$dark-blue;
-	padding: 0.5rem;
+	padding: 1rem;
 	border: none;
 	border-radius: 5px;
 	cursor: pointer;
