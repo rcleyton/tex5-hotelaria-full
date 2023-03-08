@@ -1,21 +1,23 @@
 <template>
-	<div id="app" class="formularioLogin">
-		<form class="formulario" @submit.prevent="onSubmit">
-			<label class="fraseInp">
-				Usuário
-				<input type="text" name="usuario" v-model="form.nome" />
-			</label>
-			<label class="fraseInp">
-				Senha
-				<input type="password" name="senha" v-model="form.senha" />
-			</label>
-			<button type="submit" class="botaoLogin">Entrar</button>
-			<p>
-				Não possui uma conta?
-				<a href="cadastro">Cadastre-se</a>
-			</p>
-			<p><a href="#">Esqueceu a Senha?</a></p>
-		</form>
+	<div class="background_login">
+		<div id="app" class="formularioLogin">
+			<form class="formulario" @submit.prevent="onSubmit">
+				<label class="fraseInp">
+					Usuário
+					<input type="text" name="usuario" v-model="form.nome" />
+				</label>
+				<label class="fraseInp">
+					Senha
+					<input type="password" name="senha" v-model="form.senha" />
+				</label>
+				<button type="submit" class="botaoLogin">Entrar</button>
+				<p>
+					Não possui uma conta?
+					<a href="cadastro">Cadastre-se</a>
+				</p>
+				<p><a href="#">Esqueceu a Senha?</a></p>
+			</form>
+		</div>
 	</div>
 </template>
 
@@ -51,6 +53,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use 'src/sass/sass-utils/_colors.scss' as v;
+
 $color_1: white;
 $background-color_1: #f5f5f5;
 $background-color_2: #415a77;
@@ -102,5 +106,20 @@ input {
 	&:hover {
 		background-color: $background-color_3;
 	}
+}
+
+.background_login {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	text-align: center;
+	background: v.$gradient-top,
+		url(/src/assets/images/reception.jpg) fixed bottom;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100%;
+	min-height: 100vh;
 }
 </style>
