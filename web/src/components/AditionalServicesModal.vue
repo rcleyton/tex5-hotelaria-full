@@ -61,15 +61,23 @@ $light-gray: #f0f0eeff;
 $yellow: #e3bb00ff;
 $light-yellow: #eacc40ff;
 .modal-content {
-	background-color: $main-blue;
-	color: $light-gray;
+	background-color: hsl(212, 29%, 36%);
+	color: #f0f0ee;
 	padding: 1rem;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-	border-radius: 4px;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	box-shadow: 0 2px 8px rgb(0 0 0 / 26%);
+	border-radius: 10px;
+	position: relative;
+
+	ul {
+		padding: 0;
+		line-height: 2rem;
+		margin-bottom: 0;
+	}
+
+	button {
+		padding: 0.5rem;
+		width: 50%;
+	}
 }
 
 .resume__addService {
@@ -80,7 +88,6 @@ $light-yellow: #eacc40ff;
 	cursor: pointer;
 	background: none;
 	border: none;
-	padding: 1rem 0;
 }
 
 .resume__titleAddServices {
