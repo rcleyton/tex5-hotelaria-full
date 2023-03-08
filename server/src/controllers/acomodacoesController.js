@@ -10,4 +10,29 @@ module.exports = {
 		}
 		res.send(data);
 	},
+
+	insert: async (req, res) => {
+		const { titulo, descricao, imagem, preco } = req.body;
+
+		try {
+			const id = await AcomodacoesService.insert(
+				(status = 0),
+				titulo,
+				descricao,
+				imagem,
+				preco
+			);
+			const acomodacao = {
+				status: 0,
+				titulo,
+				descricao,
+				imagem,
+				preco,
+				acomodacaoId: id,
+			};
+			res.send(acomodacao);
+		} catch (err) {
+			console.error(err);
+		}
+	},
 };
