@@ -12,7 +12,7 @@
 			{{ quarto.descricao }}
 		</p>
 
-		<p class="roomOptions__roomPrice">R$ {{ quarto.preco }}</p>
+		<p class="roomOptions__roomPrice">R${{ quarto.preco }}</p>
 
 		<div class="select">
 			<input
