@@ -3,7 +3,7 @@
 		<div class="contato">
 			<fieldset class="informacao_de_contato">
 				<form
-					class="form"
+					class="contact_form"
 					action=""
 					method="post"
 					enctype="multipart/form-data"
@@ -63,7 +63,7 @@
 							></textarea>
 						</li>
 						<li>
-							<button class="button">Enviar Mensagem</button>
+							<button class="button_form">Enviar Mensagem</button>
 						</li>
 					</ul>
 				</form>
@@ -130,6 +130,12 @@ export default {
 	margin: 1.5rem auto;
 	align-items: center;
 	border: 1px solid v.$main-blue;
+
+	@media (max-width: 768px) {
+		width: 100%;
+		text-align: center;
+		margin: auto;
+	}
 }
 .informacao_de_contato legend {
 	text-align: center;
@@ -162,14 +168,20 @@ export default {
 .informacao_de_contato input {
 	width: 70%;
 	height: 45px;
-	margin-top: 10px;
-	padding: 20px 0;
+	margin-top: 1.2rem;
+	padding: 1.2rem 0;
 	height: 30px;
 	background-color: v.$light-gray;
 	border: 0.3px solid v.$light-blue;
 	text-indent: 1rem;
 	text-align: center;
 	border-radius: 1rem;
+	
+
+	@media (max-width: 768px) {
+		width: 100%;
+		margin: 0.5rem auto;
+	}
 }
 .informacao_de_contato textarea:focus,
 input:focus,
@@ -181,8 +193,30 @@ select:focus {
 	display: flex;
 }
 
+.contact_form {
+	li {
+		text-align: center;
+		margin: auto;
+	}
+
+	ul {
+		padding: 0;
+	}
+
+	@media (max-width: 768px) {
+		width: 100%;
+		text-align: center;
+		margin: auto;
+
+		li {
+			text-align: center;
+			margin: auto;
+		}
+	}
+}
+
 .select {
-	width: 40%;
+	width: 50%;
 	height: 45px;
 	margin-top: 10px;
 	border: 0.3px solid v.$light-blue;
@@ -214,6 +248,21 @@ select:focus {
 	border-radius: 1rem;
 	resize: none;
 	background: v.$light-gray;
+	@media (max-width: 768px) {
+		width: 100%;
+		margin: auto;
+	}
+}
+
+.button_form {
+	margin: auto;
+	width: 25%;
+	font-size: 1.2rem;
+
+	@media (max-width: 768px) {
+		width: 100%;
+		margin: auto;
+	}
 }
 
 .informacao_de_contato button {
