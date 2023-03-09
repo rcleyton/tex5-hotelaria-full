@@ -19,8 +19,9 @@
 						>
 					</li>
 					<li class="resume__listItem">
-						Diárias: {{ diarias }}
+						Diárias:
 						<span class="feature_color">
+							{{ diarias }}
 							{{ !diarias ? '' : diarias > 1 ? 'dias' : 'dia' }}</span
 						>
 					</li>
@@ -50,7 +51,7 @@
 						>
 					</li>
 					<li class="resume__listItem">
-						Valor total: 
+						Valor total:
 						<span class="feature_color">{{ formatCurrency(total) }}</span>
 					</li>
 				</ul>
