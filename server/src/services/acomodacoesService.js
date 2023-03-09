@@ -12,4 +12,27 @@ module.exports = {
 			});
 		});
 	},
+
+	insert: (status, titulo, descricao, imagem, preco) => {
+		return new Promise((resolve, reject) => {
+			db.query(
+				`INSERT INTO acomodacoes (
+				status,
+				titulo,
+				descricao,
+				imagem,
+				preco
+				) VALUES (?, ?, ?, ?, ?)`,
+				[status, titulo, descricao, imagem, preco],
+				(error, results) => {
+					if (error) {
+						reject(error);
+						return;
+					} else {
+						resolve(results.insertId);
+					}
+				}
+			);
+		});
+	},
 };

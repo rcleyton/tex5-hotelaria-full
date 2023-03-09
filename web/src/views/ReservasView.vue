@@ -35,7 +35,7 @@
 					name="quantidadeDePessoas"
 					:value="dadosReserva.quantidadeDePessoas"
 					min="1"
-					max="10"
+					max="4"
 					class="form-control"
 					@change="handleInputChange($event)"
 				/>
@@ -54,6 +54,7 @@
 		<ResumoReserva />
 	</div>
 </template>
+
 <script>
 import QuartoCard from '@/components/QuartoCard.vue';
 import ResumoReserva from '@/components/ResumoReserva.vue';
@@ -75,6 +76,7 @@ export default {
 	},
 };
 </script>
+
 <style lang="scss" scoped>
 .containerReserv__form {
 	margin: 1rem;
