@@ -12,4 +12,28 @@ module.exports = {
 			});
 		});
 	},
+
+	insert: (cidade, estado, numero, rua, bairro, complemento) => {
+		return new Promise((resolve, reject) => {
+			db.query(
+				`INSERT INTO endereco (
+					cidade,
+					estado,
+					numero,
+					rua,
+					bairro,
+					complemento
+				) VALUES (?, ?, ?, ?, ?, ?)`,
+				[cidade, estado, numero, rua, bairro, complemento],
+				(error, results) => {
+					if (error) {
+						reject(error);
+						return;
+					} else {
+						resolve(results.insertId);
+					}
+				}
+			);
+		});
+	},
 };
