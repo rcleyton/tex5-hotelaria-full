@@ -10,5 +10,30 @@ module.exports = {
                 } resolve(res)
             })
         })
+    },
+
+    insert: ( item, valor, local, qtd_item, data_hora ) => {
+        return new Promise ((resolve, reject) => {
+            db.query(
+                `
+                INSERT INTO consumo (
+                    item,
+                    valor,
+                    local,
+                    qtd_item,
+                    data_hora,
+                ) VALUES (?, ?, ?, ?, ?)
+                `,[item,valor,local,qtd_item,data_hora],
+                (err,result) => {
+                    if(err) {
+                        reject(err)
+                        return
+                    } else {
+                        resolve(result.insertId)
+                        return
+                    }
+                }
+            )
+        })
     }
 }

@@ -9,5 +9,30 @@ module.exports = {
             data.push(consumo[i])
         }
         response.send(data)
+    },
+
+    insert: async (req, res) => {
+        const { item, valor, local, qtd_item, data_hora } = req.body
+
+        try {
+            const id  =  await ConsumoService.insert(
+                item,
+                valor,
+                local,
+                qtd_item,
+                data_hora,
+            )
+            const consumo = {
+                item,
+                valor,
+                local,
+                qtd_item,
+                data_hora,
+                consumoId: id
+            }
+            res.send(consumo)
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
