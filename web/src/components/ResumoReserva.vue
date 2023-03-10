@@ -6,11 +6,17 @@
 				<ul class="resume__l">
 					<li class="resume__listItem">
 						Data de Entrada:
-						<span class="feature_color"> {{ dadosReserva.checkIn }}</span>
+						<span class="feature_color">
+							{{ new Date(dadosReserva.checkIn).toLocaleDateString('pt-BR') }}</span
+						>
 					</li>
 					<li class="resume__listItem">
 						Data de Saída:
-						<span class="feature_color"> {{ dadosReserva.checkOut }}</span>
+						<span class="feature_color">
+							{{
+								new Date(dadosReserva.checkOut).toLocaleDateString('pt-BR')
+							}}</span
+						>
 					</li>
 					<li class="resume__listItem">
 						Número de Hóspedes:
