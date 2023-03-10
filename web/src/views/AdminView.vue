@@ -35,7 +35,42 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@use 'src/sass/sass-utils/_colors.scss' as v;
 .container {
-	margin-top: 10rem;
+	max-width: 800px;
+	margin: 2rem auto;
+	font-family: 'Roboto', sans-serif;
+	color: #333;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+	margin-bottom: 40px;
+	border-radius: 10px;
+	overflow: hidden;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+thead {
+	background-color: v.$main-blue;
+	color: #fff;
+}
+
+th,
+td {
+	text-align: left;
+	padding: 20px;
+	font-weight: 400;
+	
+}
+
+td {
+	border-right: 1px solid v.$light-gray;
+	border-bottom: 1px solid v.$light-gray;
+}
+
+tbody tr:last-child td {
+	border-bottom: none;
 }
 </style>
