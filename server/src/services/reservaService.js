@@ -12,11 +12,11 @@ module.exports = {
         })
     },
 
-    insert: ( check_in, check_out, quantidade_pessoas, total, total_desconto, confirmacao, data_confirmacao, cupom_id, acomodacao_id, usuario_id, servicos_adicionais ) => {
+    insert: ( check_in, check_out, quantidade_pessoas, total, total_desconto, confirmacao, data_confirmacao, cupom_id, acomodacao_id, usuario_id, servicos_adicionais_id ) => {
         return new Promise ((resolve, reject) => {
             db.query(
                 `
-                INSERT INTO consumo (
+                INSERT INTO reservas (
                     check_in,
                     check_out,
                     quantidade_pessoas,
@@ -27,9 +27,9 @@ module.exports = {
                     cupom_id,
                     acomodacao_id,
                     usuario_id,
-                    servicos_adicionais
+                    servicos_adicionais_id
                 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                `,[check_in, check_out, quantidade_pessoas, total, total_desconto, confirmacao, data_confirmacao, cupom_id, acomodacao_id, usuario_id, servicos_adicionais],
+                `,[check_in, check_out, quantidade_pessoas, total, total_desconto, confirmacao, data_confirmacao, cupom_id, acomodacao_id, usuario_id, servicos_adicionais_id],
                 (err,result) => {
                     if(err) {
                         reject(err)

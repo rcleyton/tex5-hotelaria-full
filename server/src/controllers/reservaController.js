@@ -12,11 +12,12 @@ module.exports = {
 	},
 
 	insert: async (req, res) => {
-		const { check_in, check_out, quantidade_pessoas, total, total_desconto, confirmacao, data_confirmacao, cupom_id, acomodacao_id, usuario_id, servicos_adicionais } = req.body;
+		const { check_in, check_out, quantidade_pessoas, total, total_desconto, confirmacao, data_confirmacao, cupom_id, acomodacao_id, usuario_id, servicos_adicionais_id } = req.body;
 
 		try {
 			const id = await ReservasService.insert(
-				check_in, check_out,
+				check_in,
+				check_out,
                 quantidade_pessoas,
                 total,
                 total_desconto,
@@ -25,7 +26,7 @@ module.exports = {
                 cupom_id,
                 acomodacao_id,
                 usuario_id,
-                servicos_adicionais
+                servicos_adicionais_id
 			);
 			const reservas = {
 				check_in, check_out,
@@ -37,7 +38,7 @@ module.exports = {
                 cupom_id,
                 acomodacao_id,
                 usuario_id,
-                servicos_adicionais,
+                servicos_adicionais_id,
 				reservasId: id,
 			};
 			res.send(reservas);
