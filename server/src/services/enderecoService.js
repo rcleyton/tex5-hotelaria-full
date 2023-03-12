@@ -36,4 +36,27 @@ module.exports = {
 			);
 		});
 	},
+
+	update: (cidade, estado, numero, rua, bairro, complemento, id_endereco ) => {
+		return new Promise((resolve, reject) => {
+			db.query(`
+				UPDATE endereco
+				SET cidade = ?,
+					estado = ?,
+					numero = ?,
+					rua = ?,
+					bairro = ?,
+					complemento = ?
+				WHERE id_endereco = ?`,
+				[cidade, estado, numero, rua, bairro, complemento, id_endereco],
+				(error, results) => {
+					if (error) {
+						reject(error);
+						return;
+					} else {
+						resolve(results.insertId);
+					}
+				});
+		});
+	}
 };
