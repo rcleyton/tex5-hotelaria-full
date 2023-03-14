@@ -1,5 +1,6 @@
 const AcomodacoesService = require('../services/acomodacoesService');
 
+
 module.exports = {
 	getAll: async (req, res) => {
 		const data = [];
@@ -12,7 +13,8 @@ module.exports = {
 	},
 
 	insert: async (req, res) => {
-		const { titulo, descricao, imagem, preco } = req.body;
+		const { titulo, descricao, preco } = req.body;
+		const { filename: imagem } = req.file;
 
 		try {
 			const id = await AcomodacoesService.insert(

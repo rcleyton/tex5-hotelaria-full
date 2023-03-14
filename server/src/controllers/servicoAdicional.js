@@ -4,7 +4,7 @@ const ServicosAdicionais = require("../services/servicoAdicional");
 module.exports = {
     getAll: async (req, res) => {
         const data = []
-        const servicosAdd = await ServicosAdicionais.getAll() 
+        const servicosAdd = await ServicosAdicionais.getAll()
 
         for( const i  in servicosAdd) {
             data.push(servicosAdd[i])

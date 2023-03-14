@@ -9,6 +9,8 @@ app.use(cors());
 
 app.use('/api', routes);
 
+app.use('/static', express.static('public'));
+
 app.listen(process.env.PORT, () => {
 	console.log(`Servidor rodando em: http://localhost:${process.env.PORT}`);
 });

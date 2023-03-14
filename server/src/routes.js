@@ -1,14 +1,19 @@
 const express = require('express');
 const router = express.Router();
+const upload = require('./middlewares/uploadImagem');
 
 const AcomodacoesController = require('./controllers/acomodacoesController');
 const EnderecoController = require('./controllers/enderecoController');
-const ConsumoService = require('./controllers/consumo')
-const ServicosAdicionais = require('./controllers/servicoAdicional')
-const ReservasService = require('./controllers/reservaController')
+const ConsumoService = require('./controllers/consumo');
+const ServicosAdicionais = require('./controllers/servicoAdicional');
+const ReservasService = require('./controllers/reservaController');
 
 router.get('/acomodacoes', AcomodacoesController.getAll);
-router.post('/acomodacoes', AcomodacoesController.insert);
+router.post(
+	'/acomodacoes',
+	upload.single('imagem'),
+	AcomodacoesController.insert
+);
 
 router.get('/enderecos', EnderecoController.getAll);
 router.post('/enderecos', EnderecoController.insert);
