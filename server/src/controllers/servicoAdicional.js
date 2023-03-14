@@ -1,4 +1,4 @@
-const ServicosAdicionais = require("../services/servicoAdicional");
+const ServicosAdicionais = require("../services/servicoAdicionalService");
 
 
 module.exports = {

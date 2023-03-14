@@ -168,7 +168,7 @@ export default {
 .informacao_de_contato input {
 	width: 70%;
 	height: 45px;
-	margin-top: 1.2rem;
+	margin-top: 0.5rem;
 	padding: 1.2rem 0;
 	height: 30px;
 	background-color: v.$light-gray;
@@ -176,7 +176,6 @@ export default {
 	text-indent: 1rem;
 	text-align: center;
 	border-radius: 1rem;
-	
 
 	@media (max-width: 768px) {
 		width: 100%;

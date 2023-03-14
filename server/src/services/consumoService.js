@@ -12,7 +12,7 @@ module.exports = {
         })
     },
 
-    insert: ( item, valor, local, qtd_item, data_hora ) => {
+    insert: ( item, valor, local, qtd_item, data_hora, id_reserva ) => {
         return new Promise ((resolve, reject) => {
             db.query(
                 `
@@ -22,8 +22,9 @@ module.exports = {
                     local,
                     qtd_item,
                     data_hora,
-                ) VALUES (?, ?, ?, ?, ?)
-                `,[item,valor,local,qtd_item,data_hora],
+                    id_reserva
+                ) VALUES (?, ?, ?, ?, ?, ?)
+                `,[item,valor,local,qtd_item,data_hora, id_reserva],
                 (err,result) => {
                     if(err) {
                         reject(err)

@@ -21,7 +21,7 @@ module.exports = {
 				numero,
 				rua,
 				bairro,
-				complemento
+				complemento,
 			);
 			const endereco = {
 				cidade,
@@ -37,4 +37,34 @@ module.exports = {
 			console.error(err);
 		}
 	},
+
+	update: async(req, res) => {
+		const { cidade, estado, numero, rua, bairro, complemento } = req.body;
+		const {id_endereco} = req.params;
+
+		try {
+			await EnderecoService.update(
+				cidade,
+				estado,
+				numero,
+				rua,
+				bairro,
+				complemento,
+				id_endereco
+			);
+			const endereco = {
+				cidade,
+				estado,
+				numero,
+				rua,
+				bairro,
+				complemento,
+				id_endereco
+			};
+			res.send(endereco);
+		} catch (err) {
+			console.error(err);
+		}
+
+	}
 };

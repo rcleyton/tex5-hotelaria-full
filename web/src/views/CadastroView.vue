@@ -15,8 +15,20 @@
 
 				<fieldset class="fieldset_form">
 					<legend>Endereço</legend>
-					<select class="select fraseInp" id="estados" name="estados">
-						<option value="auto_select">Selecione o seu Estado</option>
+					<select
+						name="estado"
+						id="estado"
+						class="select"
+						v-model="selectedState"
+					>
+						<option hidden disabled value="">Selecione um estado</option>
+						<option
+							v-for="estado in estados"
+							:key="estado.uf"
+							:value="estado.uf"
+						>
+							{{ estado.nome }}
+						</option>
 					</select>
 
 					<label class="fraseInp">Cidade<input type="text" /></label>
@@ -47,6 +59,19 @@
 		</div>
 	</div>
 </template>
+
+<script>
+import { estados } from '@/components/constants/estados';
+
+export default {
+	data() {
+		return {
+			selectedState: '',
+			estados: estados,
+		};
+	},
+};
+</script>
 
 <style lang="scss" scoped>
 @use 'src/sass/sass-utils/_colors.scss' as v;
@@ -143,13 +168,12 @@ input {
 }
 
 .select {
-	width: 50%;
+	width: 40%;
 	padding: 0.8rem;
 	margin-top: 10px;
 	border: 0.3px solid v.$light-blue;
 	text-indent: 1rem;
 	color: v.$dark-blue;
-	background: v.$light-gray;
 	border-radius: 1rem;
 
 	@media (max-width: 768px) {
