@@ -40,7 +40,12 @@ const routes = [
 		path: '/cadastro',
 		name: 'cadastro',
 		component: () => import('../views/CadastroView.vue'),
-	}
+	},
+	{
+		path: '/cadastroAcomodacao',
+		name: 'cadastroAcomodacao',
+		component: () => import('../views/CadastroAcomodacaoView.vue'),
+	},
 ];
 
 const router = createRouter({
