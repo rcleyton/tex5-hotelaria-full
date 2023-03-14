@@ -1,16 +1,24 @@
 <template>
 	<div class="cadastro_background">
 		<div id="app" class="formularioCadastro">
-			<form class="formulario">
+			<form class="formulario" @submit.prevent="onSubmit()">
 				<fieldset class="fieldset_form">
 					<legend>Dados pessoais</legend>
-					<label class="fraseInp"> Nome Completo<input type="text" /></label>
+					<label class="fraseInp">
+						Nome Completo<input type="text" v-model="form.usuario.nome"
+					/></label>
 
-					<label class="fraseInp">Email<input type="text" /></label>
+					<label class="fraseInp"
+						>Email<input type="text" v-model="form.usuario.email"
+					/></label>
 
-					<label class="fraseInp">Telefone<input type="number" /></label>
+					<label class="fraseInp"
+						>Telefone<input type="number" v-model="form.usuario.telefone"
+					/></label>
 
-					<label class="fraseInp">CPF<input type="number" /></label>
+					<label class="fraseInp"
+						>CPF<input type="number" v-model="form.usuario.email"
+					/></label>
 				</fieldset>
 
 				<fieldset class="fieldset_form">
@@ -19,7 +27,7 @@
 						name="estado"
 						id="estado"
 						class="select"
-						v-model="selectedState"
+						v-model="form.endereco.estado"
 					>
 						<option hidden disabled value="">Selecione um estado</option>
 						<option
@@ -31,21 +39,35 @@
 						</option>
 					</select>
 
-					<label class="fraseInp">Cidade<input type="text" /></label>
+					<label class="fraseInp"
+						>Cidade<input type="text" v-model="form.endereco.cidade"
+					/></label>
 
-					<label class="fraseInp">Rua<input type="text" /></label>
+					<label class="fraseInp"
+						>Rua<input type="text" v-model="form.endereco.rua"
+					/></label>
 
-					<label class="fraseInp">Bairro<input type="text" /></label>
+					<label class="fraseInp"
+						>Bairro<input type="text" v-model="form.endereco.bairro"
+					/></label>
 
-					<label class="fraseInp">Número<input type="number" /></label>
+					<label class="fraseInp"
+						>Número<input type="number" v-model="form.endereco.numero"
+					/></label>
 
-					<label class="fraseInp">Complemento<input type="text" /></label>
+					<label class="fraseInp"
+						>Complemento<input type="text" v-model="form.endereco.complemento"
+					/></label>
 
-					<label class="fraseInp">CEP<input type="number" /></label>
+					<label class="fraseInp"
+						>CEP<input type="number" v-model="form.endereco.cep"
+					/></label>
 				</fieldset>
 				<fieldset class="fieldset_form">
 					<legend>Crie sua senha</legend>
-					<label class="fraseInp">Senha<input type="password" /></label>
+					<label class="fraseInp"
+						>Senha<input type="password" v-model="form.usuario.senha"
+					/></label>
 
 					<label class="fraseInp"
 						>Confirme a Senha<input type="password"
@@ -68,8 +90,47 @@ export default {
 		return {
 			selectedState: '',
 			estados: estados,
+			form: {
+				usuario: {
+					nome: '',
+					telefone: '',
+					email: '',
+					cpf: '',
+					senha: '',
+				},
+				endereco: {
+					cidade: '',
+					estado: '',
+					numero: '',
+					rua: '',
+					bairro: '',
+					complemento: '',
+				},
+			},
 		};
 	},
+	methods: {
+		onSubmit() {
+			const formData = new FormData();
+			const usuario = {
+				nome: this.form.nome,
+				telefone: this.form.telefone,
+				email: this.form.email,
+				cpf: this.form.cpf,
+				senha: this.form.senha,
+			};
+			const endereco = {
+				cidade: this.form.cidade,
+				estado: this.form.estado,
+				numero: this.form.numero,
+				rua: this.form.rua,
+				bairro: this.form.bairro,
+				complemento: this.form.complemento,
+			}
+			formData.append('usuario', usuario);
+			formData.append('endereco', endereco);
+		}
+	}
 };
 </script>
 
