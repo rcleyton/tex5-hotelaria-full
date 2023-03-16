@@ -4,9 +4,11 @@ const upload = require('./middlewares/uploadImagem');
 
 const AcomodacoesController = require('./controllers/acomodacoesController');
 const EnderecoController = require('./controllers/enderecoController');
-const ConsumoService = require('./controllers/consumo');
-const ServicosAdicionais = require('./controllers/servicoAdicional');
-const ReservasService = require('./controllers/reservaController');
+const ConsumoController = require('./controllers/consumoController');
+const ServicosAdicionaisController = require('./controllers/servicoAdicionalController');
+const ReservasServiceController = require('./controllers/reservaController');
+const UsuariosController = require('./controllers/usuariosController');
+const AvaliacoesService = require('./controllers/avaliacoesController')
 
 router.get('/acomodacoes', AcomodacoesController.getAll);
 router.post(
@@ -19,13 +21,20 @@ router.get('/enderecos', EnderecoController.getAll);
 router.post('/enderecos', EnderecoController.insert);
 router.put('/enderecos/:id_endereco', EnderecoController.update);
 
-router.get('/acomodacoes/consumo', ConsumoService.getAll);
-router.post('/acomodacoes/consumo', ConsumoService.insert);
+router.get('/consumo', ConsumoController.getAll);
+router.post('/consumo', ConsumoController.insert);
 
-router.get('/servicosAdicionais', ServicosAdicionais.getAll);
-router.post('/servicosAdicionais', ServicosAdicionais.insert);
+router.get('/servicosAdicionais', ServicosAdicionaisController.getAll);
+router.post('/servicosAdicionais', ServicosAdicionaisController.insert);
 
-router.get('/reservas', ReservasService.getAll);
-router.post('/reservas', ReservasService.insert);
+router.get('/reservas', ReservasServiceController.getAll);
+router.post('/reservas', ReservasServiceController.insert);
+
+router.get('/usuarios', UsuariosController.getAll);
+router.post('/usuarios', UsuariosController.insert);
+
+router.get('/avaliacao', AvaliacoesService.getAll);
+router.post('/avaliacao', AvaliacoesService.insert);
+router.put('/avaliacao/:id_avaliacao', AvaliacoesService.update)
 
 module.exports = router;
