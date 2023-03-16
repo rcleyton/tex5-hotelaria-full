@@ -12,7 +12,8 @@ module.exports = {
 	},
 
 	insert: async (req, res) => {
-		const { check_in, check_out, quantidade_pessoas, total, total_desconto, confirmacao, data_confirmacao, cupom_id, acomodacao_id, usuario_id, servicos_adicionais_id } = req.body;
+		const { check_in, check_out, quantidade_pessoas, total, total_desconto, confirmacao,
+			data_confirmacao, cupom_id, acomodacao_id, usuario_id, servicos_adicionais_id } = req.body;
 
 		try {
 			const id = await ReservasService.insert(
