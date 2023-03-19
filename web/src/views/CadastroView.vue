@@ -53,7 +53,7 @@
 				</fieldset>
 				<div class="button_form">
 					<button type="submit" class="botaoCadastro">Cadastrar-se</button>
-					<button type="button" class="botaoCadastro">Voltar</button>
+					<button type="button" class="botaoCadastro voltar">Voltar</button>
 				</div>
 			</form>
 		</div>
@@ -149,6 +149,16 @@ input {
 
 	@media (max-width: 768px) {
 		width: 80%;
+	}
+}
+
+.voltar {
+	max-width: 20%;
+	color: v.$light-gray;
+	background-color: v.$dark-blue;
+	&:hover {
+		background-color: v.$yellow;
+		color: v.$dark-blue;
 	}
 }
 
