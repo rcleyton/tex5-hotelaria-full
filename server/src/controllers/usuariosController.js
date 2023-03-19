@@ -1,41 +1,42 @@
-const UsuarioService = require('../services/usuariosService.js')
+const UsuarioService = require('../services/usuariosService.js');
+const EnderecoService = require('../services/enderecoService');
 
 module.exports = {
-    getAll: async (req, res) => {
-        const data = []
-        const usuarios = await UsuarioService.getAll()
+	getAll: async (req, res) => {
+		const data = [];
+		const usuarios = await UsuarioService.getAll();
 
-        for (const i in usuarios) {
-            data.push(usuarios[i])
-        }
-        res.send(data)
-    },
+		for (const i in usuarios) {
+			data.push(usuarios[i]);
+		}
+		res.send(data);
+	},
 
-    insert: async (req, res) => {
-        const { nome, telefone, cpf, email, senha, endereco_id } = req.body
+	insert: async (req, res) => {
+		const {
+			usuario: { nome, telefone, email, cpf, senha },
+			endereco: { cidade, estado, numero, rua, bairro, complemento },
+		} = req.body;
 
-        try {
-            const id = await UsuarioService.insert(
-                nome,
-                telefone,
-                cpf,
-                email,
-                senha,
-                endereco_id
-            )
-            const usuarios = {
-                nome,
-                telefone,
-                cpf,
-                email,
-                senha,
-                endereco_id,
-                usuariosId: id
-            }
-            res.send(usuarios) 
-
-        } catch (err) {
-            console.log(err);
-        }
-    }
-}
+		try {
+			const endereco_id = await EnderecoService.insert(
+				cidade,
+				estado,
+				numero,
+				rua,
+				bairro,
+				complemento
+			);
+			await UsuarioService.insert(
+				nome,
+				telefone,
+				email,
+				cpf,
+				senha,
+				endereco_id
+			);
+		} catch (err) {
+			console.log(err);
+		}
+	},
+};
