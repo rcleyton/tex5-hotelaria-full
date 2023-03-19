@@ -34,4 +34,32 @@ module.exports = {
 			console.error(err);
 		}
 	},
+
+	update: async (req, res) => {
+        const { item, descricao, valor, local  } = req.body
+        const { id_servico_adicional } = req.params
+
+		try {
+			
+			await ServicosAdicionais.update(
+				item,
+				descricao,
+				valor,
+				local,
+				id_servico_adicional
+			)
+
+			const servicoAdd = {
+				item,
+				descricao,
+				valor,
+				local,
+				id_servico_adicional
+			}
+			res.send(servicoAdd)
+
+		} catch (erro) {
+			console.log(erro);
+		}
+    }
 }

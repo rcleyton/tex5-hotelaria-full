@@ -35,5 +35,27 @@ module.exports = {
                 }
             }))
         })
+    },
+
+    update: (nome, telefone, cpf, email, senha, endereco_id, id_usuario) => {
+        return new Promise((resolve, reject) => {
+            db.query(`
+            UPDATE usuarios
+            SET nome = ?,
+                telefone = ?,
+                cpf = ?,
+                email = ?,
+                senha = ?,
+                endereco_id = ?
+            WHERE id_usuario = ?`,
+            [nome, telefone, cpf, email, senha, endereco_id, id_usuario],
+            ((erro, res) => {
+                if(erro) {
+                    reject(erro)
+                    return
+                }
+                resolve(res)
+            }))
+        })
     }
 }

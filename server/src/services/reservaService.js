@@ -12,7 +12,7 @@ module.exports = {
         })
     },
 
-    insert: ( check_in, check_out, quantidade_pessoas, total, total_desconto, confirmacao, data_confirmacao, cupom_id, acomodacao_id, usuario_id, servicos_adicionais_id ) => {
+    insert: ( check_in, check_out, quantidade_pessoas, total, total_desconto, confirmacao, data_confirmacao, cupom_id, acomodacao_id,usuario_id, servicos_adicionais_id ) => {
         return new Promise ((resolve, reject) => {
             db.query(
                 `
@@ -29,7 +29,8 @@ module.exports = {
                     usuario_id,
                     servicos_adicionais_id
                 ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                `,[check_in, check_out, quantidade_pessoas, total, total_desconto, confirmacao, data_confirmacao, cupom_id, acomodacao_id, usuario_id, servicos_adicionais_id],
+                `,[check_in, check_out, quantidade_pessoas, total, total_desconto, confirmacao, data_confirmacao,
+                    cupom_id, acomodacao_id, usuario_id, servicos_adicionais_id],
                 (err,result) => {
                     if(err) {
                         reject(err)
@@ -40,6 +41,33 @@ module.exports = {
                     }
                 }
             )
+        })
+    },
+
+    update: (check_in, check_out, quantidade_pessoas, total, total_desconto, confirmacao, data_confirmacao, cupom_id, acomodacao_id, usuario_id, servicos_adicionais_id, id_reserva) => {
+        return new Promise((resolve, reject) => {
+            db.query(`
+            UPDATE reservas
+            SET check_in = ?,
+                check_out = ?,
+                quantidade_pessoas = ?,
+                total = ?,
+                total_desconto = ?,
+                confirmacao = ?,
+                data_confirmacao = ?,
+                cupom_id = ?,
+                acomodacao_id = ?,
+                usuario_id = ?,
+                servicos_adicionais_id = ?
+                WHERE id_reserva = ?`, 
+                [check_in, check_out, quantidade_pessoas, total, total_desconto, confirmacao, data_confirmacao, cupom_id, acomodacao_id, usuario_id, servicos_adicionais_id, id_reserva],
+                ((erro, res) => {
+                    if(erro){
+                        reject(erro)
+                        return
+                    }
+                    resolve(res)
+                }))
         })
     }
 }
