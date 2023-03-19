@@ -7,6 +7,7 @@ const EnderecoController = require('./controllers/enderecoController');
 const ConsumoService = require('./controllers/consumo');
 const ServicosAdicionais = require('./controllers/servicoAdicional');
 const ReservasService = require('./controllers/reservaController');
+const UsuarioController = require('./controllers/usuarioController');
 
 router.get('/acomodacoes', AcomodacoesController.getAll);
 router.post(
@@ -27,5 +28,7 @@ router.post('/servicosAdicionais', ServicosAdicionais.insert);
 
 router.get('/reservas', ReservasService.getAll);
 router.post('/reservas', ReservasService.insert);
+
+router.post('/usuarios', UsuarioController.insert);
 
 module.exports = router;

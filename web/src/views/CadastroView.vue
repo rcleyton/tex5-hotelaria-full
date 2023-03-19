@@ -13,11 +13,11 @@
 					/></label>
 
 					<label class="fraseInp"
-						>Telefone<input type="number" v-model="form.usuario.telefone"
+						>Telefone<input type="text" v-model="form.usuario.telefone"
 					/></label>
 
 					<label class="fraseInp"
-						>CPF<input type="number" v-model="form.usuario.email"
+						>CPF<input type="text" v-model="form.usuario.cpf"
 					/></label>
 				</fieldset>
 
@@ -84,6 +84,7 @@
 
 <script>
 import { estados } from '@/components/constants/estados';
+import axios from 'axios';
 
 export default {
 	data() {
@@ -110,25 +111,32 @@ export default {
 		};
 	},
 	methods: {
-		onSubmit() {
-			const formData = new FormData();
+		async onSubmit() {
+			const data = {};
 			const usuario = {
-				nome: this.form.nome,
-				telefone: this.form.telefone,
-				email: this.form.email,
-				cpf: this.form.cpf,
-				senha: this.form.senha,
+				nome: this.form.usuario.nome,
+				telefone: this.form.usuario.telefone,
+				email: this.form.usuario.email,
+				cpf: this.form.usuario.cpf,
+				senha: this.form.usuario.senha,
 			};
 			const endereco = {
-				cidade: this.form.cidade,
-				estado: this.form.estado,
-				numero: this.form.numero,
-				rua: this.form.rua,
-				bairro: this.form.bairro,
-				complemento: this.form.complemento,
+				cidade: this.form.endereco.cidade,
+				estado: this.form.endereco.estado,
+				numero: this.form.endereco.numero,
+				rua: this.form.endereco.rua,
+				bairro: this.form.endereco.bairro,
+				complemento: this.form.endereco.complemento,
 			}
-			formData.append('usuario', usuario);
-			formData.append('endereco', endereco);
+
+			data.usuario = usuario;
+			data.endereco = endereco;
+
+			try {
+				await axios.post('http://localhost:3000/api/usuarios', data);
+			} catch (err) {
+				console.log(err);
+			}
 		}
 	}
 };
