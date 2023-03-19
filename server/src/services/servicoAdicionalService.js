@@ -34,4 +34,25 @@ module.exports = {
 		});
 	},
 
+	update: (item, descricao, valor, local, id_servico_adicional) => {
+		return new Promise ((reject, resolve) => {
+			db.query(`
+			UPDATE servicos_adicionais
+			SET item = ?,
+				descricao = ?,
+				valor = ?,
+				local = ?
+			WHERE id_servico_adicional = ?`,
+			[item, descricao, valor, local, id_servico_adicional],
+			((erro, res) => {
+				if(erro) {
+					reject(erro)
+					return
+				}
+				resolve(res)
+				return
+			}))
+		})
+	}
+
 }

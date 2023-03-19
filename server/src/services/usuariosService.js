@@ -13,22 +13,48 @@ module.exports = {
 		});
 	},
 
-	insert: (nome, telefone, email, cpf, senha, endereco_id) => {
-		return new Promise((resolve, reject) => {
-			db.query(
-				`INSERT INTO usuarios
-					(nome, telefone, email, cpf, senha, endereco_id)
-					VALUES (?, ?, ?, ?, ?, ?)`,
-				[nome, telefone, email, cpf, senha, endereco_id],
-				(error, results) => {
-					if (error) {
-						reject(error);
-						return;
-					} else {
-						resolve(results.insertId);
-					}
-				}
-			);
-		});
-	},
-};
+    insert: (nome, telefone, cpf, email, senha, endereco_id) => {
+        return new Promise ((resolve, reject) => {
+            db.query(`INSERT INTO usuarios (
+                nome,
+                telefone,
+                cpf,
+                email,
+                senha,
+                endereco_id
+            ) VALUES (?, ?, ?, ?, ?, ?)`,
+            [nome,telefone,cpf,email,senha,endereco_id]
+            ,((err, res) => {
+                if(err) {
+                    reject(err)
+                    return
+                } else {
+                    resolve(res)
+                    return
+                }
+            }))
+        })
+    },
+
+    update: (nome, telefone, cpf, email, senha, endereco_id, id_usuario) => {
+        return new Promise((resolve, reject) => {
+            db.query(`
+            UPDATE usuarios
+            SET nome = ?,
+                telefone = ?,
+                cpf = ?,
+                email = ?,
+                senha = ?,
+                endereco_id = ?
+            WHERE id_usuario = ?`,
+            [nome, telefone, cpf, email, senha, endereco_id, id_usuario],
+            ((erro, res) => {
+                if(erro) {
+                    reject(erro)
+                    return
+                }
+                resolve(res)
+            }))
+        })
+    }
+}

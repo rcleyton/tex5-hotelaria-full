@@ -36,5 +36,29 @@ module.exports = {
                 }
             )
         })
+    },
+
+    update: (item,valor,local,qtd_item,data_hora, id_reserva, id_consumo) => {
+        return new Promise((resolve, reject) => {
+            db.query(`
+            UPDATE consumo
+            SET item = ?,
+                valor = ?,
+                local = ?,
+                qtd_item = ?,
+                data_hora = ?, 
+                id_reserva = ?
+            WHERE id_consumo = ?`,
+            [item,valor,local,qtd_item,data_hora,id_reserva,id_consumo],
+            ((erro, res)=> {
+                if(erro){
+                    reject(erro)
+                    return
+                }
+                resolve(res)
+                return
+            })
+            )
+        })
     }
 }
