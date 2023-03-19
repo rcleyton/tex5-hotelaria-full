@@ -37,5 +37,36 @@ module.exports = {
         } catch (err) {
             console.log(err);
         }
+    },
+
+    update: async (req, res) => {
+        const { nome, telefone, cpf, email, senha, endereco_id } = req.body
+        const { id_usuario } = req.params
+    
+        try {
+                await UsuarioService.update(
+                    nome,
+                    telefone,
+                    cpf,
+                    email,
+                    senha,
+                    endereco_id,
+                    id_usuario
+                )
+
+                const usuario = {
+                    nome,
+                    telefone,
+                    cpf,
+                    email,
+                    senha,
+                    endereco_id,
+                    id_usuario
+                }
+                res.send(usuario)
+
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
