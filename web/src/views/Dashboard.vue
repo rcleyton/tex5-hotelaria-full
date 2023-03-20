@@ -1,371 +1,343 @@
 <template>
-	<div id="main-container">
-		<!-- Left Menu -->
-		<div class="dark-menu">
-			<a id="search-btn" href="#"
-				><i class="fa fa-search" aria-hidden="true"></i
-			></a>
-			<a href="#"><i class="fa fa-folder-o" aria-hidden="true"></i></a>
-			<a class="active" href="#"
-				><i class="active-icon fa fa-file-text-o" aria-hidden="true"></i
-			></a>
-			<a href="#"><i class="fa fa-bar-chart" aria-hidden="true"></i></a>
-			<a href="#"><i class="fa fa-sliders" aria-hidden="true"></i></a>
-		</div>
-		<!-- END Left Menu -->
-
-		<!-- Left Menu -->
-		<div class="light-menu">
-			<h1 id="page_title">Docs</h1>
-			<a class="active" href="#">All</a>
-			<a href="#">Mines</a>
-			<a href="#">Shared</a>
-			<a href="#">Drafts</a>
-			<a href="#"></a>
-		</div>
-		<!-- END Left Menu -->
-
-		<!-- Top Menu -->
-		<div class="top-menu">
-			<nav class="left">
-				<a class="active-tab" href="#">Reports</a>
-				<a href="#" class="selected">Presentations</a>
-				<a href="#">Pinboards</a>
-				<a href="#">Tickets</a>
-				<a href="#">Forms</a>
-				<a href="#">Others</a>
-			</nav>
-		</div>
-
-		<div id="content">
-			<div id="table-content">
-				<table cellspacing="0" cellpadding="0">
-					<thead>
-						<tr>
-							<td><input type="checkbox" /></td>
-							<td>Name</td>
-							<td>Description</td>
-							<td>Date Created</td>
-							<td></td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><input type="checkbox" /></td>
-							<td class="name-td">Last quarter revenue</td>
-							<td class="desc-td">
-								Revenue for last quarter in state America for year 2013, with
-								...
-							</td>
-							<td class="date-td">
-								6 minutes ago <i class="fa fa-clock-o" aria-hidden="true"></i>
-							</td>
-							<td></td>
-						</tr>
-						<tr class="checked">
-							<td><input type="checkbox" checked="checked" /></td>
-							<td class="name-td">Expenses in 2013</td>
-							<td class="desc-td"></td>
-							<td class="date-td">
-								2 hours ago <i class="fa fa-clock-o" aria-hidden="true"></i>
-							</td>
-							<td></td>
-						</tr>
-						<tr>
-							<td><input type="checkbox" /></td>
-							<td class="name-td">Accounting</td>
-							<td class="desc-td">Lorem ipsum dolor sit amet.</td>
-							<td class="date-td">
-								5 hours ago <i class="fa fa-clock-o" aria-hidden="true"></i>
-							</td>
-							<td></td>
-						</tr>
-						<tr>
-							<td><input type="checkbox" /></td>
-							<td class="name-td">Starbucks orders</td>
-							<td class="desc-td">
-								Ut euismod augue ut nulla aliquam, eu congue ipsum euismod.
-							</td>
-							<td class="date-td">
-								12 hours ago <i class="fa fa-clock-o" aria-hidden="true"></i>
-							</td>
-							<td></td>
-						</tr>
-						<tr>
-							<td><input type="checkbox" /></td>
-							<td class="name-td">East coast customers in 2012</td>
-							<td class="desc-td"></td>
-							<td class="date-td">
-								yesterday <i class="fa fa-clock-o" aria-hidden="true"></i>
-							</td>
-							<td></td>
-						</tr>
-						<tr>
-							<td><input type="checkbox" /></td>
-							<td class="name-td">Last quarter expenses</td>
-							<td class="desc-td">Lorem ipsum dolor sit amet.</td>
-							<td class="date-td">
-								2 days ago <i class="fa fa-clock-o" aria-hidden="true"></i>
-							</td>
-							<td></td>
-						</tr>
-						<tr>
-							<td><input type="checkbox" /></td>
-							<td class="name-td">HR 2013 worksheet</td>
-							<td class="desc-td">Nulla aliquam, eu congue ipsum euismod.</td>
-							<td class="date-td">
-								2 days ago <i class="fa fa-clock-o" aria-hidden="true"></i>
-							</td>
-							<td></td>
-						</tr>
-						<tr>
-							<td><input type="checkbox" /></td>
-							<td class="name-td">Salaries last quarter</td>
-							<td class="desc-td">Lorem ipsum dolor sit amet.</td>
-							<td class="date-td">
-								1 week ago <i class="fa fa-clock-o" aria-hidden="true"></i>
-							</td>
-							<td></td>
-						</tr>
-						<tr>
-							<td><input type="checkbox" /></td>
-							<td class="name-td">Accounting</td>
-							<td class="desc-td">Lorem ipsum dolor sit amet.</td>
-							<td class="date-td">
-								5 hours ago <i class="fa fa-clock-o" aria-hidden="true"></i>
-							</td>
-							<td></td>
-						</tr>
-					</tbody>
-				</table>
+	<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css" />
+	<div class="task-manager">
+		<div class="left-bar">
+			<div class="logo"></div>
+			<div class="left-content">
+				<ul class="action-list">
+					<li class="item">
+						<i class="fa-solid fa-hotel"></i>
+						<span>Hotel</span>
+					</li>
+					<li class="item">
+						<i class="fa-solid fa-bed"></i>
+						<span> Cadastrar acomodação</span>
+					</li>
+					<li class="item">
+						<i class="fa-regular fa-calendar-check"></i>
+						<span>Reservas</span>
+					</li>
+					<li class="item">
+						<i class="fa-solid fa-tags"></i>
+						<span>Cupons</span>
+					</li>
+					<li class="item">
+						<i class="fa-solid fa-star-half-stroke"></i>
+						<span>Avaliações</span>
+					</li>
+				</ul>
 			</div>
+		</div>
+		<div class="page-content">
+			<div class="panel_header">Painel Administrativo</div>
 		</div>
 	</div>
 </template>
 
-<script>
-$('.button-collapse').sideNav();
+<script></script>
 
-$('.collapsible').collapsible();
+<style lang="scss" scoped>
+@use 'src/sass/sass-utils/_colors.scss' as v;
+* {
+	box-sizing: border-box;
+	outline: none;
+}
 
-$('select').material_select();
-</script>
+.logo {
+	background-image: url('../assets/icons/logo_escrito.svg');
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+	width: calc(128px + 3vw);
+	height: 32px;
+	margin: 1rem auto;
 
-<style scoped>
+	@media (min-width: 768px) {
+		background-image: url('../assets/icons/texhotel_logo2.svg');
+		height: 96px;
+	}
+}
+
+%flex {
+	display: flex;
+	align-items: center;
+}
+
 body {
-	background: #222428;
-}
-
-h1 {
-	font-weight: 300;
-}
-
-#main-container {
-	background: #eaedf2;
-	width: 1000px;
-	height: 600px;
-	margin: 50px auto;
-	border-radius: 4px 2px 2px 4px;
-}
-
-.dark-menu {
-	background: #33353c;
-	width: 70px;
-	height: 100%;
-	border-radius: 2px 0 0 2px;
-	text-align: center;
-	float: left;
-}
-
-.dark-menu a {
-	color: #76838c;
-	display: block;
-	padding: 17px;
-	text-decoration: none;
-}
-
-.dark-menu a:hover {
-	color: #fff;
-}
-
-.dark-menu a.active {
-	color: white;
-	border-left: solid #5e9cf7 3px;
-}
-
-.light-menu {
-	width: 120px;
-	height: 100%;
-	float: left;
-	margin-right: -9px;
-}
-
-.light-menu a {
-	color: #85899b;
-	display: block;
-	padding: 10px 10px 10px 22px;
-	text-decoration: none;
-	font-size: 12px;
-	font-weight: 600;
-}
-
-.light-menu a:hover {
-	color: #333;
-}
-
-.light-menu a.active {
-	color: #33353c;
-}
-
-.active-icon {
-	margin-left: -3px;
-}
-
-#search-btn {
-	background: #5e9cf7;
-	color: #fff;
-	border-radius: 2px 0 0 0;
-}
-
-.top-menu {
-	background: #fff;
-	width: 819px;
-	max-height: 56px;
-	float: left;
-	margin-left: -1px;
-}
-
-#page_title {
-	background: #fff;
-	padding: 11px 35px 11px 20px;
-	float: left;
-	font-size: 25px;
-	margin: 0px -10px 20px 0;
-}
-
-nav {
-	position: relative;
-	z-index: 1;
-	white-space: nowrap;
-	float: left;
-	position: relative;
-	left: 10px;
-}
-
-nav a {
-	position: relative;
-	display: inline-block;
-	padding: 1.9em 2em 1.2em 1em;
-	color: #757c8f;
-	text-decoration: none;
-	margin: 0 -3px;
-	position: relative;
-	top: 4px;
-	font-size: 13px;
-	font-weight: 600;
-}
-
-nav a:hover::before {
-	content: ''; /* To generate the box */
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0.5em;
-	left: 0;
-	z-index: -1;
-	border-bottom: none;
-	border-radius: 5px 2px 0 0;
-	background: #eaedf2;
-	box-shadow: 0 2px hsla(0, 0%, 100%, 0.5) inset;
-	transform: perspective(5px) rotateX(2deg);
-	transform-origin: bottom left;
-}
-
-.active-tab::before {
-	content: ''; /* To generate the box */
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0.5em;
-	left: 0;
-	z-index: -10;
-	border-bottom: none;
-	border-radius: 5px 2px 0 0;
-	background: #eaedf2;
-	box-shadow: 0 2px hsla(0, 0%, 100%, 0.5) inset;
-	transform: perspective(5px) rotateX(2deg);
-	transform-origin: bottom left;
-	box-shadow: inset 0px 0px 10px #dadce0;
-	height: 80px;
-	margin-top: -14px;
-}
-
-.active-tab {
-	color: #5e9cf7;
-	padding: 1.9em 3em 1.2em 1em;
-	margin-right: -10px;
-	margin-left: 1px;
-}
-
-#content {
-	background: #eaedf2;
-	width: 811px;
-	height: 544px;
-	float: left;
-	margin-left: 7px;
-	position: relative;
-	z-index: 10;
-}
-
-#table-content {
-	background: #fff;
-	width: 97.5%;
-	height: 93.1%;
-	margin-top: 20px;
-	box-shadow: #dcdee3 0px 0px 10px;
-	margin-left: 5px;
-}
-
-#table-content table {
+	margin: 0;
+	@extend %flex;
+	justify-content: center;
+	flex-direction: column;
+	overflow: auto;
 	width: 100%;
+	height: 100vh;
+	padding: 20px;
+	font-family: 'DM Sans', sans-serif;
+	font-size: 12px;
 }
 
-#table-content thead {
-	background: #f2f3f5;
+ul {
+	list-style-type: none;
+	padding: 0;
 }
 
-#table-content thead tr td {
-	color: #757e92;
+button {
+	border: none;
+	background: none;
+	cursor: pointer;
+}
+
+.task-manager {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	max-width: 1600px;
+	margin: 3rem auto;
+	height: 90vh;
+	max-height: 1000px;
+	background: #fff;
+	border-radius: 4px;
+	box-shadow: 0 0.3px 2.2px rgba(0, 0, 0, 0.011),
+		0 0.7px 5.3px rgba(0, 0, 0, 0.016), 0 1.3px 10px rgba(0, 0, 0, 0.02),
+		0 2.2px 17.9px rgba(0, 0, 0, 0.024), 0 4.2px 33.4px rgba(0, 0, 0, 0.029),
+		0 10px 80px rgba(0, 0, 0, 0.04);
+	overflow: hidden;
+}
+
+.left-bar {
+	background-color: v.$dark-blue;
+	width: 20%;
+	border-right: 1px solid #e3e7f7;
+	position: relative;
+}
+
+.left-content {
+	padding: 40px;
+}
+
+.item {
+	@extend %flex;
+	cursor: pointer;
+	color: v.$light-gray;
+	margin-bottom: 1.4rem;
+	font-weight: 500;
+
+	i {
+		width: 20px;
+		height: 20px;
+		color: v.$light-yellow;
+		margin-right: 10px;
+	}
+}
+
+.actions {
+	padding: 12px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.top-part {
+	padding: 30px;
+	@extend %flex;
+	align-self: flex-end;
+
+	svg {
+		width: 14px;
+		height: 14px;
+		color: var(--main-color);
+		margin-right: 14px;
+	}
+
+	.count {
+		font-size: 12px;
+		border-radius: 50%;
+		width: 24px;
+		height: 24px;
+		background-color: #623ce8;
+		color: #fff;
+		@extend %flex;
+		justify-content: center;
+	}
+}
+
+.more-button {
+	position: absolute;
+	width: 3px;
+	height: 3px;
+	border-radius: 50%;
+	background-color: #8e92a4;
+	box-shadow: 0 -4px 0 0 #8e92a4, 0 4px 0 0 #8e92a4;
+	opacity: 0.4;
+	right: 20px;
+	top: 30px;
+	cursor: pointer;
+}
+
+.page-content {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	padding: 40px 20px 0 20px;
+
+	.panel_header {
+		font-size: 2rem;
+		color: var(--main-color);
+		margin-top: 30px;
+		text-align: center;
+	}
+}
+
+.content-categories {
+	display: flex;
+	justify-content: space-evenly;
+	width: 100%;
+	border-bottom: 1px solid #ddd;
+	padding: 20px 0;
+}
+
+.nav-item {
+	display: none;
+}
+
+.category {
+	font-weight: 500;
+	color: var(--secondary-color);
+	border-bottom: 1px solid #ddd;
+	transition: 0.4s ease-in;
+	padding: 20px 30px;
+	cursor: pointer;
+}
+
+#opt-1:checked + label,
+#opt-2:checked + label,
+#opt-3:checked + label,
+#opt-4:checked + label {
+	color: var(--checkbox-color);
+	border-bottom: 2px solid var(--checkbox-color);
+}
+
+.task-item {
+	display: none;
+}
+
+.tasks-wrapper {
+	padding: 30px 0;
+	flex: 1;
+	overflow-y: auto;
+	height: 100%;
+	padding-right: 8px;
+}
+
+.task {
+	display: flex;
+	justify-content: space-between;
+	position: relative;
+	margin-bottom: 16px;
+	padding-left: 30px;
+	color: var(--task-color);
+	font-size: 13px;
+	font-weight: 500;
+
+	&:hover {
+		transform: translatex(2px);
+	}
+
+	label {
+		cursor: pointer;
+	}
+}
+
+label .label-text {
+	position: relative;
+}
+
+label .label-text:before {
+	content: '';
+	position: absolute;
+	width: 14px;
+	height: 14px;
+	border: 1px solid #ddd;
+	border-radius: 2px;
+	left: -24px;
+	transition: 0.2s ease;
+}
+
+.task-item:checked + label .label-text:before {
+	background-color: var(--checkbox-color);
+	border: none;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-check'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-size: 10px;
+	background-position: center;
+	border: 1px solid var(--checkbox-color);
+}
+
+.tag {
 	font-size: 10px;
-	text-transform: uppercase;
-	padding: 14px 10px;
+	padding: 4px 8px;
+	border-radius: 20px;
+
+	&.approved {
+		background-color: var(--tag-color-one);
+		color: var(--tag-color-text-one);
+	}
+
+	&.progress {
+		background-color: var(--tag-color-two);
+		color: var(--tag-color-text-two);
+	}
+
+	&.review {
+		background-color: var(--tag-color-three);
+		color: var(--tag-color-text-three);
+	}
+
+	&.waiting {
+		background-color: var(--tag-color-four);
+		color: var(--tag-color-text-four);
+	}
 }
 
-#table-content tbody tr td {
-	padding: 14px 10px;
-	border-bottom: #eaecee solid 1px;
+.upcoming {
+	border-bottom: 1px solid #ddd;
+	padding-bottom: 30px;
+	margin-bottom: 30px;
 }
 
-#table-content tbody tr:hover {
-	background: #fefaf2;
+@media screen and (max-width: 900px) {
+	.left-bar {
+		display: none;
+	}
 }
 
-.name-td {
-	font-size: 13px;
-	font-weight: 600;
+@media screen and (max-width: 700px) {
+	.task-manager {
+		flex-direction: column;
+		overflow-y: auto;
+	}
+
+	.right-bar,
+	.page-content {
+		width: 100%;
+		display: block;
+	}
+
+	.tasks-wrapper {
+		height: auto;
+	}
 }
 
-.desc-td {
-	font-size: 13px;
-	color: #64697a;
-}
+@media screen and (max-width: 520px) {
+	.page-content {
+		padding: 40px 10px 0 10px;
+	}
 
-.date-td {
-	text-align: right;
-	font-size: 9px;
-}
+	.right-content {
+		padding: 10px 16px;
+	}
 
-.checked {
-	background: #fefaf2;
+	.category {
+		padding: 20px;
+	}
 }
 </style>
