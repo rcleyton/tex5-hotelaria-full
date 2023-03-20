@@ -1,48 +1,59 @@
 <template>
-	<form enctype="multipart/form-data" @submit.prevent="onSubmit()" ref="form">
-		<div>
-			<label for="titulo"></label>
-			<input
-				type="text"
-				id="titulo"
-				placeholder="Título da acomodação"
-				v-model="form.titulo"
-			/>
+	<main class="form_main">
+		<div class="form_default">
+			<fieldset class="form_fields">
+				<legend class="section_title">Cadastro de Acomodações</legend>
+				<form
+					class="form_geral"
+					enctype="multipart/form-data"
+					@submit.prevent="onSubmit()"
+					ref="form"
+				>
+					<div class="form_field">
+						<label for="titulo">Título da acomodação</label>
+						<input class="input_form" type="text" id="titulo" v-model="form.titulo" />
+					</div>
+					<div class="form_field">
+						<label for="preco">Preço da diária</label>
+						<input
+							class="input_form"
+							type="number"
+							id="preco"
+							v-model="form.preco"
+						/>
+					</div>
+					<div class="form_field">
+						<label for="descricao">Descreva a acomodação</label>
+						<textarea
+							class="text_area"
+							name="descricao"
+							id="descricao"
+							cols="30"
+							rows="10"
+							v-model="form.descricao"
+						></textarea>
+					</div>
+					<div class="upload">
+						<label for="imagem">Selecione a imagem da acomodação:</label>
+						<input
+							class="select_image"
+							type="file"
+							name="imagem"
+							id="imagem"
+							accept="image/*"
+							ref="image"
+							@change="onSelect"
+						/>
+					</div>
+					<div>
+						<button class="button_form" type="submit">Cadastrar</button>
+					</div>
+				</form>
+			</fieldset>
 		</div>
-		<div>
-			<label for="preco"></label>
-			<input
-				type="text"
-				id="preco"
-				placeholder="Preço da diária"
-				v-model="form.preco"
-			/>
-		</div>
-		<div>
-			<label for="descricao"></label>
-			<textarea
-				name="descricao"
-				id="descricao"
-				cols="30"
-				rows="10"
-				placeholder="Descreva a acomodação"
-				v-model="form.descricao"
-			></textarea>
-		</div>
-		<div>
-			<label for="imagem"></label>
-			<input
-				type="file"
-				name="imagem"
-				id="imagem"
-				accept="image/*"
-				ref="image"
-				@change="onSelect"
-			/>
-		</div>
-		<button type="submit">Cadastrar</button>
-	</form>
+	</main>
 </template>
+
 <script>
 import { mapActions } from 'vuex';
 import axios from 'axios';
@@ -55,7 +66,7 @@ export default {
 				titulo: '',
 				preco: '',
 				descricao: '',
-				imagem: ''
+				imagem: '',
 			},
 		};
 	},
@@ -78,9 +89,10 @@ export default {
 			const file = this.$refs.image.files[0];
 			this.form.imagem = file;
 			console.log(file);
-		}
+		},
 	},
 };
 </script>
-<style lang="scss"></style>
-
+<style lang="scss">
+@import '../sass/components/_forms.scss';
+</style>
