@@ -1,9 +1,9 @@
 <template>
-	<HeaderComponent />
+	<HeaderComponent v-if="!paginasSemHeader.includes($route.name)" />
 	<main>
 		<router-view />
 	</main>
-	<FooterComponent />
+	<FooterComponent v-if="!paginasSemFooter.includes($route.name)" />
 </template>
 
 <script>
@@ -16,6 +16,13 @@ export default {
 	components: {
 		HeaderComponent,
 		FooterComponent,
+	},
+
+	data() {
+		return {
+			paginasSemHeader: ['dashboard', 'cadastroAcomodacao'],
+			paginasSemFooter: ['dashboard', 'cadastroAcomodacao'],
+		};
 	},
 	mounted: function () {
 		if (window.localStorage.getItem('reserva')) {
