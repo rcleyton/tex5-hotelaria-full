@@ -1,16 +1,24 @@
 <template>
 	<div class="cadastro_background">
 		<div id="app" class="formularioCadastro">
-			<form class="formulario">
+			<form class="formulario" @submit.prevent="onSubmit()">
 				<fieldset class="fieldset_form">
 					<legend>Dados pessoais</legend>
-					<label class="fraseInp"> Nome Completo<input type="text" /></label>
+					<label class="fraseInp">
+						Nome Completo<input type="text" v-model="form.usuario.nome"
+					/></label>
 
-					<label class="fraseInp">Email<input type="text" /></label>
+					<label class="fraseInp"
+						>Email<input type="text" v-model="form.usuario.email"
+					/></label>
 
-					<label class="fraseInp">Telefone<input type="number" /></label>
+					<label class="fraseInp"
+						>Telefone<input type="text" v-model="form.usuario.telefone"
+					/></label>
 
-					<label class="fraseInp">CPF<input type="number" /></label>
+					<label class="fraseInp"
+						>CPF<input type="text" v-model="form.usuario.cpf"
+					/></label>
 				</fieldset>
 
 				<fieldset class="fieldset_form">
@@ -19,7 +27,7 @@
 						name="estado"
 						id="estado"
 						class="select"
-						v-model="selectedState"
+						v-model="form.endereco.estado"
 					>
 						<option hidden disabled value="">Selecione um estado</option>
 						<option
@@ -31,21 +39,35 @@
 						</option>
 					</select>
 
-					<label class="fraseInp">Cidade<input type="text" /></label>
+					<label class="fraseInp"
+						>Cidade<input type="text" v-model="form.endereco.cidade"
+					/></label>
 
-					<label class="fraseInp">Rua<input type="text" /></label>
+					<label class="fraseInp"
+						>Rua<input type="text" v-model="form.endereco.rua"
+					/></label>
 
-					<label class="fraseInp">Bairro<input type="text" /></label>
+					<label class="fraseInp"
+						>Bairro<input type="text" v-model="form.endereco.bairro"
+					/></label>
 
-					<label class="fraseInp">Número<input type="number" /></label>
+					<label class="fraseInp"
+						>Número<input type="number" v-model="form.endereco.numero"
+					/></label>
 
-					<label class="fraseInp">Complemento<input type="text" /></label>
+					<label class="fraseInp"
+						>Complemento<input type="text" v-model="form.endereco.complemento"
+					/></label>
 
-					<label class="fraseInp">CEP<input type="number" /></label>
+					<label class="fraseInp"
+						>CEP<input type="number" v-model="form.endereco.cep"
+					/></label>
 				</fieldset>
 				<fieldset class="fieldset_form">
 					<legend>Crie sua senha</legend>
-					<label class="fraseInp">Senha<input type="password" /></label>
+					<label class="fraseInp"
+						>Senha<input type="password" v-model="form.usuario.senha"
+					/></label>
 
 					<label class="fraseInp"
 						>Confirme a Senha<input type="password"
@@ -62,14 +84,61 @@
 
 <script>
 import { estados } from '@/components/constants/estados';
+import axios from 'axios';
 
 export default {
 	data() {
 		return {
 			selectedState: '',
 			estados: estados,
+			form: {
+				usuario: {
+					nome: '',
+					telefone: '',
+					email: '',
+					cpf: '',
+					senha: '',
+				},
+				endereco: {
+					cidade: '',
+					estado: '',
+					numero: '',
+					rua: '',
+					bairro: '',
+					complemento: '',
+				},
+			},
 		};
 	},
+	methods: {
+		async onSubmit() {
+			const data = {};
+			const usuario = {
+				nome: this.form.usuario.nome,
+				telefone: this.form.usuario.telefone,
+				email: this.form.usuario.email,
+				cpf: this.form.usuario.cpf,
+				senha: this.form.usuario.senha,
+			};
+			const endereco = {
+				cidade: this.form.endereco.cidade,
+				estado: this.form.endereco.estado,
+				numero: this.form.endereco.numero,
+				rua: this.form.endereco.rua,
+				bairro: this.form.endereco.bairro,
+				complemento: this.form.endereco.complemento,
+			}
+
+			data.usuario = usuario;
+			data.endereco = endereco;
+
+			try {
+				await axios.post('http://localhost:3000/api/usuarios', data);
+			} catch (err) {
+				console.log(err);
+			}
+		}
+	}
 };
 </script>
 
