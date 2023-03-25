@@ -25,9 +25,9 @@
 				<tbody>
 					<tr
 						v-for="(acomodacao, index) in acomodacoes"
-						:key="acomodacao.acomodacao_id"
+						:key="acomodacao.id_acomodacao"
 					>
-						<td>{{ acomodacao.acomodacao_id }}</td>
+						<td>{{ acomodacao.id_acomodacao }}</td>
 						<td>{{ acomodacao.imagem }}</td>
 						<td>{{ acomodacao.titulo }}</td>
 						<td>
