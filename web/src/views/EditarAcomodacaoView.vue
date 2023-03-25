@@ -13,7 +13,7 @@
 				<input type="text" readonly v-model="acomodacaoSelecionada.id_acomodacao" />
 			</div>
 			<div>
-				<label for="titulo">Título</label>
+				<label for="titulo">Título da acomodação</label>
 				<input type="text" v-model="acomodacaoSelecionada.titulo" />
 			</div>
 			<div>
@@ -110,4 +110,23 @@ export default {
 	},
 };
 </script>
-<style lang="scss"></style>
+<style lang="scss">
+form {
+	width: fit-content;
+	margin-inline: auto;
+	margin-block: 1rem;
+
+	div {
+		label {
+			display: block;
+		}
+		input {
+			width: 300px;
+		}
+
+		& + div {
+			margin-block-start: 1rem;
+		}
+	}
+}
+</style>

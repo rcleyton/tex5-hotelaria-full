@@ -57,6 +57,7 @@
 <script>
 import { mapActions } from 'vuex';
 import axios from 'axios';
+import router from '@/router';
 
 export default {
 	name: 'CadastroAcomodacaoView',
@@ -80,7 +81,11 @@ export default {
 			formData.append('descricao', this.form.descricao);
 
 			try {
-				await axios.post('http://localhost:3000/api/acomodacoes', formData);
+				await axios
+					.post('http://localhost:3000/api/acomodacoes', formData)
+					.then((res) => {
+						router.push('/adminAcomodacoes');
+					});
 			} catch (err) {
 				console.log(err);
 			}

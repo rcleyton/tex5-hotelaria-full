@@ -28,7 +28,14 @@
 						:key="acomodacao.id_acomodacao"
 					>
 						<td>{{ acomodacao.id_acomodacao }}</td>
-						<td>{{ acomodacao.imagem }}</td>
+						<td>
+							<img
+								:src="'http://localhost:3000/static/' + acomodacao.imagem"
+								alt=""
+								width="200"
+								height="150"
+							/>
+						</td>
 						<td>{{ acomodacao.titulo }}</td>
 						<td>
 							{{ acomodacao.descricao }}
@@ -43,12 +50,6 @@
 								@click="selecionarAcomodacao(acomodacao)"
 								>Editar</router-link
 							>
-							<button
-								style="display: inline-block; margin-block: auto"
-								type="button"
-							>
-								Deletar
-							</button>
 						</td>
 					</tr>
 				</tbody>
@@ -87,22 +88,5 @@ export default {
 
 .table-responsive {
 	overflow: scroll;
-}
-
-.edicao__container {
-	margin-block: 2rem;
-
-	form {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		margin-inline: auto;
-		max-width: 768px;
-		gap: 0.5rem;
-
-		label {
-			display: block;
-		}
-	}
 }
 </style>
