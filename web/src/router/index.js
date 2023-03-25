@@ -51,6 +51,11 @@ const routes = [
 		name: 'cadastroAcomodacao',
 		component: () => import('../views/CadastroAcomodacaoView.vue'),
 	},
+	{
+		path: '/adminAcomodacoes',
+		name: 'adminAcomodacoes',
+		component: () => import('../views/AdminAcomodacoesView.vue'),
+	},
 ];
 
 const router = createRouter({

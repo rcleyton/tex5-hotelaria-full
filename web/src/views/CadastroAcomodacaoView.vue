@@ -17,7 +17,7 @@
 						<label for="preco">Preço da diária</label>
 						<input
 							class="input_form"
-							type="number"
+							type="text"
 							id="preco"
 							v-model="form.preco"
 						/>

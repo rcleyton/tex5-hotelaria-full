@@ -16,6 +16,7 @@ router.post(
 	upload.single('imagem'),
 	AcomodacoesController.insert
 );
+router.put('/acomodacoes/:id', upload.single('imagem'), AcomodacoesController.update);
 
 router.get('/avaliacao', AvaliacoesService.getAll);
 router.post('/avaliacao', AvaliacoesService.insert);

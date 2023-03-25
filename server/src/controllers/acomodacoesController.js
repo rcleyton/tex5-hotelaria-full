@@ -37,4 +37,23 @@ module.exports = {
 			console.error(err);
 		}
 	},
+
+	update: async (req, res) => {
+		const { id_acomodacao, titulo, preco, descricao, status } = req.body;
+		let imagem = '';
+		if (req.file) {
+			imagem = req.file;
+		} else {
+			imagem = '';
+		}
+
+		try {
+			const obj = await AcomodacoesService.update(
+				id_acomodacao, status, titulo, descricao, imagem, preco
+			);
+			res.send(obj);
+		} catch (err) {
+			console.error(err);
+		}
+	}
 };
