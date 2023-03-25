@@ -1,5 +1,14 @@
 <template>
 	<div class="container">
+		<header>
+			<ul>
+				<li>
+					<router-link to="/cadastroAcomodacao" class="btn"
+						>Cadastrar nova acomodação</router-link
+					>
+				</li>
+			</ul>
+		</header>
 		<div class="table-responsive">
 			<table>
 				<thead>
@@ -29,63 +38,21 @@
 							{{ acomodacao.status === 0 ? 'Indisponível' : 'Disponível' }}
 						</td>
 						<td>
-							<button
-								type="button"
+							<router-link
+								to="/editarAcomodacao"
 								@click="selecionarAcomodacao(acomodacao)"
-								aria-controls="modal"
+								>Editar</router-link
 							>
-								Editar
+							<button
+								style="display: inline-block; margin-block: auto"
+								type="button"
+							>
+								Deletar
 							</button>
-							<button type="button">Deletar</button>
 						</td>
 					</tr>
 				</tbody>
 			</table>
-		</div>
-		<div class="modal" id="modal">
-			<form @submit.prevent="editarAcomodacao()">
-				<div>
-					<label for="id">ID</label>
-					<input type="text" ref="id_acomodacao" readonly />
-				</div>
-				<div>
-					<label for="titulo">Título</label>
-					<input type="text" ref="titulo" />
-				</div>
-				<div>
-					<label for="descricao">Descrição</label>
-					<textarea
-						name="descricao"
-						id="descricao"
-						cols="30"
-						rows="5"
-						ref="descricao"
-					></textarea>
-				</div>
-				<div>
-					<label for="preco">Preço</label>
-					<input type="text" id="preco" ref="preco" />
-				</div>
-				<div>
-					<label for="status">Status</label>
-					<select name="status" id="status" ref="status">
-						<option value="0">Indisponível</option>
-						<option value="1">Disponível</option>
-					</select>
-				</div>
-				<div>
-					<label for="imagem">Selecione a imagem da acomodação:</label>
-					<input
-						type="file"
-						name="imagem"
-						id="imagem"
-						accept="image/*"
-						ref="image"
-						@change="onSelect"
-					/>
-				</div>
-				<button type="submit">Atualizar acomodação</button>
-			</form>
 		</div>
 	</div>
 </template>
@@ -97,56 +64,11 @@ export default {
 	data() {
 		return {
 			acomodacoes: [],
-			form: {
-				id_acomodacao: '',
-				titulo: '',
-				preco: '',
-				descricao: '',
-				status: '',
-				imagem: '',
-			},
 		};
 	},
 	methods: {
-		onSelect() {
-			const file = this.$refs.image.files[0];
-			this.form.imagem = file;
-			console.log(file);
-		},
 		selecionarAcomodacao(acomodacao) {
-			this.$refs.id_acomodacao.value = acomodacao.id_acomodacao;
-			this.$refs.titulo.value = acomodacao.titulo;
-			this.$refs.descricao.value = acomodacao.descricao;
-			this.$refs.preco.value = acomodacao.preco;
-			this.$refs.status.value = acomodacao.status;
-		},
-		async editarAcomodacao() {
-			const confirm = window.confirm(
-				'Deseja atualizar acomodação: ' + this.$refs.id_acomodacao.value + '?'
-			);
-
-			if (confirm) {
-				this.form.id_acomodacao = this.$refs.id_acomodacao.value;
-				this.form.titulo = this.$refs.titulo.value;
-				this.form.preco = this.$refs.preco.value;
-				this.form.descricao = this.$refs.descricao.value;
-				this.form.status = this.$refs.status.value;
-
-				try {
-					await axios
-						.put(
-							`http://localhost:3000/api/acomodacoes/${this.$refs.id_acomodacao.value}`,
-							this.form
-						)
-						.then((res) => console.log(res));
-				} catch (err) {
-					console.error(err);
-				}
-			}
-		},
-		onSelect() {
-			const file = this.$refs.image.files[0];
-			this.form.imagem = file;
+			localStorage.setItem('acomodacaoSelecionada', JSON.stringify(acomodacao));
 		},
 	},
 	mounted: function () {
@@ -165,5 +87,22 @@ export default {
 
 .table-responsive {
 	overflow: scroll;
+}
+
+.edicao__container {
+	margin-block: 2rem;
+
+	form {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		margin-inline: auto;
+		max-width: 768px;
+		gap: 0.5rem;
+
+		label {
+			display: block;
+		}
+	}
 }
 </style>
