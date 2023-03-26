@@ -37,7 +37,6 @@ module.exports = {
 	},
 
 	update: (id_acomodacao, status, titulo, descricao, imagem, preco) => {
-		if (imagem !== '') {
 			return new Promise((resolve, reject) => {
 				db.query(
 					`
@@ -60,28 +59,5 @@ module.exports = {
 					}
 				);
 			});
-		} else {
-			return new Promise((resolve, reject) => {
-				db.query(
-					`
-					UPDATE acomodacoes
-					SET status = ?,
-					titulo = ?,
-					descricao = ?,
-					preco = ?
-					WHERE id_acomodacao = ?
-				`,
-					[status, titulo, descricao, preco, id_acomodacao],
-					(error, results) => {
-						if (error) {
-							reject(error);
-							return;
-						} else {
-							resolve(results.entries);
-						}
-					}
-				);
-			});
-		}
 	},
 };

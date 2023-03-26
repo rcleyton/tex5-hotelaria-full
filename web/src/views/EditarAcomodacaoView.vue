@@ -7,7 +7,7 @@
 		</ul>
 	</header>
 	<div class="edicao__container" id="modal">
-		<form @submit.prevent="editarAcomodacao()">
+		<form enctype="multipart/form-data" @submit.prevent="editarAcomodacao()">
 			<div>
 				<label for="id">ID</label>
 				<input type="text" readonly v-model="acomodacaoSelecionada.id_acomodacao" />
@@ -68,6 +68,8 @@ export default {
 				status: '',
 				imagem: '',
 			},
+			imagem: null,
+			formData: new FormData()
 		};
 	},
 	methods: {
@@ -77,6 +79,12 @@ export default {
 			);
 
 			if (confirm) {
+				for(const [key, value] in this.acomodacaoSelecionada) {
+					this.formData.append(key, value);
+				}
+				if(this.imagem !== null) {
+					this.formData.append('imagem', this.imagem);
+				}
 				try {
 					await axios
 						.put(
@@ -84,7 +92,7 @@ export default {
 							this.acomodacaoSelecionada
 						)
 						.then((res) => {
-							router.push('/adminAcomodacoes');
+							router.push('adminAcomodacoes');
 						});
 				} catch (err) {
 					console.error(err);
@@ -92,8 +100,11 @@ export default {
 			}
 		},
 		onSelect() {
-			const file = this.$refs.image.files[0];
-			this.form.imagem = file;
+			if(this.$refs.image.files[0]) {
+				this.imagem = this.$refs.image.files[0];
+			} else {
+				this.imagem = this.acomodacaoSelecionada.imagem;
+			}
 		},
 	},
 	mounted: function () {

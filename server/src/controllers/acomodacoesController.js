@@ -1,6 +1,5 @@
 const AcomodacoesService = require('../services/acomodacoesService');
 
-
 module.exports = {
 	getAll: async (req, res) => {
 		const data = [];
@@ -39,21 +38,26 @@ module.exports = {
 	},
 
 	update: async (req, res) => {
-		const { id_acomodacao, titulo, preco, descricao, status } = req.body;
-		let imagem = '';
-		if (req.file) {
-			imagem = req.file;
-		} else {
-			imagem = '';
+		const { id_acomodacao, titulo, preco, descricao, status, imagem } =
+			req.body;
+
+		if (req.file && req.file.filename) {
+			imagem = req.file.filename;
 		}
 
 		try {
-			const obj = await AcomodacoesService.update(
-				id_acomodacao, status, titulo, descricao, imagem, preco
+			await AcomodacoesService.update(
+				id_acomodacao,
+				status,
+				titulo,
+				descricao,
+				imagem,
+				preco
 			);
-			res.send(obj);
+			res.status(201);
+			res.send();
 		} catch (err) {
 			console.error(err);
 		}
-	}
+	},
 };
