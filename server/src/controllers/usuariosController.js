@@ -30,11 +30,16 @@ module.exports = {
 			await UsuarioService.insert(
 				nome,
 				telefone,
-				email,
 				cpf,
+				email,
 				senha,
 				endereco_id
 			);
+			const obj = {
+				nome,
+				email
+			};
+			res.send(obj);
 		} catch (err) {
 			console.log(err);
 		}

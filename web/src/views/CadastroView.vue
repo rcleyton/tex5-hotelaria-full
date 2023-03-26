@@ -52,7 +52,7 @@
 					/></label>
 
 					<label class="fraseInp"
-						>Número<input type="number" v-model="form.endereco.numero"
+						>Número<input type="text" v-model="form.endereco.numero"
 					/></label>
 
 					<label class="fraseInp"
@@ -60,7 +60,7 @@
 					/></label>
 
 					<label class="fraseInp"
-						>CEP<input type="number" v-model="form.endereco.cep"
+						>CEP<input type="text" v-model="form.endereco.cep"
 					/></label>
 				</fieldset>
 				<fieldset class="fieldset_form">
@@ -84,9 +84,15 @@
 
 <script>
 import { estados } from '@/components/constants/estados';
+import router from '@/router';
 import axios from 'axios';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
+	name: 'CadastroView',
+	computed: {
+		...mapGetters(['usuario']),
+	},
 	data() {
 		return {
 			selectedState: '',
@@ -111,6 +117,7 @@ export default {
 		};
 	},
 	methods: {
+		...mapActions(['handleUserLogin']),
 		async onSubmit() {
 			const data = {};
 			const usuario = {
@@ -133,7 +140,12 @@ export default {
 			data.endereco = endereco;
 
 			try {
-				await axios.post('http://localhost:3000/api/usuarios', data);
+				await axios
+					.post('http://localhost:3000/api/usuarios', data)
+					.then((res) => {
+						this.handleUserLogin(res.data);
+						router.push('/');
+					});
 			} catch (err) {
 				console.log(err);
 			}
