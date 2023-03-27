@@ -46,9 +46,10 @@
 		<div class="roomOptions__room">
 			<h3 class="roomOptions__paragraph select_room">Escolha seu quarto</h3>
 			<QuartoCard
-				v-for="quarto in quartosHotel"
-				:quarto="quarto"
-				:key="quarto.id"
+				v-for="acomodacao in acomodacoes"
+				v-show="acomodacao.status === 0"
+				:acomodacao="acomodacao"
+				:key="acomodacao.id_acomodacao"
 			/>
 		</div>
 		<ResumoReserva />
@@ -58,6 +59,7 @@
 <script>
 import QuartoCard from '@/components/QuartoCard.vue';
 import ResumoReserva from '@/components/ResumoReserva.vue';
+import axios from 'axios';
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
@@ -66,14 +68,23 @@ export default {
 	data() {
 		return {
 			max: 3,
+			acomodacoes: [],
+			acomodacaoSelecionada: undefined,
 		};
 	},
 	methods: {
 		...mapActions(['handleInputChange']),
 	},
 	computed: {
-		...mapGetters(['quartosHotel', 'dadosReserva']),
+		...mapGetters(['dadosReserva']),
 	},
+	mounted: function() {
+		axios
+			.get('http://localhost:3000/api/acomodacoes')
+			.then((res) => {
+				this.acomodacoes = res.data;
+			});
+	}
 };
 </script>
 
