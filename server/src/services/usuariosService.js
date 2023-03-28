@@ -37,7 +37,7 @@ module.exports = {
 		})
 	},
 
-	insert: (nome, telefone, cpf, email, senha, endereco_id) => {
+	insert: (nome, telefone, cpf, email, senha) => {
 		return new Promise((resolve, reject) => {
 			db.query(
 				`INSERT INTO usuarios (
@@ -45,16 +45,15 @@ module.exports = {
                 telefone,
                 cpf,
                 email,
-                senha,
-                endereco_id
-            ) VALUES (?, ?, ?, ?, ?, ?)`,
-				[nome, telefone, cpf, email, senha, endereco_id],
+                senha
+            ) VALUES (?, ?, ?, ?, ?)`,
+				[nome, telefone, cpf, email, senha],
 				(err, res) => {
 					if (err) {
 						reject(err);
 						return;
 					} else {
-						resolve(res);
+						resolve(res.insertId);
 						return;
 					}
 				}

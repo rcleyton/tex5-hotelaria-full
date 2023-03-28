@@ -8,8 +8,6 @@ module.exports = {
 		try {
 			usuario = await usuarioService.findByEmail(email);
 
-			console.log(usuario);
-
 			if (usuario[0].senha === senha) {
 				res
 					.status(200)

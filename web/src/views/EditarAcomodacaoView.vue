@@ -33,8 +33,9 @@
 			<div>
 				<label for="status">Status</label>
 				<select name="status" id="status" v-model="acomodacaoSelecionada.status">
-					<option value="0">Indisponível</option>
-					<option value="1">Disponível</option>
+					<option value="PENDENTE">Pendente</option>
+					<option value="DISPONÍVEL">Disponível</option>
+					<option value="OCUPADO">Ocupado</option>
 				</select>
 			</div>
 			<div>

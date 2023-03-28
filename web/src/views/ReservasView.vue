@@ -47,7 +47,7 @@
 			<h3 class="roomOptions__paragraph select_room">Escolha seu quarto</h3>
 			<QuartoCard
 				v-for="acomodacao in acomodacoes"
-				v-show="acomodacao.status === 0"
+				v-show="acomodacao.status === 'DISPONÍVEL'"
 				:acomodacao="acomodacao"
 				:key="acomodacao.id_acomodacao"
 			/>
@@ -82,6 +82,7 @@ export default {
 		axios
 			.get('http://localhost:3000/api/acomodacoes')
 			.then((res) => {
+				console.log(res.data);
 				this.acomodacoes = res.data;
 			});
 	}
