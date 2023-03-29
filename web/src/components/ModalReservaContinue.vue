@@ -26,10 +26,10 @@
 						Diárias: {{ diarias }}
 						{{ !diarias ? '' : diarias > 1 ? 'dias' : 'dia' }}
 					</li>
-					<li class="resume__listItem">Quarto: {{ acomodacao?.nome }}</li>
+					<li class="resume__listItem">Quarto: {{ dadosReserva.acomodacao?.nome }}</li>
 					<li class="resume__listItem">
 						Valor do quarto:
-						{{ acomodacao?.preco }}
+						{{ dadosReserva.acomodacao?.preco }}
 					</li>
 					<li class="resume__listItem">
 						Valor da hospedagem:
@@ -45,8 +45,8 @@
 					</li>
 					<li class="resume__listItem">
 						Descrição do quarto:
-						<img :src="acomodacao.img" title="Quartos Hotel" />
-						{{ acomodacao.descricao }}
+						<img :src="'http://localhost:3000/static/' + dadosReserva.acomodacao.imagem" title="Quartos Hotel" />
+						{{ dadosReserva.acomodacao.descricao }}
 					</li>
 				</ul>
 			</div>
@@ -62,16 +62,13 @@ import { mapGetters } from 'vuex';
 
 export default {
 	name: 'ModalReservaContinue',
-
 	data() {
 		return {
 			showModal: false,
 		};
 	},
-
 	computed: {
 		...mapGetters([
-			'acomodacao',
 			'dadosReserva',
 			'diarias',
 			'totalAdicionais',

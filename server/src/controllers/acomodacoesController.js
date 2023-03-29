@@ -1,6 +1,5 @@
 const AcomodacoesService = require('../services/acomodacoesService');
 
-
 module.exports = {
 	getAll: async (req, res) => {
 		const data = [];
@@ -33,6 +32,30 @@ module.exports = {
 				acomodacaoId: id,
 			};
 			res.send(acomodacao);
+		} catch (err) {
+			console.error(err);
+		}
+	},
+
+	update: async (req, res) => {
+		const { id_acomodacao, titulo, preco, descricao, status, imagem } =
+			req.body;
+
+		if (req.file && req.file.filename) {
+			imagem = req.file.filename;
+		}
+
+		try {
+			await AcomodacoesService.update(
+				id_acomodacao,
+				status,
+				titulo,
+				descricao,
+				imagem,
+				preco
+			);
+			res.status(201);
+			res.send();
 		} catch (err) {
 			console.error(err);
 		}

@@ -1,31 +1,31 @@
 <template>
 	<div class="roomOptions__room reserva">
 		<p class="roomOptions__roomTitle">
-			{{ quarto.nome }}
+			{{ acomodacao.titulo }}
 		</p>
 		<img
-			:src="quarto.img"
+			:src="'http://localhost:3000/static/' + acomodacao.imagem"
 			title="quarto Hotel"
 			class="roomOptions__roomImagem"
 		/>
 		<p class="roomOptions__roomDescription">
-			{{ quarto.descricao }}
+			{{ acomodacao.descricao }}
 		</p>
 
-		<p class="roomOptions__roomPrice">R${{ quarto.preco }}</p>
+		<p class="roomOptions__roomPrice">R${{ acomodacao.preco }}</p>
 
 		<div class="select">
 			<input
 				class="roomOptions__selectRoom"
 				type="radio"
-				:id="quarto.id"
-				:value="quarto.id"
-				:checked="dadosReserva.acomodacaoId == quarto.id"
-				name="acomodacaoId"
-				@change="handleInputChange($event)"
+				:id="acomodacao.id_acomodacao"
+				:value="acomodacao.id_acomodacao"
+				:checked="dadosReserva.id_acomodacao == acomodacao.id_acomodacao"
+				name="acomodacao"
+				@change="handleRoomChange(acomodacao)"
 			/>
 			<label class="roomOptions__selectRoom"
-				>Reservar o quarto {{ quarto.nome }}</label
+				>Reservar {{ acomodacao.titulo }}</label
 			>
 		</div>
 	</div>
@@ -36,12 +36,14 @@ import { mapActions, mapGetters } from 'vuex';
 
 export default {
 	name: 'RoomCard',
-	props: ['quarto'],
+	props: {
+		acomodacao: Object
+	},
 	computed: {
 		...mapGetters(['dadosReserva']),
 	},
 	methods: {
-		...mapActions(['handleInputChange']),
+		...mapActions(['handleInputChange', 'handleRoomChange']),
 	},
 };
 </script>
