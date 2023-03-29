@@ -52,11 +52,6 @@ const routes = [
 		name: 'cadastroAcomodacao',
 		component: () => import('../views/CadastroAcomodacaoView.vue'),
 	},
-	{
-		path: '/PainelUsuario',
-		name: 'painelusuario',
-		component: () => import('../views/PainelUsuario.vue'),
-	},
 ];
 
 const router = createRouter({

@@ -1,6 +1,6 @@
 <template>
-	<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css" />
 	<div class="task-manager">
+	<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css" />
 		<div class="left-bar">
 			<div class="logo"></div>
 			<div class="left-content">
