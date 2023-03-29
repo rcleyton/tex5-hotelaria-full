@@ -36,6 +36,7 @@ const routes = [
 		name: 'dashboard',
 		component: () => import('../views/Dashboard.vue'),
 	},
+
 	{
 		path: '/login',
 		name: 'login',
@@ -50,6 +51,11 @@ const routes = [
 		path: '/cadastroAcomodacao',
 		name: 'cadastroAcomodacao',
 		component: () => import('../views/CadastroAcomodacaoView.vue'),
+	},
+	{
+		path: '/PainelUsuario',
+		name: 'painelusuario',
+		component: () => import('../views/PainelUsuario.vue'),
 	},
 ];
 

@@ -1,42 +1,49 @@
 <template>
 	<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css" />
-	<div class="task-manager">
-		<div class="left-bar">
-			<div class="logo"></div>
-			<div class="left-content">
-				<ul class="action-list">
-					<li class="item">
-						<i class="fa-solid fa-hotel"></i>
-						<span>Hotel</span>
+	<div class="bg_painel">
+		<div class="painel">
+			<div class="left-bar">
+				<div class="logo"></div>
+				<div class="left-content">
+					<ul class="action-list">
+						<li class="tabs">
+							<i class="fa-solid fa-hotel"></i>
+							<span>Minha Reserva</span>
+						</li>
+
+						<li class="tabs">
+							<i class="fa-solid fa-tags"></i>
+							<span>Falar com o Hotel</span>
+						</li>
+						<li class="tabs">
+							<i class="fa-solid fa-star-half-stroke"></i>
+							<span>Avaliar reserva</span>
+						</li>
+					</ul>
+				</div>
+				<div>
+					<button class="button_form">Sair do painel</button>
+				</div>
+				<ul class="social">
+					<li>
+						<a href=""><i class="fab fa-facebook"></i></a>
 					</li>
-					<li class="item">
-						<i class="fa-solid fa-bed"></i>
-						<span> Cadastrar acomodação</span>
+					<li>
+						<a href=""><i class="fab fa-twitter"></i></a>
 					</li>
-					<li class="item">
-						<i class="fa-regular fa-calendar-check"></i>
-						<span>Reservas</span>
-					</li>
-					<li class="item">
-						<i class="fa-solid fa-tags"></i>
-						<span>Cupons</span>
-					</li>
-					<li class="item">
-						<i class="fa-solid fa-star-half-stroke"></i>
-						<span>Avaliações</span>
+					<li>
+						<a href=""><i class="fab fa-instagram"></i></a>
 					</li>
 				</ul>
 			</div>
-		</div>
-		<div class="page-content">
-			<div class="panel_header">Painel Administrativo</div>
+			<div class="page-content">
+				<div class="panel_header">Área do cliente</div>
+			</div>
 		</div>
 	</div>
 </template>
 
-<script>
-
-</script>
+<script></script>
 
 <style lang="scss" scoped>
 @use 'src/sass/sass-utils/_colors.scss' as v;
@@ -65,31 +72,12 @@
 	align-items: center;
 }
 
-body {
-	margin: 0;
-	@extend %flex;
-	justify-content: center;
-	flex-direction: column;
-	overflow: auto;
-	width: 100%;
-	height: 100vh;
-	padding: 20px;
-	font-family: 'DM Sans', sans-serif;
-	font-size: 12px;
-}
-
 ul {
 	list-style-type: none;
 	padding: 0;
 }
 
-button {
-	border: none;
-	background: none;
-	cursor: pointer;
-}
-
-.task-manager {
+.painel {
 	display: flex;
 	justify-content: center;
 	width: 100%;
@@ -104,17 +92,20 @@ button {
 }
 
 .left-bar {
-	background-color: v.$dark-blue;
-	width: 20%;
+	background-color: #1b263b;
+	display: flex;
 	border-right: 1px solid #e3e7f7;
 	position: relative;
+	flex-direction: column;
+	align-items: stretch;
+	justify-content: space-between;
 }
 
 .left-content {
 	padding: 40px;
 }
 
-.item {
+.tabs {
 	@extend %flex;
 	cursor: pointer;
 	color: v.$light-gray;
@@ -129,49 +120,6 @@ button {
 	}
 }
 
-.actions {
-	padding: 12px;
-	display: flex;
-	justify-content: space-between;
-}
-
-.top-part {
-	padding: 30px;
-	@extend %flex;
-	align-self: flex-end;
-
-	svg {
-		width: 14px;
-		height: 14px;
-		color: var(--main-color);
-		margin-right: 14px;
-	}
-
-	.count {
-		font-size: 12px;
-		border-radius: 50%;
-		width: 24px;
-		height: 24px;
-		background-color: #623ce8;
-		color: #fff;
-		@extend %flex;
-		justify-content: center;
-	}
-}
-
-.more-button {
-	position: absolute;
-	width: 3px;
-	height: 3px;
-	border-radius: 50%;
-	background-color: #8e92a4;
-	box-shadow: 0 -4px 0 0 #8e92a4, 0 4px 0 0 #8e92a4;
-	opacity: 0.4;
-	right: 20px;
-	top: 30px;
-	cursor: pointer;
-}
-
 .page-content {
 	display: flex;
 	flex-direction: column;
@@ -183,66 +131,6 @@ button {
 		color: var(--main-color);
 		margin-top: 30px;
 		text-align: center;
-	}
-}
-
-.content-categories {
-	display: flex;
-	justify-content: space-evenly;
-	width: 100%;
-	border-bottom: 1px solid #ddd;
-	padding: 20px 0;
-}
-
-.nav-item {
-	display: none;
-}
-
-.category {
-	font-weight: 500;
-	color: var(--secondary-color);
-	border-bottom: 1px solid #ddd;
-	transition: 0.4s ease-in;
-	padding: 20px 30px;
-	cursor: pointer;
-}
-
-#opt-1:checked + label,
-#opt-2:checked + label,
-#opt-3:checked + label,
-#opt-4:checked + label {
-	color: var(--checkbox-color);
-	border-bottom: 2px solid var(--checkbox-color);
-}
-
-.task-item {
-	display: none;
-}
-
-.tasks-wrapper {
-	padding: 30px 0;
-	flex: 1;
-	overflow-y: auto;
-	height: 100%;
-	padding-right: 8px;
-}
-
-.task {
-	display: flex;
-	justify-content: space-between;
-	position: relative;
-	margin-bottom: 16px;
-	padding-left: 30px;
-	color: var(--task-color);
-	font-size: 13px;
-	font-weight: 500;
-
-	&:hover {
-		transform: translatex(2px);
-	}
-
-	label {
-		cursor: pointer;
 	}
 }
 
@@ -261,7 +149,7 @@ label .label-text:before {
 	transition: 0.2s ease;
 }
 
-.task-item:checked + label .label-text:before {
+.task-tabs:checked + label .label-text:before {
 	background-color: var(--checkbox-color);
 	border: none;
 	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-check'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
@@ -310,7 +198,7 @@ label .label-text:before {
 }
 
 @media screen and (max-width: 700px) {
-	.task-manager {
+	.painel {
 		flex-direction: column;
 		overflow-y: auto;
 	}
@@ -337,6 +225,54 @@ label .label-text:before {
 
 	.category {
 		padding: 20px;
+	}
+}
+
+.bg_painel {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	text-align: center;
+	background: url(/src/assets/images/quarto_blur.jpg) fixed bottom;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 100%;
+	min-height: 100vh;
+}
+
+.social {
+	display: flex;
+	justify-content: space-evenly;
+	flex-direction: row;
+
+	.fab {
+		color: #fff;
+		font-size: 1.5rem;
+		padding: 1rem;
+		position: relative;
+	}
+}
+
+.button_form {
+	color: v.$dark-blue;
+	background-color: v.$yellow;
+	font-weight: 700;
+	border-radius: 2rem;
+	margin: 2rem auto;
+	width: 80%;
+	font-size: 1.2rem;
+	padding: 1rem;
+
+	&:hover {
+		background-color: v.$light-blue;
+		color: v.$light-gray;
+	}
+
+	@media (max-width: 768px) {
+		width: 100%;
+		margin: auto;
 	}
 }
 </style>

@@ -20,8 +20,8 @@ export default {
 
 	data() {
 		return {
-			paginasSemHeader: ['dashboard', 'cadastroAcomodacao'],
-			paginasSemFooter: ['dashboard', 'cadastroAcomodacao'],
+			paginasSemHeader: ['dashboard', 'cadastroAcomodacao', 'painelusuario'],
+			paginasSemFooter: ['dashboard', 'cadastroAcomodacao', 'painelusuario'],
 		};
 	},
 	mounted: function () {
