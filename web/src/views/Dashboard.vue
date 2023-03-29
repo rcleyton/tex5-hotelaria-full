@@ -1,5 +1,6 @@
 <template>
 	<div id="main-container">
+		<button @click="onload()">Aqui!</button>
 		<!-- Left Menu -->
 		<div class="dark-menu">
 			<a id="search-btn" href="#"
@@ -144,11 +145,43 @@
 </template>
 
 <script>
-$('.button-collapse').sideNav();
 
-$('.collapsible').collapsible();
+// $('.button-collapse').sideNav();
 
-$('select').material_select();
+// $('.collapsible').collapsible();
+
+// $('select').material_select();
+
+import axios from 'axios'
+
+export default {
+	name: 'Dashboard',
+	data() {
+		return {
+			form: {
+				item : "",
+				descricao : "",
+				valor : "",
+				local : ""
+			}
+		}
+	},
+
+	mounted: async function () {
+		 
+		try {
+			await axios.get("http://localhost:3000/api/servicosAdicionais")
+				.then((response) => {
+					console.log(response.data);
+				})
+		} catch (error) {
+			console.log(error);
+		}
+	
+	} 
+}
+
+
 </script>
 
 <style scoped>

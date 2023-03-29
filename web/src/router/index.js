@@ -51,6 +51,31 @@ const routes = [
 		name: 'cadastroAcomodacao',
 		component: () => import('../views/CadastroAcomodacaoView.vue'),
 	},
+	{
+		path: '/admin-servicos-adicionais',
+		name: 'admin-servicos-adicionais',
+		component: () => import('../views/AdminServicosAdicionaisView.vue'),
+	},
+	{
+		path: '/admin-usuarios',
+		name: 'admin-usuarios',
+		component: () => import('../views/AdminUsuariosView.vue'),
+	},
+	{
+		path: '/admin-reservas',
+		name: 'admin-reservas',
+		component: () => import('../views/AdminReservasView.vue'),
+	},
+	{
+		path: '/admin-enderecos',
+		name: 'admin-enderecos',
+		component: () => import('../views/AdminEnderecosView.vue'),
+	},
+	{
+		path: '/admin-consumo',
+		name: 'admin-consumo',
+		component: () => import('../views/AdminConsumoView.vue'),
+	},
 ];
 
 const router = createRouter({
