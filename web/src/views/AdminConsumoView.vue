@@ -1,7 +1,7 @@
 <template>
     <section>
         <div>
-            <form style="display:flex margin-rigth:1rem" enctype="multipart/form-data" @submit="sendData()">
+            <form style="display:flex margin-rigth: 1rem" enctype="multipart/form-data" @submit="sendData()">
                 <div>
                     <label for="item"></label>
                     <input type="text"

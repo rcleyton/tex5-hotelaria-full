@@ -1,74 +1,72 @@
 <template>
-	<main class="main">
-		<div class="contato">
-			<fieldset class="informacao_de_contato">
+	<main class="form_main">
+		<div class="form_default">
+			<fieldset class="form_fields">
 				<form
-					class="contact_form"
+					class="form_geral"
 					action=""
 					method="post"
 					enctype="multipart/form-data"
 				>
-					<ul>
-						<li class="nome">
-							<label for="nome">Nome</label>
-							<input
-								type="text"
-								id="nome"
-								name="nome"
-								placeholder="Digite seu Nome"
-								required
-							/>
-						</li>
-						<li class="email">
-							<label for="email">Email</label>
-							<input
-								type="email"
-								id="email"
-								name="email"
-								placeholder="Digite seu Email"
-								required
-							/>
-						</li>
-						<li class="telefone">
-							<label for="telefone">Telefone</label>
-							<input
-								type="number"
-								id="telefone"
-								name="telefone"
-								placeholder="Digite seu Número"
-								required
-							/>
-						</li>
-						<li class="assunto">
-							<label for="tipo_servico">Assunto</label>
-							<select class="select" name="serviso" id="serviso">
-								<option value="auto_select">Selecione uma Opção</option>
-								<option id="cancela_reserva">Cancelamento de Reserva</option>
-								<option value="ouvidoria">Ouvidoria</option>
-								<option value="departamento_financeiro">
-									Departamento financeiro
-								</option>
-								<option value="datas">Remarcação de datas</option>
-								<option value="feedback">Reclamações/Opiniões</option>
-							</select>
-						</li>
-						<li>
-							<label class="mensage" for="mensagem">Mensagem</label>
-							<textarea
-								class="textarea"
-								name="mensagem"
-								id="mensagem"
-								cols="30"
-								rows="10"
-							></textarea>
-						</li>
-						<li>
-							<button class="button_form">Enviar Mensagem</button>
-						</li>
-					</ul>
+					<div class="input_form">
+						<label for="nome">Nome</label>
+						<input
+							type="text"
+							id="nome"
+							name="nome"
+							placeholder="Digite seu Nome"
+							required
+						/>
+					</div>
+					<div class="input_form">
+						<label for="email">Email</label>
+						<input
+							type="email"
+							id="email"
+							name="email"
+							placeholder="Digite seu Email"
+							required
+						/>
+					</div>
+					<div class="input_form">
+						<label for="telefone">Telefone</label>
+						<input
+							type="number"
+							id="telefone"
+							name="telefone"
+							placeholder="Digite seu Número"
+							required
+						/>
+					</div>
+					<div class="input_form">
+						<label for="tipo_servico">Assunto</label>
+						<select class="select" name="serviso" id="serviso">
+							<option value="auto_select">Selecione uma Opção</option>
+							<option id="cancela_reserva">Cancelamento de Reserva</option>
+							<option value="ouvidoria">Ouvidoria</option>
+							<option value="departamento_financeiro">
+								Departamento financeiro
+							</option>
+							<option value="datas">Remarcação de datas</option>
+							<option value="feedback">Reclamações/Opiniões</option>
+						</select>
+					</div>
+					<div class="input_form">
+						<label for="mensagem">Mensagem</label>
+						<textarea
+							class="text_area"
+							name="mensagem"
+							id="mensagem"
+							cols="30"
+							rows="10"
+						></textarea>
+					</div>
+					<div class="input_form">
+						<button class="button_form">Enviar Mensagem</button>
+					</div>
 				</form>
 
-				<legend class="titulo_da_secao">
+				<legend class="section_title">
 					<h2>Fale Conosco</h2>
 				</legend>
 				<div class="info">
@@ -98,23 +96,23 @@ export default {
 <style lang="scss" scoped>
 @use 'src/sass/sass-utils/_colors.scss' as v;
 
-.main {
+.form_main {
 	width: 100%;
 }
 
-.titulo_da_secao h2 {
+.section_title h2 {
 	font-weight: 700;
 	color: v.$main-blue;
 }
 
 /*form*/
-.contato {
+.form_default {
 	display: flex;
 	margin: auto;
 	margin-top: 2%;
 	color: v.$main-blue;
 }
-.contato ul li {
+.input_form {
 	width: 80%;
 	font-weight: 700;
 	font-size: 1rem;
@@ -125,7 +123,7 @@ export default {
 	align-items: center;
 }
 
-.informacao_de_contato {
+.form_fields {
 	width: 50%;
 	margin: 1.5rem auto;
 	align-items: center;
@@ -137,35 +135,33 @@ export default {
 		margin: auto;
 	}
 }
-.informacao_de_contato legend {
+.form_fields legend {
 	text-align: center;
 }
 
-.informacao_de_contato label {
+.form_fields label {
 	color: v.$main-blue;
 }
 .info {
-	margin-top: 10px;
-	margin-left: 20px;
+	margin-top: 4rem;
 	text-transform: uppercase;
 	text-align: center;
-	margin: 5% 5%;
+	gap: 4rem;
 	color: v.$dark-blue;
+
+	li {
+		padding: 1% 0;
+	}
 }
 
-.info ul li {
-	font-size: 1.2rem;
-	margin-bottom: 15px;
-}
-
-.informacao_de_contato ul li {
+.input_form {
 	width: 100%;
 	font-weight: 700;
 	font-size: 1rem;
 	text-transform: uppercase;
 }
 
-.informacao_de_contato input {
+.form_fields input {
 	width: 70%;
 	height: 45px;
 	margin-top: 0.5rem;
@@ -182,35 +178,26 @@ export default {
 		margin: 0.5rem auto;
 	}
 }
-.informacao_de_contato textarea:focus,
+.form_fields textarea:focus,
 input:focus,
 select:focus {
 	border: 1px solid v.$light-blue;
 }
-.informacao_de_contato label {
+.form_fields label {
 	font-size: 15px;
 	display: flex;
 }
 
-.contact_form {
-	li {
-		text-align: center;
-		margin: auto;
-	}
+.input_form {
+	text-align: center;
+	margin: auto;
 
-	ul {
-		padding: 0;
-	}
+	padding: 0;
 
 	@media (max-width: 768px) {
 		width: 100%;
 		text-align: center;
 		margin: auto;
-
-		li {
-			text-align: center;
-			margin: auto;
-		}
 	}
 }
 
@@ -225,20 +212,16 @@ select:focus {
 	border-radius: 1rem;
 }
 
-.titulo_da_secao {
+.section_title {
 	font-size: 30px;
 	font-weight: bold;
 }
 
-.nome,
-.email,
-.telefone,
-.assunto,
-.mensage {
+.input_form {
 	margin: 1rem 1rem;
 }
 
-.textarea {
+.text_area {
 	width: 70%;
 	height: 20%;
 	margin-top: 10px;
@@ -264,7 +247,7 @@ select:focus {
 	}
 }
 
-.informacao_de_contato button {
+.form_fields button {
 	border: none;
 	background-color: v.$main-blue;
 	color: white;
@@ -275,10 +258,10 @@ select:focus {
 	border-radius: 5px;
 }
 
-.informacao_de_contato button:hover {
+.form_fields button:hover {
 	background-color: v.$dark-blue;
 }
-.informacao_de_contato:hover {
+.form_fields:hover {
 	opacity: 0.9;
 	transition: 0.5s;
 }
