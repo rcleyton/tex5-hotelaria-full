@@ -26,6 +26,7 @@
 	</div>
 </template>
 
+
 <script>
 import QuartoCard from '@/components/QuartoCard.vue';
 import router from '@/router';
