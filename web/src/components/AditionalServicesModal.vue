@@ -6,18 +6,18 @@
 		<div v-if="showModal" @click="showModal = false">
 			<div class="modal-content" @click.stop>
 				<ul>
-					<li v-for="item in servicosAdicionais" :key="item">
+					<li v-for="servico in servicosAdicionais" :key="servico.id_servico_adicional">
 						<input
 							type="checkbox"
-							v-model="item.selected"
-							:id="item.id"
-							:value="item.id"
-							:checked="dadosReserva.servicosAdicionais[item.id]"
+							v-model="servico.selected"
+							:id="servico.id_servico_adicional"
+							:value="servico.id_servico_adicional"
+							:checked="dadosReserva.servicosAdicionais[servico.id_servico_adicional]"
 							name="additionalServices"
 							class="customize yellow"
 							@change="handleInputChange($event)"
 						/>
-						{{ item.name }} - R$ {{ item.price }}
+						{{ servico.item }} - R$ {{ servico.valor }}
 					</li>
 				</ul>
 				<button @click="showModal = false">Fechar</button>
@@ -27,21 +27,19 @@
 </template>
 
 <script>
-import store from '@/store';
 import { mapActions, mapGetters } from 'vuex';
+import axios from 'axios';
 
 export default {
 	name: 'AditionalServicesModal',
 	data() {
 		return {
 			showModal: false,
+			servicosAdicionais: [],
 		};
 	},
 	computed: {
 		...mapGetters(['dadosReserva']),
-		servicosAdicionais() {
-			return store.state.servicosAdicionais;
-		},
 		selectedItems() {
 			return this.servicosAdicionais.filter((item) => item.selected);
 		},
@@ -52,6 +50,13 @@ export default {
 	methods: {
 		...mapActions(['handleInputChange']),
 	},
+	mounted: function () {
+		axios
+			.get('http://localhost:3000/api/servicosAdicionais')
+			.then((res) => {
+				this.servicosAdicionais = res.data;
+			})
+	}
 };
 </script>
 

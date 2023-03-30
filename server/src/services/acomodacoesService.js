@@ -35,4 +35,29 @@ module.exports = {
 			);
 		});
 	},
+
+	update: (id_acomodacao, status, titulo, descricao, imagem, preco) => {
+			return new Promise((resolve, reject) => {
+				db.query(
+					`
+					UPDATE acomodacoes
+					SET status = ?,
+					titulo = ?,
+					descricao = ?,
+					imagem = ?,
+					preco = ?
+					WHERE id_acomodacao = ?
+				`,
+					[status, titulo, descricao, imagem, preco, id_acomodacao],
+					(error, results) => {
+						if (error) {
+							reject(error);
+							return;
+						} else {
+							resolve(results);
+						}
+					}
+				);
+			});
+	},
 };

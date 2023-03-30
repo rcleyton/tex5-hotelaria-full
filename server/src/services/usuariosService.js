@@ -1,4 +1,4 @@
-const db = require('../db')
+const db = require('../db');
 
 module.exports = {
 	getAll: () => {
@@ -13,32 +13,58 @@ module.exports = {
 		});
 	},
 
-    insert: (nome, telefone, cpf, email, senha, endereco_id) => {
-        return new Promise ((resolve, reject) => {
-            db.query(`INSERT INTO usuarios (
+	findByEmail: (email) => {
+		return new Promise((resolve, reject) => {
+			db.query(`SELECT id_usuario, nome, senha FROM usuarios WHERE email = ?`, [email], (err, res) => {
+				if (err) {
+					reject(err);
+				} else {
+					resolve(res);
+				}
+			});
+		});
+	},
+
+	auth: (id_usuario, email, senha) => {
+		return new Promise((resolve, reject) => {
+			db.query(`SELECT email, senha WHERE id_usuario = ?`, [id_usuario], (err, res) => {
+				if(err) {
+					reject();
+				} else {
+					resolve();
+				}
+			})
+		})
+	},
+
+	insert: (nome, telefone, cpf, email, senha) => {
+		return new Promise((resolve, reject) => {
+			db.query(
+				`INSERT INTO usuarios (
                 nome,
                 telefone,
                 cpf,
                 email,
-                senha,
-                endereco_id
-            ) VALUES (?, ?, ?, ?, ?, ?)`,
-            [nome,telefone,cpf,email,senha,endereco_id]
-            ,((err, res) => {
-                if(err) {
-                    reject(err)
-                    return
-                } else {
-                    resolve(res)
-                    return
-                }
-            }))
-        })
-    },
+                senha
+            ) VALUES (?, ?, ?, ?, ?)`,
+				[nome, telefone, cpf, email, senha],
+				(err, res) => {
+					if (err) {
+						reject(err);
+						return;
+					} else {
+						resolve(res.insertId);
+						return;
+					}
+				}
+			);
+		});
+	},
 
-    update: (nome, telefone, cpf, email, senha, endereco_id, id_usuario) => {
-        return new Promise((resolve, reject) => {
-            db.query(`
+	update: (nome, telefone, cpf, email, senha, endereco_id, id_usuario) => {
+		return new Promise((resolve, reject) => {
+			db.query(
+				`
             UPDATE usuarios
             SET nome = ?,
                 telefone = ?,
@@ -47,14 +73,15 @@ module.exports = {
                 senha = ?,
                 endereco_id = ?
             WHERE id_usuario = ?`,
-            [nome, telefone, cpf, email, senha, endereco_id, id_usuario],
-            ((erro, res) => {
-                if(erro) {
-                    reject(erro)
-                    return
-                }
-                resolve(res)
-            }))
-        })
-    }
-}
+				[nome, telefone, cpf, email, senha, endereco_id, id_usuario],
+				(erro, res) => {
+					if (erro) {
+						reject(erro);
+						return;
+					}
+					resolve(res);
+				}
+			);
+		});
+	},
+};

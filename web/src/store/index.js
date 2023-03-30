@@ -3,68 +3,6 @@ import { calculaTotalDeDias } from '../helpers/calculaTotalDeDias';
 
 export default createStore({
 	state: {
-		quartosHotel: [
-			{
-				id: 1,
-				img: require('@/assets/images/quarto_1.jpg'),
-				nome: 'Suíte Executiva',
-				descricao:
-					'O apartamento possui uma sala com TV, mesa de refeição com 04 lugares sofá e mesa de trabalho. O quarto há uma cama de King Size. Vista mar.',
-				img: require('@/assets/images/quarto_1.jpg'),
-				nome: 'Suíte Executiva',
-				descricao:
-					'O apartamento possui uma sala com TV, mesa de refeição com 04 lugares sofá e mesa de trabalho. O quarto há uma cama de King Size. Vista mar.',
-				preco: 200,
-			},
-			{
-				id: 2,
-				img: require('@/assets/images/quarto_2.jpg'),
-				nome: 'Suíte Master',
-				descricao:
-					'O apartamento possui uma decoração moderna e luxuosa, sendo composta por sala com TV e som, mesa de refeição com quatro cadeiras, sofá e mesa de trabalho. O quarto há 01 cama King Size. Vista mar.',
-				img: require('@/assets/images/quarto_2.jpg'),
-				nome: 'Suíte Master',
-				descricao:
-					'O apartamento possui uma decoração moderna e luxuosa, sendo composta por sala com TV e som, mesa de refeição com quatro cadeiras, sofá e mesa de trabalho. O quarto há 01 cama King Size. Vista mar.',
-				preco: 250,
-			},
-			{
-				id: 3,
-				img: require('@/assets/images/quarto_3.jpg'),
-				nome: 'Suíte Presidencial',
-				descricao:
-					'Possui uma sala com TV e DVD, mesa com 04 lugares e refeições com 10 lugares, conjunto de sofá, bar com bancada, frigobar e lavabo. O quarto há 01 cama super King Size, TV e um sofá para leitura e o banheiro amplo com hidromassagem. Vista mar.',
-				img: require('@/assets/images/quarto_3.jpg'),
-				nome: 'Suíte Presidencial',
-				descricao:
-					'Possui uma sala com TV e DVD, mesa com 04 lugares e refeições com 10 lugares, conjunto de sofá, bar com bancada, frigobar e lavabo. O quarto há 01 cama super King Size, TV e um sofá para leitura e o banheiro amplo com hidromassagem. Vista mar.',
-				preco: 350,
-			},
-			{
-				id: 4,
-				img: require('@/assets/images/quarto_4.jpg'),
-				nome: 'Suíte Advanced',
-				descricao:
-					'Possui uma sala com TV e DVD, mesa com 04 lugares e refeições com 10 lugares, conjunto de sofá, bar com bancada, frigobar e lavabo. O quarto há 01 cama super King Size, TV e um sofá para leitura e o banheiro amplo com hidromassagem. Vista mar.',
-				preco: 150,
-			},
-			{
-				id: 5,
-				img: require('@/assets/images/quarto_5.png'),
-				nome: 'Suíte Standard',
-				descricao:
-					'Possui uma sala com TV e DVD, mesa com 04 lugares e refeições com 10 lugares, conjunto de sofá, bar com bancada, frigobar e lavabo. O quarto há 01 cama super King Size, TV e um sofá para leitura e o banheiro amplo com hidromassagem. Vista mar.',
-				preco: 350,
-			},
-			{
-				id: 6,
-				img: require('@/assets/images/quarto_6.jpg'),
-				nome: 'Suíte Junior',
-				descricao:
-					'Possui uma sala com TV e DVD, mesa com 04 lugares e refeições com 10 lugares, conjunto de sofá, bar com bancada, frigobar e lavabo. O quarto há 01 cama super King Size, TV e um sofá para leitura e o banheiro amplo com hidromassagem. Vista mar.',
-				preco: 450,
-			},
-		],
 		servicosAdicionais: [
 			{
 				id: 1,
@@ -96,7 +34,8 @@ export default createStore({
 			checkIn: '',
 			checkOut: '',
 			quantidadeDePessoas: '',
-			acomodacaoId: '',
+			acomodacao: '',
+			id_acomodacao: '',
 			servicosAdicionais: {},
 		},
 		consumoReserva: {
@@ -149,7 +88,6 @@ export default createStore({
 	getters: {
 		dadosReserva: (state) => state.dadosReserva,
 		consumoReserva: (state) => state.consumoReserva,
-		quartosHotel: (state) => state.quartosHotel,
 		listaConsumoReserva: (state) => {
 			const consumoObj = state.consumoReserva;
 			const lista = [];
@@ -168,13 +106,6 @@ export default createStore({
 			}
 
 			return lista;
-		},
-		acomodacao: (state) => {
-			return (
-				state.quartosHotel.find(
-					(q) => q.id == state.dadosReserva.acomodacaoId
-				) ?? ''
-			);
 		},
 		diarias: (state) => {
 			if (
@@ -205,11 +136,8 @@ export default createStore({
 				state.dadosReserva.checkIn,
 				state.dadosReserva.checkOut
 			);
-			const acomodacao = state.quartosHotel.find(
-				(q) => q.id == state.dadosReserva.acomodacaoId
-			);
-			if (diarias > 0 && acomodacao !== undefined) {
-				return acomodacao.preco * diarias;
+			if (diarias > 0 && state.dadosReserva.acomodacao !== undefined) {
+				return state.dadosReserva.acomodacao.preco * diarias;
 			} else {
 				return '';
 			}
@@ -232,11 +160,8 @@ export default createStore({
 				state.dadosReserva.checkIn,
 				state.dadosReserva.checkOut
 			);
-			const acomodacao = state.quartosHotel.find(
-				(q) => q.id == state.dadosReserva.acomodacaoId
-			);
-			if (diarias > 0 && acomodacao !== undefined) {
-				totalHospedagem = acomodacao.preco * diarias;
+			if (diarias > 0 && state.dadosReserva.acomodacao !== undefined) {
+				totalHospedagem = state.dadosReserva.acomodacao.preco * diarias;
 			}
 
 			return totalAdicionais + totalHospedagem;
@@ -262,6 +187,11 @@ export default createStore({
 			localStorage.setItem('reserva', JSON.stringify(state.dadosReserva));
 			return;
 		},
+		onRoomChange(state, event) {
+			state.dadosReserva.acomodacao = event
+			state.dadosReserva.id_acomodacao = event.id_acomodacao;
+			localStorage.setItem('reserva', JSON.stringify(state.dadosReserva));
+		},
 		onLogin(state, event) {
 			state.usuario = event;
 			localStorage.setItem('usuario', JSON.stringify(state.usuario));
@@ -277,6 +207,9 @@ export default createStore({
 	actions: {
 		handleInputChange({ commit }, event) {
 			commit('onInputChange', event);
+		},
+		handleRoomChange({ commit }, event) {
+			commit('onRoomChange', event);
 		},
 		handleUserLogin({ commit }, event) {
 			commit('onLogin', event);

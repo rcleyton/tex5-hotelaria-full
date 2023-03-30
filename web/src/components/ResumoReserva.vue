@@ -31,11 +31,11 @@
 							{{ !diarias ? '' : diarias > 1 ? 'dias' : 'dia' }}</span
 						>
 					</li>
-					<li class="resume__listItem">Quarto: {{ acomodacao?.nome }}</li>
+					<li class="resume__listItem">Quarto: {{ dadosReserva.acomodacao?.titulo }}</li>
 					<li class="resume__listItem">
 						Valor do quarto:
 						<span class="feature_color">
-							{{ formatCurrency(acomodacao?.preco) }}</span
+							{{ formatCurrency(dadosReserva.acomodacao?.preco) }}</span
 						>
 					</li>
 					<li class="resume__listItem">
@@ -77,7 +77,6 @@ export default {
 	components: { AditionalServicesModal, ModalReservaContinue, DiscountCode },
 	computed: {
 		...mapGetters([
-			'acomodacao',
 			'dadosReserva',
 			'diarias',
 			'totalAdicionais',

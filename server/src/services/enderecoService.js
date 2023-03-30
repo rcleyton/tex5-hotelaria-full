@@ -13,7 +13,7 @@ module.exports = {
 		});
 	},
 
-	insert: (cidade, estado, numero, rua, bairro, complemento) => {
+	insert: (cidade, estado, numero, rua, bairro, complemento, id_usuario) => {
 		return new Promise((resolve, reject) => {
 			db.query(
 				`INSERT INTO endereco (
@@ -22,15 +22,16 @@ module.exports = {
 					numero,
 					rua,
 					bairro,
-					complemento
-				) VALUES (?, ?, ?, ?, ?, ?)`,
-				[cidade, estado, numero, rua, bairro, complemento],
+					complemento,
+					id_usuario
+				) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+				[cidade, estado, numero, rua, bairro, complemento, id_usuario],
 				(error, results) => {
 					if (error) {
 						reject(error);
 						return;
 					} else {
-						resolve(results.insertId);
+						resolve();
 					}
 				}
 			);

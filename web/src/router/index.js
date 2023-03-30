@@ -76,6 +76,16 @@ const routes = [
 		name: 'admin-consumo',
 		component: () => import('../views/AdminConsumoView.vue'),
 	},
+	{
+		path: '/adminAcomodacoes',
+		name: 'adminAcomodacoes',
+		component: () => import('../views/AdminAcomodacoesView.vue'),
+	},
+	{
+		path: '/editarAcomodacao',
+		name: 'editarAcomodacao',
+		component: () => import('../views/EditarAcomodacaoView.vue')
+	}
 ];
 
 const router = createRouter({

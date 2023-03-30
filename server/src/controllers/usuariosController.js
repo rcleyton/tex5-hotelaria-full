@@ -19,22 +19,27 @@ module.exports = {
 		} = req.body;
 
 		try {
-			const endereco_id = await EnderecoService.insert(
+			const id_usuario = await UsuarioService.insert(
+				nome,
+				telefone,
+				cpf,
+				email,
+				senha
+			);
+			await EnderecoService.insert(
 				cidade,
 				estado,
 				numero,
 				rua,
 				bairro,
-				complemento
+				complemento,
+				id_usuario
 			);
-			await UsuarioService.insert(
+			const obj = {
 				nome,
-				telefone,
-				email,
-				cpf,
-				senha,
-				endereco_id
-			);
+				email
+			};
+			res.send(obj);
 		} catch (err) {
 			console.log(err);
 		}
