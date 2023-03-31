@@ -81,6 +81,7 @@ export default createStore({
 			],
 		},
 		usuario: {
+			id_usuario: '',
 			nome: '',
 			email: '',
 		},
