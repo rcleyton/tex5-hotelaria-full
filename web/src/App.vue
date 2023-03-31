@@ -20,8 +20,8 @@ export default {
 
 	data() {
 		return {
-			paginasSemHeader: ['dashboard', 'cadastroAcomodacao'],
-			paginasSemFooter: ['dashboard', 'cadastroAcomodacao'],
+			paginasSemHeader: ['dashboard', 'cadastroAcomodacao', 'admin-usuarios', 'admin-reservas', 'admin-enderecos', 'admin-consumo', 'admin-servicos-adicionais', ],
+			paginasSemFooter: ['dashboard', 'cadastroAcomodacao', 'admin-usuarios', 'admin-reservas', 'admin-enderecos', 'admin-consumo', 'admin-servicos-adicionais', ],
 		};
 	},
 	mounted: function () {
