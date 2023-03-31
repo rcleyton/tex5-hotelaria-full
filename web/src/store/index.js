@@ -189,7 +189,7 @@ export default createStore({
 			return;
 		},
 		onRoomChange(state, event) {
-			state.dadosReserva.acomodacao = event
+			state.dadosReserva.acomodacao = event;
 			state.dadosReserva.id_acomodacao = event.id_acomodacao;
 			localStorage.setItem('reserva', JSON.stringify(state.dadosReserva));
 		},

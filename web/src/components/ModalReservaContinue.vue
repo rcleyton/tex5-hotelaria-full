@@ -26,32 +26,41 @@
 						Diárias: {{ diarias }}
 						{{ !diarias ? '' : diarias > 1 ? 'dias' : 'dia' }}
 					</li>
-					<li class="resume__listItem">Quarto: {{ dadosReserva.acomodacao?.nome }}</li>
+					<li class="resume__listItem">
+						Quarto: {{ dadosReserva.acomodacao?.nome }}
+					</li>
 					<li class="resume__listItem">
 						Valor do quarto:
 						{{ dadosReserva.acomodacao?.preco }}
 					</li>
 					<li class="resume__listItem">
 						Valor da hospedagem:
-						{{ formatCurrency(totalHospedagem) }}
+						{{ formataValor(totalHospedagem) }}
 					</li>
 					<li class="resume__listItem">
 						Total Adicionais:
-						{{ formatCurrency(totalAdicionais) }}
+						{{ formataValor(totalAdicionais) }}
 					</li>
 					<li class="resume__listItem">
 						Valor total:
-						{{ formatCurrency(total) }}
+						{{ formataValor(total) }}
 					</li>
 					<li class="resume__listItem">
 						Descrição do quarto:
-						<img :src="'http://localhost:3000/static/' + dadosReserva.acomodacao.imagem" title="Quartos Hotel" />
+						<img
+							:src="
+								'http://localhost:3000/static/' + dadosReserva.acomodacao.imagem
+							"
+							title="Quartos Hotel"
+						/>
 						{{ dadosReserva.acomodacao.descricao }}
 					</li>
 				</ul>
 			</div>
 
-			<button class="button" @click="$router.push('login')">Continue</button>
+			<button class="button" @click="finalizarReserva()">
+				Finalizar reserva
+			</button>
 			<button class="buttonClose" @click="showModal = false">Editar</button>
 		</div>
 	</div>
@@ -59,6 +68,8 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import { formataValor } from '@/helpers/formataValor';
+import axios from 'axios';
 
 export default {
 	name: 'ModalReservaContinue',
@@ -74,15 +85,24 @@ export default {
 			'totalAdicionais',
 			'totalHospedagem',
 			'total',
+			'usuario',
 		]),
 	},
 	methods: {
-		formatCurrency(value) {
-			if (!value) return '';
-			return Intl.NumberFormat(undefined, {
-				currency: 'BRL',
-				style: 'currency',
-			}).format(value);
+		formataValor,
+		async finalizarReserva() {
+			const reserva = {};
+			reserva['check_in'] = this.dadosReserva.checkIn;
+			reserva['check_out'] = this.dadosReserva.checkOut;
+			reserva['id_acomodacao'] = this.dadosReserva.id_acomodacao;
+			reserva['quantidade_pessoas'] = this.dadosReserva.quantidadeDePessoas;
+			reserva['id_usuario'] = this.usuario.id_usuario;
+
+			await axios
+				.post('http://localhost:3000/api/reservas', reserva)
+				.then((res) => {
+					console.log(res.data);
+				});
 		},
 	},
 };
