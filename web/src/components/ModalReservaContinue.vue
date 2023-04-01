@@ -67,9 +67,10 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 import { formataValor } from '@/helpers/formataValor';
 import axios from 'axios';
+import router from '@/router';
 
 export default {
 	name: 'ModalReservaContinue',
@@ -89,8 +90,9 @@ export default {
 		]),
 	},
 	methods: {
+		...mapActions(['handleResetDadosReserva']),
 		formataValor,
-		async finalizarReserva() {
+		finalizarReserva() {
 			const reserva = {};
 			reserva['check_in'] = this.dadosReserva.checkIn;
 			reserva['check_out'] = this.dadosReserva.checkOut;
@@ -98,10 +100,11 @@ export default {
 			reserva['quantidade_pessoas'] = this.dadosReserva.quantidadeDePessoas;
 			reserva['id_usuario'] = this.usuario.id_usuario;
 
-			await axios
+			axios
 				.post('http://localhost:3000/api/reservas', reserva)
 				.then((res) => {
-					console.log(res.data);
+					this.handleResetDadosReserva();
+					router.push('/');
 				});
 		},
 	},

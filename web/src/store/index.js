@@ -204,6 +204,17 @@ export default createStore({
 			};
 			localStorage.removeItem('usuario');
 		},
+		onResetDadosReserva(state, event) {
+			state.dadosReserva = {
+				checkIn: '',
+				checkOut: '',
+				quantidadeDePessoas: '',
+				acomodacao: '',
+				id_acomodacao: '',
+				servicosAdicionais: {},
+			};
+			localStorage.removeItem('reserva');
+		},
 	},
 	actions: {
 		handleInputChange({ commit }, event) {
@@ -217,6 +228,9 @@ export default createStore({
 		},
 		handleUserLogout({ commit }, event) {
 			commit('onLogout', event);
+		},
+		handleResetDadosReserva({ commit }, event) {
+			commit('onResetDadosReserva', event);
 		},
 	},
 	modules: {},

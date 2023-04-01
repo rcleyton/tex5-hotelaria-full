@@ -23,7 +23,6 @@ module.exports = {
 
 		const reservaModel = new Reserva(req.body);
 		const reserva = await reservaModel.criarReserva();
-		console.log(reserva);
 		try {
 			const id = await ReservasService.insert(
 				reserva.check_in,
@@ -35,7 +34,10 @@ module.exports = {
 				reserva.id_acomodacao,
 				reserva.id_usuario
 			);
-			res.status(201);
+			res.status(201).json({
+				...reserva,
+				id_reserva: id
+			});
 		} catch (err) {
 			console.error(err);
 		}
