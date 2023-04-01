@@ -21,41 +21,24 @@ module.exports = {
 			id_usuario,
 		} = req.body;
 
-		const reserva = new Reserva(req.body);
-		const acomodacao = await reserva.calculaTotalReserva();
-		console.log(reserva.salvarReserva());
-		// try {
-		// 	const id = await ReservasService.insert(
-		// 		check_in,
-		// 		check_out,
-		// 		quantidade_pessoas,
-		// 		total,
-		// 		total_desconto,
-		// 		confirmacao,
-		// 		data_confirmacao,
-		// 		cupom_id,
-		// 		acomodacao_id,
-		// 		usuario_id,
-		// 		servicos_adicionais_id
-		// 	);
-		// 	const reservas = {
-		// 		check_in,
-		// 		check_out,
-		// 		quantidade_pessoas,
-		// 		total,
-		// 		total_desconto,
-		// 		confirmacao,
-		// 		data_confirmacao,
-		// 		cupom_id,
-		// 		acomodacao_id,
-		// 		usuario_id,
-		// 		servicos_adicionais_id,
-		// 		reservasId: id,
-		// 	};
-		// 	res.send(reservas);
-		// } catch (err) {
-		// 	console.error(err);
-		// }
+		const reservaModel = new Reserva(req.body);
+		const reserva = await reservaModel.criarReserva();
+		console.log(reserva);
+		try {
+			const id = await ReservasService.insert(
+				reserva.check_in,
+				reserva.check_out,
+				reserva.quantidade_pessoas,
+				reserva.total,
+				reserva.total_desconto,
+				reserva.id_cupom,
+				reserva.id_acomodacao,
+				reserva.id_usuario
+			);
+			res.status(201);
+		} catch (err) {
+			console.error(err);
+		}
 	},
 
 	update: async (req, res) => {
