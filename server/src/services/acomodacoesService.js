@@ -29,12 +29,11 @@ module.exports = {
 		return new Promise((resolve, reject) => {
 			db.query(
 				`INSERT INTO acomodacoes (
-				status,
 				titulo,
 				descricao,
 				imagem,
 				preco
-				) VALUES (?, ?, ?, ?, ?)`,
+				) VALUES (?, ?, ?, ?)`,
 				[status, titulo, descricao, imagem, preco],
 				(error, results) => {
 					if (error) {

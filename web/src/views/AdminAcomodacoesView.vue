@@ -42,7 +42,7 @@
 						</td>
 						<td>{{ acomodacao.preco }}</td>
 						<td>
-							{{ acomodacao.status === 0 ? 'Indisponível' : 'Disponível' }}
+							{{ acomodacao.status }}
 						</td>
 						<td>
 							<router-link
