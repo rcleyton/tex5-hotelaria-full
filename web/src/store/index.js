@@ -81,6 +81,7 @@ export default createStore({
 			],
 		},
 		usuario: {
+			id_usuario: '',
 			nome: '',
 			email: '',
 		},
@@ -188,7 +189,7 @@ export default createStore({
 			return;
 		},
 		onRoomChange(state, event) {
-			state.dadosReserva.acomodacao = event
+			state.dadosReserva.acomodacao = event;
 			state.dadosReserva.id_acomodacao = event.id_acomodacao;
 			localStorage.setItem('reserva', JSON.stringify(state.dadosReserva));
 		},
@@ -203,6 +204,17 @@ export default createStore({
 			};
 			localStorage.removeItem('usuario');
 		},
+		onResetDadosReserva(state, event) {
+			state.dadosReserva = {
+				checkIn: '',
+				checkOut: '',
+				quantidadeDePessoas: '',
+				acomodacao: '',
+				id_acomodacao: '',
+				servicosAdicionais: {},
+			};
+			localStorage.removeItem('reserva');
+		},
 	},
 	actions: {
 		handleInputChange({ commit }, event) {
@@ -216,6 +228,9 @@ export default createStore({
 		},
 		handleUserLogout({ commit }, event) {
 			commit('onLogout', event);
+		},
+		handleResetDadosReserva({ commit }, event) {
+			commit('onResetDadosReserva', event);
 		},
 	},
 	modules: {},
