@@ -17,7 +17,6 @@ module.exports = {
 
 		try {
 			const id = await AcomodacoesService.insert(
-				(status = 0),
 				titulo,
 				descricao,
 				imagem,
@@ -41,6 +40,7 @@ module.exports = {
 		const { id_acomodacao, titulo, preco, descricao, status, imagem } =
 			req.body;
 
+			console.log('43:',req.body);
 		if (req.file && req.file.filename) {
 			imagem = req.file.filename;
 		}

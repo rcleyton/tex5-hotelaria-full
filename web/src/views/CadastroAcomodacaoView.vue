@@ -93,7 +93,6 @@ export default {
 		onSelect() {
 			const file = this.$refs.image.files[0];
 			this.form.imagem = file;
-			console.log(file);
 		},
 	},
 };
