@@ -8,7 +8,7 @@
 						class="form_geral"
 						style="display: flex"
 						enctype="multipart/form-data"
-						@submit="sendData()"
+						@submit.prevent="sendData()"
 					>
 						<div class="form_field">
 							<label for="item"></label>
@@ -43,17 +43,6 @@
 								v-model="form.valor"
 							/>
 						</div>
-						<div class="form_field">
-							<label for="local"></label>
-							<input
-								class="input_form"
-								type="text"
-								name="local"
-								id="local"
-								placeholder="Local de venda"
-								v-model="form.local"
-							/>
-						</div>
 						<button class="button_form" type="submit">Cadastrar</button>
 					</form>
 				</div>
@@ -67,7 +56,6 @@
 						<th>Item</th>
 						<th>Descrição</th>
 						<th>Valor</th>
-						<th>Local</th>
 						<th>Editar</th>
 						<th>Excluir</th>
 					</tr>
@@ -78,7 +66,8 @@
 						<td>{{ item.item }}</td>
 						<td>{{ item.descricao }}</td>
 						<td>{{ item.valor }}</td>
-						<td>{{ item.local }}</td>
+						<td><button> <a href="{{`http://http://localhost:8080/admin-servicos-adicionais${item.id_servico_adicional}`}}"> Editar </a> </button></td>
+						<td><button @click="deleteData()">Excluir</button></td>
 					</tr>
 				</tbody>
 			</table>
@@ -94,11 +83,11 @@ export default {
 		return {
 			servicosArr: '',
 			form: {
+				idEditing : false,
 				id_servico_adicional: '',
 				item: '',
 				descricao: '',
 				valor: '',
-				local: '',
 			},
 		};
 	},
@@ -118,14 +107,33 @@ export default {
 				item: this.form.item,
 				descricao: this.form.descricao,
 				valor: this.form.valor,
-				local: this.form.local,
 			};
 
 			await axios
 				.post('http://localhost:3000/api/servicosAdicionais', data)
-				.then((res) => res.data)
+				.then((res) => {
+					res.data
+					this.getData()
+					})
 				.catch((error) => console.log(error));
 		},
+
+		updateData(id) {
+			const data = {
+				item: this.form.item,
+				descricao: this.form.descricao,
+				valor: this.form.valor,
+			};
+
+   			axios.put(`http://localhost:3000/api/servicosAdicionais/${id}`, data)
+				.then((res) => { 
+				res.data
+				this.getData()
+				location.reload()
+				})
+				.catch(error => console.log(error))
+  			},
+
 	},
 
 	mounted() {

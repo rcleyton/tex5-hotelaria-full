@@ -12,16 +12,15 @@ module.exports = {
         })
     },
 
-    insert: (item, descricao, valor, local) => {
+    insert: (item, descricao, valor) => {
 		return new Promise((resolve, reject) => {
 			db.query(
 				`INSERT INTO servicos_adicionais (
 				item,
 				descricao,
-				valor,
-				local
-				) VALUES (?, ?, ?, ?)`,
-				[item, descricao, valor, local],
+				valor
+				) VALUES (?, ?, ?)`,
+				[item, descricao, valor],
 				(error, results) => {
 					if (error) {
 						reject(error);
@@ -34,16 +33,15 @@ module.exports = {
 		});
 	},
 
-	update: (item, descricao, valor, local, id_servico_adicional) => {
+	update: (item, descricao, valor, id_servico_adicional) => {
 		return new Promise ((reject, resolve) => {
 			db.query(`
 			UPDATE servicos_adicionais
 			SET item = ?,
 				descricao = ?,
-				valor = ?,
-				local = ?
+				valor = ?
 			WHERE id_servico_adicional = ?`,
-			[item, descricao, valor, local, id_servico_adicional],
+			[item, descricao, valor, id_servico_adicional],
 			((erro, res) => {
 				if(erro) {
 					reject(erro)
