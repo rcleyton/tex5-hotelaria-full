@@ -1,3 +1,4 @@
+const Reserva = require('../models/reserva');
 const ReservasService = require('../services/reservaService');
 
 module.exports = {
@@ -12,48 +13,53 @@ module.exports = {
 	},
 
 	insert: async (req, res) => {
-		const { check_in, check_out, quantidade_pessoas, total, total_desconto, confirmacao,
-			data_confirmacao, cupom_id, acomodacao_id, usuario_id, servicos_adicionais_id } = req.body;
+		const {
+			check_in,
+			check_out,
+			quantidade_pessoas,
+			id_acomodacao,
+			id_usuario,
+		} = req.body;
 
+		const reservaModel = new Reserva(req.body);
+		const reserva = await reservaModel.criarReserva();
 		try {
 			const id = await ReservasService.insert(
-				check_in,
-				check_out,
-                quantidade_pessoas,
-                total,
-                total_desconto,
-                confirmacao,
-                data_confirmacao,
-                cupom_id,
-                acomodacao_id,
-                usuario_id,
-                servicos_adicionais_id
+				reserva.check_in,
+				reserva.check_out,
+				reserva.quantidade_pessoas,
+				reserva.total,
+				reserva.total_desconto,
+				reserva.id_cupom,
+				reserva.id_acomodacao,
+				reserva.id_usuario
 			);
-			const reservas = {
-				check_in, check_out,
-                quantidade_pessoas,
-                total,
-                total_desconto,
-                confirmacao,
-                data_confirmacao,
-                cupom_id,
-                acomodacao_id,
-                usuario_id,
-                servicos_adicionais_id,
-				reservasId: id,
-			};
-			res.send(reservas);
+			res.status(201).json({
+				...reserva,
+				id_reserva: id
+			});
 		} catch (err) {
 			console.error(err);
 		}
 	},
 
 	update: async (req, res) => {
-		const { check_in, check_out, quantidade_pessoas, total, total_desconto, confirmacao, data_confirmacao, cupom_id, acomodacao_id, usuario_id, servicos_adicionais_id } = req.body
-		const { id_reserva } = req.params
+		const {
+			check_in,
+			check_out,
+			quantidade_pessoas,
+			total,
+			total_desconto,
+			confirmacao,
+			data_confirmacao,
+			cupom_id,
+			acomodacao_id,
+			usuario_id,
+			servicos_adicionais_id,
+		} = req.body;
+		const { id_reserva } = req.params;
 
 		try {
-			
 			await ReservasService.update(
 				check_in,
 				check_out,
@@ -66,8 +72,8 @@ module.exports = {
 				acomodacao_id,
 				usuario_id,
 				servicos_adicionais_id,
-				id_reserva 
-			)
+				id_reserva
+			);
 
 			const reserva = {
 				check_in,
@@ -81,12 +87,11 @@ module.exports = {
 				acomodacao_id,
 				usuario_id,
 				servicos_adicionais_id,
-				id_reserva 
-			}
-			res.send(reserva)
-			
+				id_reserva,
+			};
+			res.send(reserva);
 		} catch (error) {
 			console.log(error);
 		}
-	}
+	},
 };

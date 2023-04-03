@@ -82,7 +82,6 @@ export default {
 		axios
 			.get('http://localhost:3000/api/acomodacoes')
 			.then((res) => {
-				console.log(res.data);
 				this.acomodacoes = res.data;
 			});
 	}
