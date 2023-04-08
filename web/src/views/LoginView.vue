@@ -4,12 +4,13 @@
 			<form class="formulario" @submit.prevent="onSubmit">
 				<label class="fraseInp">
 					Usuário
-					<input type="text" name="usuario" v-model="form.nome" />
+					<input type="text" name="usuario" v-model="form.email" />
 				</label>
 				<label class="fraseInp">
 					Senha
 					<input type="password" name="senha" v-model="form.senha" />
 				</label>
+				<span v-if="mensagemErro">{{ mensagemErro }}</span>
 				<button type="submit" class="botaoLogin">Entrar</button>
 				<p>
 					Não possui uma conta?
@@ -22,6 +23,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
@@ -32,6 +34,7 @@ export default {
 				nome: '',
 				senha: '',
 			},
+			mensagemErro: '',
 		};
 	},
 	computed: {
@@ -41,12 +44,22 @@ export default {
 		...mapActions(['handleUserLogin']),
 		onSubmit() {
 			const payload = {
-				nome: this.form.nome,
+				email: this.form.email,
 				senha: this.form.senha,
 			};
-			this.handleUserLogin(payload);
-			/** validar usuario antes de alterar rota */
-			this.$router.push('/');
+			axios
+				.post('http://localhost:3000/api/auth', payload)
+				.then((res) => {
+					if (res.status === 200) {
+						this.handleUserLogin(res.data);
+						this.$router.push('/');
+					} else {
+						console.warn('Erro LoginView: 58', res);
+					}
+				})
+				.catch((err) => {
+					this.mensagemErro = err.response.data.erro;
+				});
 		},
 	},
 };
