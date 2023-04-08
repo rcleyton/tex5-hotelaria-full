@@ -1,29 +1,12 @@
 <template>
-	<HeaderComponent v-if="!paginasSemHeader.includes($route.name)" />
-	<main>
-		<router-view />
-	</main>
-	<FooterComponent v-if="!paginasSemFooter.includes($route.name)" />
+	<router-view />
 </template>
 
 <script>
-import HeaderComponent from './components/Header.vue';
-import FooterComponent from './components/FooterComponent.vue';
 import store from './store';
 
 export default {
 	name: 'App',
-	components: {
-		HeaderComponent,
-		FooterComponent,
-	},
-
-	data() {
-		return {
-			paginasSemHeader: ['dashboard', 'cadastroAcomodacao', 'admin-usuarios', 'admin-reservas', 'admin-enderecos', 'admin-consumo', 'admin-servicos-adicionais', ],
-			paginasSemFooter: ['dashboard', 'cadastroAcomodacao', 'admin-usuarios', 'admin-reservas', 'admin-enderecos', 'admin-consumo', 'admin-servicos-adicionais', ],
-		};
-	},
 	mounted: function () {
 		if (window.localStorage.getItem('reserva')) {
 			store.state.dadosReserva = JSON.parse(
