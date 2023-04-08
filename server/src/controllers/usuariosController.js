@@ -1,5 +1,6 @@
 const UsuarioService = require('../services/usuariosService.js');
 const EnderecoService = require('../services/enderecoService');
+const bcrypt = require('bcryptjs');
 
 module.exports = {
 	getAll: async (req, res) => {
@@ -12,11 +13,14 @@ module.exports = {
 		res.send(data);
 	},
 
-	insert: async (req, res) => {
+	insert: async (req, res, next) => {
+
 		const {
-			usuario: { nome, telefone, email, cpf, senha },
+			usuario: { nome, telefone, email, cpf, senha},
 			endereco: { cidade, estado, numero, rua, bairro, complemento },
 		} = req.body;
+
+		const hash = await bcrypt.hash(senha, 10);
 
 		try {
 			const id_usuario = await UsuarioService.insert(
@@ -24,7 +28,7 @@ module.exports = {
 				telefone,
 				cpf,
 				email,
-				senha
+				hash
 			);
 			await EnderecoService.insert(
 				cidade,
@@ -35,11 +39,16 @@ module.exports = {
 				complemento,
 				id_usuario
 			);
+
 			const obj = {
 				nome,
+				hash,
 				email
 			};
+			console.log(obj)
 			res.send(obj);
+
+
 		} catch (err) {
 			console.log(err);
 		}
