@@ -1,6 +1,18 @@
+const bcrypt = require('bcryptjs');
 const usuarioService = require('../services/usuariosService');
+const jwt = require('jsonwebtoken');
+const config  = require('../config');
+
+function jwtSignUser (user) {
+	const ONE_WEEK = 60 * 60 * 24 * 7;
+	return jwt.sign(user, config.authentication.jwtSecret, {
+		expiresIn: ONE_WEEK
+	})
+}
+
 module.exports = {
 	login: async (req, res) => {
+
 		let { email, senha } = req.body;
 		// buscar email e senha no db
 		try {
@@ -12,15 +24,21 @@ module.exports = {
 					erro: 'Usuário ou senha incorretos',
 				});
 			}
-			if (usuario.senha === senha) {
-				res.status(200).json({
+
+			if (usuario) {
+				const verificaSenha = await bcrypt.compare(senha, usuario.senha)
+				if (verificaSenha) {
+					res.status(200).json({
 					id_usuario: usuario.id_usuario,
 					nome: usuario.nome,
 					email,
-				});
-			} else {
-				res.status(400);
+					token: jwtSignUser(usuario)
+					})
+				} else {
+					res.status(401).json({erro: 'Usuário ou senha incorretos'});
+				}
 			}
+			
 		} catch (error) {
 			console.log(error);
 		}
