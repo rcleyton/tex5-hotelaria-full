@@ -156,16 +156,6 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>Batata</td>
-						<td>Batata</td>
-						<td>Batata</td>
-						<td>Batata</td>
-						<td>Batata</td>
-						<td>Batata</td>
-						<td>Batata</td>
-						<td>Batata</td>
-					</tr>
 					<tr v-for="reserva in reservasArr" :key="reserva.id_reserva">
 						<td>{{ reserva.id_reserva }}</td>
 						<td>{{ reserva.check_in }}</td>
