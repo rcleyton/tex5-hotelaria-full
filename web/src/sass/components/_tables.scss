@@ -65,6 +65,13 @@ tbody {
 	flex-direction: row-reverse;
 	justify-content: center;
 	align-items: flex-start;
+
+	@media (max-width: 900px) {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	}
 }
 
 .table_container {
@@ -84,6 +91,12 @@ tbody {
 	padding: 1.5rem;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 	border-radius: 10px;
+
+	@media (max-width: 900px) {
+		position: relative;
+		margin: 2rem auto;
+		transform: none;
+	}
 
 	.form_main {
 		display: flex;
