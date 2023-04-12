@@ -156,6 +156,16 @@
 					</tr>
 				</thead>
 				<tbody>
+					<tr>
+						<td>Batata</td>
+						<td>Batata</td>
+						<td>Batata</td>
+						<td>Batata</td>
+						<td>Batata</td>
+						<td>Batata</td>
+						<td>Batata</td>
+						<td>Batata</td>
+					</tr>
 					<tr v-for="reserva in reservasArr" :key="reserva.id_reserva">
 						<td>{{ reserva.id_reserva }}</td>
 						<td>{{ reserva.check_in }}</td>
@@ -245,8 +255,8 @@ export default {
 table {
 	font-family: Arial, sans-serif;
 	border-collapse: collapse;
-	width: 100%;
-	margin: 3rem 0;
+	margin: auto;
+	overflow-x: auto;
 }
 thead {
 	th {
@@ -301,30 +311,38 @@ tbody {
 	}
 }
 
-.form_main {
+.fixed-form {
 	align-items: center;
-	gap: 1.5rem;
+}
+.form_main {
 	background-color: hsl(60, 6%, 94%);
-	padding: 2rem;
-	border-radius: 5px;
 	flex-direction: row;
 	justify-content: space-evenly;
 
-	@media (max-width: 1400px) {
-		width: 80vw;
-		padding: 1rem;
+	@media (max-width: 600px) {
+		padding: 2rem 0 3rem 0;
+		-moz-column-gap: 1rem;
+		gap: 1rem;
+		flex-direction: column;
+		align-content: center;
+		align-items: center;
 	}
 
 	.form_default {
+		display: flex;
+		flex-direction: column;
 		padding: 2rem;
 		gap: 1rem;
 		margin: 1rem;
+		align-items: center;
 
-		@media (max-width: 768px) {
-			display: flex;
+		@media (max-width: 600px) {
+			padding: 1rem 0 1rem 0;
+			-moz-column-gap: 1rem;
+			gap: 1.4rem;
 			flex-direction: column;
-			align-items: stretch;
-			padding: 1rem;
+			align-content: center;
+			align-items: center;
 		}
 
 		.section_title {
@@ -338,6 +356,15 @@ tbody {
 			display: grid;
 			grid-template-columns: repeat(4, 1fr);
 			grid-gap: 0.5rem;
+
+			@media (max-width: 1200px) {
+				grid-template-columns: repeat(3, 1fr);
+				grid-gap: 0.5rem;
+			}
+			@media (max-width: 500px) {
+				grid-template-columns: repeat(2, 1fr);
+				grid-gap: 0.5rem;
+			}
 		}
 
 		.form_field {
@@ -351,7 +378,7 @@ tbody {
 			}
 
 			.input_col {
-				flex-basis: 40%;
+				flex-basis: 30%;
 			}
 			.input_form {
 				width: 100%;
@@ -370,7 +397,6 @@ tbody {
 		}
 
 		.button_form {
-			max-width: 50%;
 			margin: auto;
 			padding: 1rem 2rem;
 			border: none;
@@ -384,6 +410,11 @@ tbody {
 			&:hover {
 				background-color: v.$yellow;
 				color: v.$dark-blue;
+			}
+
+			@media (max-width: 600px) {
+				max-width: 50vw;
+				margin: auto;
 			}
 		}
 	}
