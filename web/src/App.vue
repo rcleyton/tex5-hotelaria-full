@@ -1,5 +1,6 @@
 <template>
 	<HeaderComponent v-if="!paginasSemHeader.includes($route.name)" />
+	<HeaderAdminComp v-if="!headerAdmin.includes($route.name)" />
 	<main>
 		<router-view />
 	</main>
@@ -8,6 +9,7 @@
 
 <script>
 import HeaderComponent from './components/Header.vue';
+import HeaderAdminComp from './components/HeaderAdmin.vue';
 import FooterComponent from './components/FooterComponent.vue';
 import store from './store';
 
@@ -15,13 +17,45 @@ export default {
 	name: 'App',
 	components: {
 		HeaderComponent,
+		HeaderAdminComp,
 		FooterComponent,
 	},
 
 	data() {
 		return {
-			paginasSemHeader: ['dashboard', 'cadastroAcomodacao', 'admin-usuarios', 'admin-reservas', 'admin-enderecos', 'admin-consumo', 'admin-servicos-adicionais', ],
-			paginasSemFooter: ['dashboard', 'cadastroAcomodacao', 'admin-usuarios', 'admin-reservas', 'admin-enderecos', 'admin-consumo', 'admin-servicos-adicionais', ],
+			headerAdmin: [
+				'inicio',
+				'acomodacoes',
+				'reservas',
+				'sobre',
+				'contato',
+				'cadastro',
+				'login',
+			],
+			paginasSemHeader: [
+				'dashboard',
+				'cadastroAcomodacao',
+				'admin-usuarios',
+				'admin-reservas',
+				'admin-enderecos',
+				'admin-consumo',
+				'admin-servicos-adicionais',
+				'adminAcomodacoes',
+				'editarAcomodacao',
+				'admin',
+			],
+			paginasSemFooter: [
+				'dashboard',
+				'cadastroAcomodacao',
+				'admin-usuarios',
+				'admin-reservas',
+				'admin-enderecos',
+				'admin-consumo',
+				'admin-servicos-adicionais',
+				'adminAcomodacoes',
+				'editarAcomodacao',
+				'admin',
+			],
 		};
 	},
 	mounted: function () {
