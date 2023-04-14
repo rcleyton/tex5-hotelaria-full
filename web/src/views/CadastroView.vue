@@ -145,7 +145,8 @@ export default {
 					.then((res) => {
 						this.handleUserLogin(res.data);
 						router.push('/');
-					});
+					})
+					.catch(err => {console.log(err.response.data)});
 			} catch (err) {
 				console.log(err);
 			}

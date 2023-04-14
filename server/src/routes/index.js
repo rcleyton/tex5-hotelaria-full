@@ -1,4 +1,6 @@
 const express = require('express');
+const router = express.Router();
+
 const acomodacoesRoutes = require('./acomodacoesRoutes');
 const enderecosRoutes = require('./enderecosRoutes');
 const authRoutes = require('./authRoutes');
@@ -7,7 +9,6 @@ const usuariosListaRoutes = require('./usuariosListaRoutes')
 const reservasRoutes = require('./reservasRoutes');
 const consumoRoutes = require('./consumoRoutes');
 const servicosAdicionaisRoutes = require('./servicosAdicionaisRoutes');
-const router = express.Router();
 
 router.use('/acomodacoes', acomodacoesRoutes);
 router.use('/enderecos', enderecosRoutes);

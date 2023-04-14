@@ -78,13 +78,11 @@ export default {
 	computed: {
 		...mapGetters(['dadosReserva']),
 	},
-	mounted: function() {
-		axios
-			.get('http://localhost:3000/api/acomodacoes')
-			.then((res) => {
-				this.acomodacoes = res.data;
-			});
-	}
+	mounted: function () {
+		axios.get('http://localhost:3000/api/acomodacoes').then((res) => {
+			this.acomodacoes = res.data;
+		});
+	},
 };
 </script>
 
@@ -143,6 +141,17 @@ export default {
 	justify-content: center;
 	align-items: flex-end;
 	column-gap: 1rem;
+
+	@media (max-width: 600px) {
+		max-width: 50vw;
+		margin: auto;
+		padding: 2rem 0 3rem 0;
+		-moz-column-gap: 1rem;
+		gap: 1.4rem;
+		flex-direction: column;
+		align-content: center;
+		align-items: center;
+	}
 }
 
 .form__date label {
