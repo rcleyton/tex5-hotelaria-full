@@ -85,6 +85,12 @@ const routes = [
 		path: '/editarAcomodacao',
 		name: 'editarAcomodacao',
 		component: () => import('../views/EditarAcomodacaoView.vue')
+	},
+	{
+		path: '/editar-servico/:id&:item&:descricao&:valor',
+		name: 'editar-servico',
+		component: () => import('../views/EditarServicoView.vue'),
+		props: true,
 	}
 ];
 

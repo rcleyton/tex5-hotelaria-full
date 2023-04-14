@@ -36,7 +36,7 @@
 							<label for="valor"></label>
 							<input
 								class="input_form"
-								type="number"
+								type="text"
 								name="valor"
 								id="valor"
 								placeholder="Valor do produto"
@@ -66,7 +66,7 @@
 						<td>{{ item.item }}</td>
 						<td>{{ item.descricao }}</td>
 						<td>{{ item.valor }}</td>
-						<td><button> <a href="{{`http://http://localhost:8080/admin-servicos-adicionais${item.id_servico_adicional}`}}"> Editar </a> </button></td>
+						<td><button @click="editarServico( item )">Editar</button></td>
 						<td><button @click="deleteData()">Excluir</button></td>
 					</tr>
 				</tbody>
@@ -79,11 +79,17 @@
 import axios from 'axios';
 export default {
 	name: 'AdmimServicosAdicionais',
+
+	computed: {
+		getById: function() {
+			store.getters.getById
+		}
+	},
+
 	data() {
 		return {
 			servicosArr: '',
 			form: {
-				idEditing : false,
 				id_servico_adicional: '',
 				item: '',
 				descricao: '',
@@ -96,8 +102,8 @@ export default {
 		async getData() {
 			await axios
 				.get('http://localhost:3000/api/servicosAdicionais')
-				.then((resolve) => {
-					this.servicosArr = resolve.data;
+				.then((res) => {
+					this.servicosArr = res.data;
 				})
 				.catch((error) => console.log(error));
 		},
@@ -114,26 +120,22 @@ export default {
 				.then((res) => {
 					res.data
 					this.getData()
+					this.form.item = ""
+					this.form.descricao = ""
+					this.form.valor = ""
 					})
 				.catch((error) => console.log(error));
 		},
 
-		updateData(id) {
-			const data = {
-				item: this.form.item,
-				descricao: this.form.descricao,
-				valor: this.form.valor,
-			};
-
-   			axios.put(`http://localhost:3000/api/servicosAdicionais/${id}`, data)
-				.then((res) => { 
-				res.data
-				this.getData()
-				location.reload()
-				})
-				.catch(error => console.log(error))
-  			},
-
+		editarServico(servico) {
+  			this.$router.push({ name:'editar-servico',
+			params: {
+				id: servico.id_servico_adicional,
+				item: servico.item,
+				descricao: servico.descricao,
+				valor: servico.valor
+			}});
+		}
 	},
 
 	mounted() {

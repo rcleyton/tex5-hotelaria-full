@@ -12,6 +12,17 @@ module.exports = {
         })
     },
 
+	getById: (id) => {
+        return new Promise((resolve, reject) => {
+            db.query('SELECT * FROM servicos_adicionais WHERE id_servico_adicional = ?', [id], (err,res) => {
+                if(err) {
+                    reject(err)
+                    return
+                } resolve(res)
+            })
+        })
+    },
+
     insert: (item, descricao, valor) => {
 		return new Promise((resolve, reject) => {
 			db.query(
@@ -47,6 +58,7 @@ module.exports = {
 					reject(erro)
 					return
 				}
+				console.log(res);
 				resolve(res)
 				return
 			}))

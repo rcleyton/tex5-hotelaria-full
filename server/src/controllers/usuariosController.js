@@ -1,5 +1,5 @@
 const UsuarioService = require('../services/usuariosService.js');
-const EnderecoService = require('../services/enderecoService');
+const EnderecoService = require('../services/enderecoService.js');
 
 module.exports = {
 	getAll: async (req, res) => {

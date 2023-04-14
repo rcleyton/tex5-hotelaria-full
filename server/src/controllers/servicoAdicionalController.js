@@ -12,6 +12,12 @@ module.exports = {
         res.send(data)
     },
 
+	getById: async (req, res) => {
+		const { id } = req.body
+        const obj = await ServicosAdicionais.getById(id)
+        res.send(obj)
+    },
+
     insert: async (req, res) => {
 		const { item, descricao, valor } = req.body;
 

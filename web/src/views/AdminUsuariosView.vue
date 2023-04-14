@@ -10,20 +10,17 @@
 						<th>Telefone</th>
 						<th>CPF</th>
 						<th>Email</th>
-						<th>Senha</th>
-						<th>ID de endereço</th>
 						<th>Editar</th>
 						<th>Excluir</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr v-for="usuario in usuariosArr" :key="usuario.id_usuario">
+					<tr v-for="usuario in completeArr" :key="usuario.id_usuario">
 						<td>{{ usuario.id_usuario }}</td>
 						<td>{{ usuario.nome }}</td>
 						<td>{{ usuario.telefone }}</td>
 						<td>{{ usuario.cpf }}</td>
 						<td>{{ usuario.email }}</td>
-						<td>{{ usuario.senha }}</td>
 						<td><a href="#">Editar</a></td>
 						<td><a href="#">Excluir</a></td>
 					</tr>
@@ -39,23 +36,37 @@ export default {
 	data() {
 		return {
 			usuariosArr: '',
+			enderecoArr: '',
+			completeArr: [],
 			form: {
 				id_usuario: '',
 				nome: '',
 				telefone: '',
 				cpf: '',
 				email: '',
-				senha: ''
+				senha: '',
+				cidade: '',
+				estado: '',
+				numero: '',
+				rua: '',
+				bairro: '',
+				complemento: '',
 			},
 		};
 	},
 
 	methods: {
 		async getData() {
-			await axios
-				.get('http://localhost:3000/api/usuarios')
-				.then((res) => (this.usuariosArr = res.data))
-				.catch((error) => console.log(error));
+  			const usuariosRes = await axios.get('http://localhost:3000/api/usuarios');
+  			const enderecoRes = await axios.get('http://localhost:3000/api/enderecos');
+  			const usuariosArr = usuariosRes.data;
+  			const enderecoArr = enderecoRes.data;
+  			const completeArr = usuariosArr.map((usuario) => {
+    			const endereco = enderecoArr.find((e) => e.id_endereco === usuario.id_endereco);
+    			return { ...usuario, ...endereco };
+  				});
+  			this.completeArr = completeArr;
+			console.log(this.completeArr);
 		},
 
 		async sendData() {
@@ -65,7 +76,6 @@ export default {
 				telefone: this.form.telefone,
 				cpf: this.form.cpf,
 				email: this.form.email,
-				senha: this.form.senha
 			};
 
 			await axios
