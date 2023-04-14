@@ -39,10 +39,8 @@
 								v-model="form.valor"
 							/>
 						</div>
-						<button type="submit">Salvar</button>
-						<button @click.prevent="resetData()">Cancelar</button>
-						<button @click.prevent="goBack()" type="submit">Voltar Página</button>
-
+						<button type="submit">Atualizar</button>
+						<button @click.prevent="resetData()">Resetar</button>
 					</form>
 				</div>
 			</section>
@@ -86,8 +84,7 @@ export default {
 				}
 				if (messageError.length === 0) {
 					axios.put(`http://localhost:3000/api/servicosAdicionais/${this.form.id_servico_adicional}`, this.form)
-					this.messageState = true
-					this.message = "Serviço atualizado com sucesso!"		
+					this.$router.back();		
 				}
 				} catch (error) {
 					console.log(error);
@@ -97,22 +94,13 @@ export default {
 		resetData() {
 			this.messageState = false
 			try {
-				this.form = {
-					item: this.$route.params.item,
-                	descricao: this.$route.params.descricao,
-                	valor: this.$route.params.valor,
-            	}
+				location.reload()
 				this.messageState = true;
 				this.message = 'Campos resetados!'
 			} catch (error) {
 				console.log(error);
 			}
 		},
-		
-		goBack() {
-			this.messageState = false
-			this.$router.back();
-		}
     },
 
 	mounted () {

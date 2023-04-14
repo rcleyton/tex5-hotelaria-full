@@ -1,7 +1,7 @@
-const UsuariosListaService = require('../services/usuariosListService.js');
+const UsuariosListaService = require('../services/usuariosListaService.js');
 
 module.exports = {
-    getAll: async (req,res) => {
+    getAll: async (req, res) => {
         const data = [];
         const usuarios = await UsuariosListaService.getAll();
         
@@ -10,4 +10,46 @@ module.exports = {
         }
         res.send(data);
     },
+
+    update: async (req, res) => {
+        const { nome, telefone, cpf, email, senha, cidade, estado, numero,rua, bairro, complemento } = req.body;
+        const { id_usuario } = req.params;
+
+        try {
+            
+            await UsuariosListaService.update(
+                nome,
+                telefone,
+                cpf,
+                email,
+                senha,
+                cidade,
+                estado,
+                numero,
+                rua,
+                bairro,
+                complemento,
+                id_usuario
+            )
+
+            const usuarioListaAdd = {
+                nome,
+                telefone,
+                cpf,
+                email,
+                senha,
+                cidade,
+                estado,
+                numero,
+                rua,
+                bairro,
+                complemento,
+                id_usuario
+            }
+            res.send(usuarioListaAdd);
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }

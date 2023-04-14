@@ -1,27 +1,38 @@
 <template>
 	<div class="main_content">
-		<!-- -->
 		<div>
 			<table>
 				<thead>
 					<tr>
 						<th>ID</th>
 						<th>Nome</th>
-						<th>Telefone</th>
 						<th>CPF</th>
 						<th>Email</th>
+						<th>Telefone</th>
+						<th>Estado</th>
+						<th>Cidade</th>
+						<th>Bairro</th>
+						<th>Rua</th>
+						<th>Número</th>
+						<th>Complemento</th>
 						<th>Editar</th>
 						<th>Excluir</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr v-for="usuario in completeArr" :key="usuario.id_usuario">
+					<tr v-for="usuario in listaDeUsuarios" :key="usuario.id_usuario">
 						<td>{{ usuario.id_usuario }}</td>
 						<td>{{ usuario.nome }}</td>
-						<td>{{ usuario.telefone }}</td>
 						<td>{{ usuario.cpf }}</td>
 						<td>{{ usuario.email }}</td>
-						<td><a href="#">Editar</a></td>
+						<td>{{ usuario.telefone }}</td>
+						<td> {{usuario.estado}} </td>
+						<td> {{usuario.cidade}} </td>
+						<td> {{usuario.bairro}} </td>
+						<td> {{usuario.rua}} </td>
+						<td> {{usuario.numero}} </td>
+						<td> {{usuario.complemento}} </td>
+						<td><button @click="editarUsuario(usuario)">Editar</button></td>
 						<td><a href="#">Excluir</a></td>
 					</tr>
 				</tbody>
@@ -35,9 +46,7 @@ export default {
 	name: 'AdminUsuariosView.vue',
 	data() {
 		return {
-			usuariosArr: '',
-			enderecoArr: '',
-			completeArr: [],
+			listaDeUsuarios: '',
 			form: {
 				id_usuario: '',
 				nome: '',
@@ -45,6 +54,7 @@ export default {
 				cpf: '',
 				email: '',
 				senha: '',
+				id_endereco: '',
 				cidade: '',
 				estado: '',
 				numero: '',
@@ -56,33 +66,30 @@ export default {
 	},
 
 	methods: {
+		//Método que busca os usuarios.
 		async getData() {
-  			const usuariosRes = await axios.get('http://localhost:3000/api/usuarios');
-  			const enderecoRes = await axios.get('http://localhost:3000/api/enderecos');
-  			const usuariosArr = usuariosRes.data;
-  			const enderecoArr = enderecoRes.data;
-  			const completeArr = usuariosArr.map((usuario) => {
-    			const endereco = enderecoArr.find((e) => e.id_endereco === usuario.id_endereco);
-    			return { ...usuario, ...endereco };
-  				});
-  			this.completeArr = completeArr;
-			console.log(this.completeArr);
+  			await axios.get('http://localhost:3000/api/usuariosLista')
+				.then(res => this.listaDeUsuarios = res.data)
+				.catch(error => console.log(error));
 		},
-
-		async sendData() {
-			const data = {
-				id_usuario: this.form.id_usuario,
-				nome: this.form.nome,
-				telefone: this.form.telefone,
-				cpf: this.form.cpf,
-				email: this.form.email,
-			};
-
-			await axios
-				.post('http://localhost:3000/api/usuarios', data)
-				.then((res) => res.data)
-				.catch((error) => console.log(error));
-		},
+		//Método que envia parametros para edição.
+		editarUsuario(usuario) {
+  			this.$router.push({ name:'editar-usuario',
+			params: {
+				id: usuario.id_usuario,
+				nome: usuario.nome,
+				telefone: usuario.telefone,
+				cpf: usuario.cpf,
+				email: usuario.email,
+				senha: usuario.senha,
+				cidade: usuario.cidade,
+				estado: usuario.estado,
+				numero: usuario.numero,
+				rua: usuario.rua,
+				bairro: usuario.bairro,
+				complemento: usuario.complemento
+			}});
+		}		
 	},
 
 	mounted() {
