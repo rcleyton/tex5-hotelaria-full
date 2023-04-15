@@ -8,7 +8,7 @@
 						class="form_geral"
 						style="display: flex"
 						enctype="multipart/form-data"
-						@submit="sendData()"
+						@submit.prevent="sendData()"
 					>
 						<div class="form_field">
 							<label for="item"></label>
@@ -36,22 +36,11 @@
 							<label for="valor"></label>
 							<input
 								class="input_form"
-								type="number"
+								type="text"
 								name="valor"
 								id="valor"
 								placeholder="Valor do produto"
 								v-model="form.valor"
-							/>
-						</div>
-						<div class="form_field">
-							<label for="local"></label>
-							<input
-								class="input_form"
-								type="text"
-								name="local"
-								id="local"
-								placeholder="Local de venda"
-								v-model="form.local"
 							/>
 						</div>
 						<button class="button_form" type="submit">Cadastrar</button>
@@ -67,7 +56,6 @@
 						<th>Item</th>
 						<th>Descrição</th>
 						<th>Valor</th>
-						<th>Local</th>
 						<th>Editar</th>
 						<th>Excluir</th>
 					</tr>
@@ -78,7 +66,8 @@
 						<td>{{ item.item }}</td>
 						<td>{{ item.descricao }}</td>
 						<td>{{ item.valor }}</td>
-						<td>{{ item.local }}</td>
+						<td><button @click="editarServico( item )">Editar</button></td>
+						<td><button @click="deleteData()">Excluir</button></td>
 					</tr>
 				</tbody>
 			</table>
@@ -90,6 +79,13 @@
 import axios from 'axios';
 export default {
 	name: 'AdmimServicosAdicionais',
+
+	computed: {
+		getById: function() {
+			store.getters.getById
+		}
+	},
+
 	data() {
 		return {
 			servicosArr: '',
@@ -98,7 +94,6 @@ export default {
 				item: '',
 				descricao: '',
 				valor: '',
-				local: '',
 			},
 		};
 	},
@@ -107,8 +102,8 @@ export default {
 		async getData() {
 			await axios
 				.get('http://localhost:3000/api/servicosAdicionais')
-				.then((resolve) => {
-					this.servicosArr = resolve.data;
+				.then((res) => {
+					this.servicosArr = res.data;
 				})
 				.catch((error) => console.log(error));
 		},
@@ -118,14 +113,29 @@ export default {
 				item: this.form.item,
 				descricao: this.form.descricao,
 				valor: this.form.valor,
-				local: this.form.local,
 			};
 
 			await axios
 				.post('http://localhost:3000/api/servicosAdicionais', data)
-				.then((res) => res.data)
+				.then((res) => {
+					res.data
+					this.getData()
+					this.form.item = ""
+					this.form.descricao = ""
+					this.form.valor = ""
+					})
 				.catch((error) => console.log(error));
 		},
+
+		editarServico(servico) {
+  			this.$router.push({ name:'editar-servico',
+			params: {
+				id: servico.id_servico_adicional,
+				item: servico.item,
+				descricao: servico.descricao,
+				valor: servico.valor
+			}});
+		}
 	},
 
 	mounted() {

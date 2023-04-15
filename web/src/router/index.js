@@ -85,7 +85,19 @@ const routes = [
 		path: '/editarAcomodacao',
 		name: 'editarAcomodacao',
 		component: () => import('../views/EditarAcomodacaoView.vue')
-	}
+	},
+	{
+		path: '/editar-servico/:id&:item&:descricao&:valor',
+		name: 'editar-servico',
+		component: () => import('../views/EditarServicoView.vue'),
+		props: true,
+	},
+	{
+		path: '/editar-usuario/:id&:nome&:telefone&:cpf&:email&:senha&:cidade&:estado&:numero&:rua&:bairro&:complemento',
+		name: 'editar-usuario',
+		component: () => import('../views/EditarUsuarioView.vue'),
+		props: true,
+	},
 ];
 
 const router = createRouter({

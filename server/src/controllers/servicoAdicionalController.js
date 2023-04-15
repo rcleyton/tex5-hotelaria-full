@@ -12,21 +12,25 @@ module.exports = {
         res.send(data)
     },
 
+	getById: async (req, res) => {
+		const { id } = req.body
+        const obj = await ServicosAdicionais.getById(id)
+        res.send(obj)
+    },
+
     insert: async (req, res) => {
-		const { item, descricao, valor, local } = req.body;
+		const { item, descricao, valor } = req.body;
 
 		try {
 			const id = await ServicosAdicionais.insert(
 				item,
 				descricao,
-				valor,
-				local
+				valor
 			);
 			const servicoAdd = {
 				item,
 				descricao,
 				valor,
-				local,
 				servicoAddId: id,
 			};
 			res.send(servicoAdd);
@@ -36,7 +40,7 @@ module.exports = {
 	},
 
 	update: async (req, res) => {
-        const { item, descricao, valor, local  } = req.body
+        const { item, descricao, valor } = req.body
         const { id_servico_adicional } = req.params
 
 		try {
@@ -45,7 +49,6 @@ module.exports = {
 				item,
 				descricao,
 				valor,
-				local,
 				id_servico_adicional
 			)
 
@@ -53,7 +56,6 @@ module.exports = {
 				item,
 				descricao,
 				valor,
-				local,
 				id_servico_adicional
 			}
 			res.send(servicoAdd)

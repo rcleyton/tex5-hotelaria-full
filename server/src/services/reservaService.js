@@ -19,9 +19,9 @@ module.exports = {
 		quantidade_pessoas,
 		total,
 		total_desconto,
-		id_cupom,
-		id_acomodacao,
-		id_usuario
+		cupom_id,
+		acomodacao_id,
+		usuario_id
 	) => {
 		return new Promise((resolve, reject) => {
 			db.query(
@@ -31,9 +31,9 @@ module.exports = {
 						quantidade_pessoas,
 						total,
 						total_desconto,
-						id_cupom,
-						id_acomodacao,
-						id_usuario
+						cupom_id,
+						acomodacao_id,
+						usuario_id
 					) VALUES (
 						?, ?, ?, ?, ?, ?, ?, ?
 					)
@@ -44,9 +44,9 @@ module.exports = {
 					quantidade_pessoas,
 					total,
 					total_desconto,
-					id_cupom,
-					id_acomodacao,
-					id_usuario,
+					cupom_id,
+					acomodacao_id,
+					usuario_id,
 				],
 				(err, result) => {
 					if (err) {

@@ -17,8 +17,8 @@ module.exports = {
 			check_in,
 			check_out,
 			quantidade_pessoas,
-			id_acomodacao,
-			id_usuario,
+			acomodacao_id,
+			usuario_id,
 		} = req.body;
 
 		const reservaModel = new Reserva(req.body);
@@ -30,9 +30,9 @@ module.exports = {
 				reserva.quantidade_pessoas,
 				reserva.total,
 				reserva.total_desconto,
-				reserva.id_cupom,
-				reserva.id_acomodacao,
-				reserva.id_usuario
+				reserva.cupom_id = 1,
+				reserva.acomodacao_id,
+				reserva.usuario_id
 			);
 			res.status(201).json({
 				...reserva,
