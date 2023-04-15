@@ -1,6 +1,24 @@
+import router from '.';
+const usuario = JSON.parse(localStorage.getItem('usuario')) ?? null;
+
+/**
+ *
+ * @param {number} role - 1: visitante; 2: admin
+ * @returns {boolean}
+ */
+function autorizado(role) {
+	return role === 2;
+}
+
 export default {
 	path: '/admin',
 	component: () => import('../layouts/AdminLayout.vue'),
+	beforeEnter: (to, from, next) => {
+		if (!usuario) return router.push('');
+		if (autorizado(usuario.role)) {
+			next();
+		};
+	},
 	children: [
 		{
 			path: '',
