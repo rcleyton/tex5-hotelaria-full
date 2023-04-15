@@ -15,7 +15,7 @@ module.exports = {
 
 	findByEmail: (email) => {
 		return new Promise((resolve, reject) => {
-			db.query(`SELECT id_usuario, nome, senha FROM usuarios WHERE email = ?`, [email], (err, res) => {
+			db.query(`SELECT id_usuario, nome, senha, id_role FROM usuarios WHERE email = ?`, [email], (err, res) => {
 				if (err) {
 					reject(err);
 				} else {
