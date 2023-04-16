@@ -1,42 +1,13 @@
 <template>
-	<header>
-		<nav>
-			<ul>
-				<li>
-					<router-link :to="{ name: 'AdminView' }">Início</router-link>
-				</li>
-				<li>
-					<router-link :to="{ name: 'AdminAcomodacoes' }"
-						>Acomodações</router-link
-					>
-				</li>
-				<li>
-					<router-link :to="{ name: 'AdminServicosAdicionais' }"
-						>Serviços Adicionais</router-link
-					>
-				</li>
-				<li>
-					<router-link :to="{ name: 'AdminUsuarios' }">Usuários</router-link>
-				</li>
-				<li>
-					<router-link :to="{ name: 'AdminReservas' }">Reservas</router-link>
-				</li>
-				<li>
-					<router-link :to="{ name: 'AdminEnderecos' }">Endereços</router-link>
-				</li>
-				<li>
-					<router-link :to="{ name: 'AdminConsumo' }">Consumo</router-link>
-				</li>
-			</ul>
-		</nav>
-	</header>
+	<HeaderAdmin />
 	<router-view></router-view>
 </template>
 <script>
+import HeaderAdmin from '@/components/HeaderAdmin.vue';
 export default {
 	name: 'AdminLayout',
-	data() {
-		return {};
+	components: {
+		HeaderAdmin,
 	},
 };
 </script>
