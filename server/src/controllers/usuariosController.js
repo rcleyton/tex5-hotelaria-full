@@ -39,16 +39,9 @@ module.exports = {
 				complemento,
 				id_usuario
 			);
-
-			const obj = {
-				nome,
-				hash,
-				email
-			};
-			console.log(obj)
-			res.send(obj);
-
-
+			res.status(200).json({
+				nome, email, id_usuario
+			});
 		} catch (err) {
 			console.log(err);
 		}
