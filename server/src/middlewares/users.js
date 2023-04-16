@@ -7,7 +7,7 @@ module.exports = {
     //   });
     // }
     // password min 6 chars
-    if (!req.body.senha || req.body.senha.length < 6) {
+    if (!req.body.usuario.senha || req.body.usuario.senha.length < 6) {
       return res.status(400).json({
         msg: 'Por favor, insira uma senha com mais de 6 caracteres'
       });

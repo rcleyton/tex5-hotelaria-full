@@ -16,7 +16,7 @@
 								id="nome"
 								placeholder="Nome"
 								v-model="form.nome"
-                                required
+                                
 							/>
 						</div>
 						<div>
@@ -27,7 +27,7 @@
 								id="telefone"
 								placeholder="Telefone"
 								v-model="form.telefone"
-                                required
+                                
 							/>
 						</div>
 						<div>
@@ -38,7 +38,7 @@
 								id="cpf"
 								placeholder="CPF"
 								v-model="form.cpf"
-                                required
+                                
 							/>
 						</div>
                         <div>
@@ -166,9 +166,10 @@ export default {
             const erros = []
             try {
                 if(nome.value.length < 2 ) erros.push('Nome');
-                if(telefone.value.length < 9 || telefone.value.length > 16) erros.push('Número');
-                if(this.verificaCPF(cpf.value) === false) erros.push('CPF');
+                if(telefone.value.length <= 9 || telefone.value.length > 17) erros.push('Telefone');
+                if(this.checkCpf(cpf.value) === false) erros.push('CPF');
                 if(this.isValidEmail(email.value) === false) erros.push('E-mail');
+				if(senha.value.length < 6) erros.push('Senha');
 				if(erros.length > 0) {
 					this.messageState = true
 					erros.forEach(element => {
@@ -190,8 +191,11 @@ export default {
             return re.test(email);
         },
 
-        verificaCPF(cpf) {
+        checkCpf(cpf) {
             cpf = cpf.replace(/[^\d]+/g, ''); // Remove todos os caracteres não numéricos
+			if(this.checkEqualNumbers(cpf) === true) {
+				return false;
+			};
             if (cpf.length !== 11 || /^\d{11}$/.test(cpf) === false) {
               return false; // O CPF deve ter exatamente 11 dígitos
             }
@@ -211,10 +215,23 @@ export default {
             let digitoVerificador2 = resto === 10 ? 0 : resto;
             // Verifica se os dígitos verificadores são válidos
             if (digitoVerificador1 !== parseInt(cpf.charAt(9)) || digitoVerificador2 !== parseInt(cpf.charAt(10))) {
-              return false;
+				return false;
             }
             return true; // O CPF é válido
-        }
+        },
+
+		checkEqualNumbers(cpf) {
+
+			let cpfArr = cpf.split('')
+			const result = cpfArr.every((digito, index) => {
+				return digito === cpf.charAt(0)
+			})
+			return result;
+		}
     },
+
+	mounted() {
+		
+	}
 }
 </script>
