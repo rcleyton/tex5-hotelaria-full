@@ -84,7 +84,7 @@ export default {
 				await axios
 					.post('http://localhost:3000/api/acomodacoes', formData)
 					.then((res) => {
-						router.push('/adminAcomodacoes');
+						router.push({name:'AdminAcomodacoes'});
 					});
 			} catch (err) {
 				console.log(err);
