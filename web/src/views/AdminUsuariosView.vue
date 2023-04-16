@@ -1,112 +1,38 @@
 <template>
 	<div class="main_content">
-		<div class="fixed-form">
-			<section class="form_main">
-				<div class="form_default">
-					<legend class="section_title">Cadastrar Usuário</legend>
-					<form
-						class="form_geral"
-						enctype="multipart/form-data"
-						@submit="sendData()"
-					>
-						<div class="form_field">
-							<label for="nome"></label>
-							<input
-								class="input_form"
-								type="text"
-								name="nome"
-								id="nome"
-								placeholder="Nome"
-								v-model="form.nome"
-							/>
-						</div>
-						<div class="form_field">
-							<label for="telefone"></label>
-							<input
-								class="input_form"
-								type="number"
-								name="telefone"
-								id="telefone"
-								placeholder="telefone"
-								v-model="form.telefone"
-							/>
-						</div>
-						<div class="form_field">
-							<label for="cpf"></label>
-							<input
-								class="input_form"
-								type="number"
-								name="cpf"
-								id="cpf"
-								placeholder="cpf"
-								v-model="form.cpf"
-							/>
-						</div>
-						<div class="form_field">
-							<label for="email"></label>
-							<input
-								class="input_form"
-								type="email"
-								name="email"
-								id="email"
-								placeholder="email"
-								v-model="form.email"
-							/>
-						</div>
-						<div class="form_field">
-							<label for="senha"></label>
-							<input
-								class="input_form"
-								type="number"
-								name="senha"
-								id="senha"
-								placeholder="senha"
-								v-model="form.senha"
-							/>
-						</div>
-						<div class="form_field">
-							<label for="endereco_id"></label>
-							<input
-								class="input_form"
-								type="number"
-								name="endereco_id"
-								id="endereco_id"
-								placeholder="Id de endereço"
-								v-model="form.endereco_id"
-							/>
-						</div>
-						<button class="button_form" type="submit">Cadastrar</button>
-					</form>
-				</div>
-			</section>
-		</div>
-
-		<!-- -->
 		<div>
 			<table>
 				<thead>
 					<tr>
 						<th>ID</th>
 						<th>Nome</th>
-						<th>Telefone</th>
 						<th>CPF</th>
 						<th>Email</th>
-						<th>Senha</th>
-						<th>ID de endereço</th>
+						<th>Telefone</th>
+						<th>Estado</th>
+						<th>Cidade</th>
+						<th>Bairro</th>
+						<th>Rua</th>
+						<th>Número</th>
+						<th>Complemento</th>
 						<th>Editar</th>
 						<th>Excluir</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr v-for="usuario in usuariosArr" :key="usuario.id_usuario">
+					<tr v-for="usuario in listaDeUsuarios" :key="usuario.id_usuario">
 						<td>{{ usuario.id_usuario }}</td>
 						<td>{{ usuario.nome }}</td>
-						<td>{{ usuario.telefone }}</td>
 						<td>{{ usuario.cpf }}</td>
 						<td>{{ usuario.email }}</td>
-						<td>{{ usuario.senha }}</td>
-						<td>{{ usuario.endereco_id }}</td>
-						<td><a href="#">Editar</a></td>
+						<td>{{ usuario.telefone }}</td>
+						<td> {{usuario.estado}} </td>
+						<td> {{usuario.cidade}} </td>
+						<td> {{usuario.bairro}} </td>
+						<td> {{usuario.rua}} </td>
+						<td> {{usuario.numero}} </td>
+						<td> {{usuario.complemento}} </td>
+						<td><button @click="editarUsuario(usuario)">Editar</button></td>
 						<td><a href="#">Excluir</a></td>
 					</tr>
 				</tbody>
@@ -120,7 +46,7 @@ export default {
 	name: 'AdminUsuariosView.vue',
 	data() {
 		return {
-			usuariosArr: '',
+			listaDeUsuarios: '',
 			form: {
 				id_usuario: '',
 				nome: '',
@@ -128,35 +54,42 @@ export default {
 				cpf: '',
 				email: '',
 				senha: '',
-				endereco_id: '',
+				id_endereco: '',
+				cidade: '',
+				estado: '',
+				numero: '',
+				rua: '',
+				bairro: '',
+				complemento: '',
 			},
 		};
 	},
 
 	methods: {
+		//Método que busca os usuarios.
 		async getData() {
-			await axios
-				.get('http://localhost:3000/api/usuarios')
-				.then((res) => (this.usuariosArr = res.data))
-				.catch((error) => console.log(error));
+  			await axios.get('http://localhost:3000/api/usuariosLista')
+				.then(res => this.listaDeUsuarios = res.data)
+				.catch(error => console.log(error));
 		},
-
-		async sendData() {
-			const data = {
-				id_usuario: this.form.id_usuario,
-				nome: this.form.nome,
-				telefone: this.form.telefone,
-				cpf: this.form.cpf,
-				email: this.form.email,
-				senha: this.form.senha,
-				endereco_id: this.form.endereco_id,
-			};
-
-			await axios
-				.post('http://localhost:3000/api/usuarios', data)
-				.then((res) => res.data)
-				.catch((error) => console.log(error));
-		},
+		//Método que envia parametros para edição.
+		editarUsuario(usuario) {
+  			this.$router.push({ name:'editar-usuario',
+			params: {
+				id: usuario.id_usuario,
+				nome: usuario.nome,
+				telefone: usuario.telefone,
+				cpf: usuario.cpf,
+				email: usuario.email,
+				senha: usuario.senha,
+				cidade: usuario.cidade,
+				estado: usuario.estado,
+				numero: usuario.numero,
+				rua: usuario.rua,
+				bairro: usuario.bairro,
+				complemento: usuario.complemento
+			}});
+		}		
 	},
 
 	mounted() {
