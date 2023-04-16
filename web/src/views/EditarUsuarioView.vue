@@ -143,18 +143,18 @@ export default {
     data() {
         return {
             form: {
-                id_usuario: this.$route.params.id,
-				nome: this.$route.params.nome,
-				telefone: this.$route.params.telefone,
-				cpf: this.$route.params.cpf,
-				email: this.$route.params.email,
-				senha: this.$route.params.senha,
-				cidade: this.$route.params.cidade,
-				estado: this.$route.params.estado,
-				numero: this.$route.params.numero,
-				rua: this.$route.params.rua,
-				bairro: this.$route.params.bairro,
-				complemento: this.$route.params.complemento
+                id_usuario: '',
+				nome: '',
+				telefone: '',
+				cpf: '',
+				email: '',
+				senha: '',
+				cidade: '',
+				estado: '',
+				numero: '',
+				rua: '',
+				bairro: '',
+				complemento: ''
             },
 			message:'',
 			messageState: false
@@ -229,9 +229,5 @@ export default {
 			return result;
 		}
     },
-
-	mounted() {
-		
-	}
 }
 </script>

@@ -15,6 +15,23 @@ module.exports = {
 		});
     },
 
+	getById:(id) => {
+        return new Promise((resolve, reject) => {
+			db.query(`SELECT * FROM usuarios u
+			JOIN endereco e
+			ON u.id_usuario = e.id_usuario
+			WHERE u.id_usuario = ?`,[id], (err, res) => {
+				if (err) {
+					reject(err);
+					return;
+				}
+				resolve(res);
+				return;
+			});
+		});
+    },
+
+
 	update:(nome,telefone,cpf,email,senha,cidade,estado,numero,rua,bairro,complemento,id_usuario) => {
 		return new Promise((resolve, reject) => {
 			db.query(`
