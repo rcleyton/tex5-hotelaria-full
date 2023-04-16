@@ -16,10 +16,32 @@
 					id="main-navigation"
 					:data-open="navegacaoAmostra"
 				>
-					<li v-for="route in routes">
-						<router-link :to="route.path" :key="route.id">{{
-							route.label
-						}}</router-link>
+					<li>
+						<router-link :to="{ name: 'AdminView' }">Início</router-link>
+					</li>
+					<li>
+						<router-link :to="{ name: 'AdminAcomodacoes' }"
+							>Acomodações</router-link
+						>
+					</li>
+					<li>
+						<router-link :to="{ name: 'AdminServicosAdicionais' }"
+							>Serviços Adicionais</router-link
+						>
+					</li>
+					<li>
+						<router-link :to="{ name: 'AdminUsuarios' }">Usuários</router-link>
+					</li>
+					<li>
+						<router-link :to="{ name: 'AdminReservas' }">Reservas</router-link>
+					</li>
+					<li>
+						<router-link :to="{ name: 'AdminEnderecos' }"
+							>Endereços</router-link
+						>
+					</li>
+					<li>
+						<router-link :to="{ name: 'AdminConsumo' }">Consumo</router-link>
 					</li>
 				</ul>
 			</nav>
@@ -29,24 +51,9 @@
 
 <script>
 export default {
-	name: 'HeaderAdminComp',
+	name: 'AdminHeader',
 	data() {
 		return {
-			routes: [
-				{ id: 1, path: 'admin', label: 'Admin' },
-				{ id: 2, path: 'cadastroAcomodacao', label: 'Cadastrar Acomodação ' },
-				{
-					id: 3,
-					path: 'admin-servicos-adicionais',
-					label: 'Serviços Adicionais ',
-				},
-				{ id: 4, path: 'admin-usuarios', label: 'Usuários ' },
-				{ id: 5, path: 'admin-reservas', label: 'Reservas ' },
-				{ id: 6, path: 'admin-enderecos', label: 'Endereços' },
-				{ id: 7, path: 'admin-consumo', label: 'Consumo' },
-				{ id: 8, path: 'adminAcomodacoes', label: 'Acomodações' },
-				{ id: 9, path: 'editarAcomodacao', label: 'Editar Acomodações' },
-			],
 			navegacaoAmostra: false,
 		};
 	},

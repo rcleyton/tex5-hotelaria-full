@@ -1,63 +1,12 @@
 <template>
-	<HeaderComponent v-if="!paginasSemHeader.includes($route.name)" />
-	<HeaderAdminComp v-if="!headerAdmin.includes($route.name)" />
-	<main>
-		<router-view />
-	</main>
-	<FooterComponent v-if="!paginasSemFooter.includes($route.name)" />
+	<router-view />
 </template>
 
 <script>
-import HeaderComponent from './components/Header.vue';
-import HeaderAdminComp from './components/HeaderAdmin.vue';
-import FooterComponent from './components/FooterComponent.vue';
 import store from './store';
 
 export default {
 	name: 'App',
-	components: {
-		HeaderComponent,
-		HeaderAdminComp,
-		FooterComponent,
-	},
-
-	data() {
-		return {
-			headerAdmin: [
-				'inicio',
-				'acomodacoes',
-				'reservas',
-				'sobre',
-				'contato',
-				'cadastro',
-				'login',
-			],
-			paginasSemHeader: [
-				'dashboard',
-				'cadastroAcomodacao',
-				'admin-usuarios',
-				'admin-reservas',
-				'admin-enderecos',
-				'admin-consumo',
-				'admin-servicos-adicionais',
-				'adminAcomodacoes',
-				'editarAcomodacao',
-				'admin',
-			],
-			paginasSemFooter: [
-				'dashboard',
-				'cadastroAcomodacao',
-				'admin-usuarios',
-				'admin-reservas',
-				'admin-enderecos',
-				'admin-consumo',
-				'admin-servicos-adicionais',
-				'adminAcomodacoes',
-				'editarAcomodacao',
-				'admin',
-			],
-		};
-	},
 	mounted: function () {
 		if (window.localStorage.getItem('reserva')) {
 			store.state.dadosReserva = JSON.parse(

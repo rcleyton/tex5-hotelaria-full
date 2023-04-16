@@ -1,11 +1,4 @@
 <template lang="js">
-		<header>
-		<ul>
-			<li>
-				<router-link to="/AdminAcomodacoes" class="btn">Acomodações</router-link>
-			</li>
-		</ul>
-	</header>
 	<div class="edicao__container" id="modal">
 		<form enctype="multipart/form-data" @submit.prevent="editarAcomodacao()">
 			<div>
@@ -70,20 +63,22 @@ export default {
 				imagem: '',
 			},
 			imagem: null,
-			formData: new FormData()
+			formData: new FormData(),
 		};
 	},
 	methods: {
 		async editarAcomodacao() {
 			const confirm = window.confirm(
-				'Deseja atualizar acomodação: ' + this.acomodacaoSelecionada.id_acomodacao + '?'
+				'Deseja atualizar acomodação: ' +
+					this.acomodacaoSelecionada.id_acomodacao +
+					'?'
 			);
 
 			if (confirm) {
-				for(const [key, value] in this.acomodacaoSelecionada) {
+				for (const [key, value] in this.acomodacaoSelecionada) {
 					this.formData.append(key, value);
 				}
-				if(this.imagem !== null) {
+				if (this.imagem !== null) {
 					this.formData.append('imagem', this.imagem);
 				}
 				try {
@@ -93,7 +88,7 @@ export default {
 							this.acomodacaoSelecionada
 						)
 						.then((res) => {
-							router.push('adminAcomodacoes');
+							router.push({ name: 'AdminAcomodacoes' });
 						});
 				} catch (err) {
 					console.error(err);
@@ -101,7 +96,7 @@ export default {
 			}
 		},
 		onSelect() {
-			if(this.$refs.image.files[0]) {
+			if (this.$refs.image.files[0]) {
 				this.imagem = this.$refs.image.files[0];
 			} else {
 				this.imagem = this.acomodacaoSelecionada.imagem;
@@ -114,7 +109,7 @@ export default {
 				localStorage.getItem('acomodacaoSelecionada')
 			);
 		} else {
-			router.push('/adminAcomodacoes');
+			router.push({ name: 'AdminAcomodacoes' });
 		}
 	},
 	unmounted: function () {

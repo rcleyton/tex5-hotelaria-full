@@ -62,7 +62,7 @@ td {
 	text-align: left;
 	padding: 20px;
 	font-weight: 400;
-	
+
 }
 
 td {

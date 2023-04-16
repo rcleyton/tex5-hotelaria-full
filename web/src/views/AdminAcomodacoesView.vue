@@ -1,14 +1,10 @@
 <template>
 	<div class="container">
-		<header>
-			<ul>
-				<li>
-					<router-link to="/cadastroAcomodacao" class="btn"
-						>Cadastrar nova acomodação</router-link
-					>
-				</li>
-			</ul>
-		</header>
+		<nav class="menu">
+			<router-link :to="{ name: 'CadastroAcomodacao' }" class="btn"
+				>Cadastrar nova acomodação</router-link
+			>
+		</nav>
 		<div class="table-responsive">
 			<table>
 				<thead>
@@ -46,7 +42,7 @@
 						</td>
 						<td>
 							<router-link
-								to="/editarAcomodacao"
+								:to="{ name: 'EditarAcomodacao' }"
 								@click="selecionarAcomodacao(acomodacao)"
 								>Editar</router-link
 							>
@@ -79,7 +75,7 @@ export default {
 	},
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 @import '../sass/components/_forms.scss';
 .container {
 	max-width: 1120px;
@@ -88,5 +84,22 @@ export default {
 
 .table-responsive {
 	overflow: scroll;
+}
+
+.menu {
+	margin-block-end: 2rem;
+}
+
+.btn {
+	box-sizing: border-box;
+	background-color: lightskyblue;
+	border-radius: 6px;
+	padding-inline: 1rem;
+	padding-block: 0.5rem;
+	text-decoration: none;
+
+	&:visited {
+		color: inherit;
+	}
 }
 </style>
