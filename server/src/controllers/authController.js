@@ -32,13 +32,14 @@ module.exports = {
 					id_usuario: usuario.id_usuario,
 					nome: usuario.nome,
 					email,
+					role: usuario.id_role,
 					token: jwtSignUser(usuario)
 					})
 				} else {
 					res.status(401).json({erro: 'Usuário ou senha incorretos'});
 				}
 			}
-			
+
 		} catch (error) {
 			console.log(error);
 		}
