@@ -19,9 +19,9 @@ module.exports = {
 		quantidade_pessoas,
 		total,
 		total_desconto,
-		cupom_id,
-		acomodacao_id,
-		usuario_id
+		id_cupom,
+		id_acomodacao,
+		id_usuario
 	) => {
 		return new Promise((resolve, reject) => {
 			db.query(
@@ -31,9 +31,9 @@ module.exports = {
 						quantidade_pessoas,
 						total,
 						total_desconto,
-						cupom_id,
-						acomodacao_id,
-						usuario_id
+						id_cupom,
+						id_acomodacao,
+						id_usuario
 					) VALUES (
 						?, ?, ?, ?, ?, ?, ?, ?
 					)
@@ -44,9 +44,9 @@ module.exports = {
 					quantidade_pessoas,
 					total,
 					total_desconto,
-					cupom_id,
-					acomodacao_id,
-					usuario_id,
+					id_cupom,
+					id_acomodacao,
+					id_usuario,
 				],
 				(err, result) => {
 					if (err) {
@@ -69,10 +69,9 @@ module.exports = {
 		total_desconto,
 		confirmacao,
 		data_confirmacao,
-		cupom_id,
-		acomodacao_id,
-		usuario_id,
-		servicos_adicionais_id,
+		id_cupom,
+		id_acomodacao,
+		id_usuario,
 		id_reserva
 	) => {
 		return new Promise((resolve, reject) => {
@@ -86,10 +85,9 @@ module.exports = {
                 total_desconto = ?,
                 confirmacao = ?,
                 data_confirmacao = ?,
-                cupom_id = ?,
-                acomodacao_id = ?,
-                usuario_id = ?,
-                servicos_adicionais_id = ?
+								id_cupom = ?,
+								id_acomodacao = ?,
+								id_usuario = ?,
                 WHERE id_reserva = ?`,
 				[
 					check_in,
@@ -99,10 +97,9 @@ module.exports = {
 					total_desconto,
 					confirmacao,
 					data_confirmacao,
-					cupom_id,
-					acomodacao_id,
-					usuario_id,
-					servicos_adicionais_id,
+					id_cupom,
+					id_acomodacao,
+					id_usuario,
 					id_reserva,
 				],
 				(erro, res) => {
