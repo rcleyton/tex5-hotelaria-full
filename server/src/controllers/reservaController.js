@@ -30,13 +30,13 @@ module.exports = {
 				reserva.quantidade_pessoas,
 				reserva.total,
 				reserva.total_desconto,
-				reserva.cupom_id = 1,
-				reserva.acomodacao_id,
-				reserva.usuario_id
+				(reserva.id_cupom = 1),
+				reserva.id_acomodacao,
+				reserva.id_usuario
 			);
 			res.status(201).json({
 				...reserva,
-				id_reserva: id
+				id_reserva: id,
 			});
 		} catch (err) {
 			console.error(err);
@@ -52,10 +52,9 @@ module.exports = {
 			total_desconto,
 			confirmacao,
 			data_confirmacao,
-			cupom_id,
-			acomodacao_id,
-			usuario_id,
-			servicos_adicionais_id,
+			id_cupom,
+			id_acomodacao,
+			id_usuario,
 		} = req.body;
 		const { id_reserva } = req.params;
 
@@ -68,10 +67,9 @@ module.exports = {
 				total_desconto,
 				confirmacao,
 				data_confirmacao,
-				cupom_id,
-				acomodacao_id,
-				usuario_id,
-				servicos_adicionais_id,
+				id_cupom,
+				id_acomodacao,
+				id_usuario,
 				id_reserva
 			);
 
@@ -83,10 +81,9 @@ module.exports = {
 				total_desconto,
 				confirmacao,
 				data_confirmacao,
-				cupom_id,
-				acomodacao_id,
-				usuario_id,
-				servicos_adicionais_id,
+				id_cupom,
+				id_acomodacao,
+				id_usuario,
 				id_reserva,
 			};
 			res.send(reserva);
