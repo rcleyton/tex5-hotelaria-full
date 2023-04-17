@@ -46,14 +46,15 @@ export default {
 			component: () => import('../views/AdminServicosAdicionaisView.vue'),
 		},
 		{
-			path: '/editar-usuario/:id',
-			name: 'editar-servico',
-			component: () => import('../views/EditarUsuarioView.vue'),
-		},
-		{
 			path: '/admin-usuarios',
 			name: 'AdminUsuarios',
 			component: () => import('../views/AdminUsuariosView.vue'),
+		},
+		{
+		path: '/editar-usuario/:id&:nome&:telefone&:cpf&:email&:senha&:cidade&:estado&:numero&:rua&:bairro&:complemento',
+		name: 'editar-usuario',
+		component: () => import('../views/EditarUsuarioView.vue'),
+		props: true,
 		},
 		{
 			path: '/admin-reservas',

@@ -74,7 +74,21 @@ export default {
 		},
 		//Método que envia parametros para edição.
 		editarUsuario(usuario) {
-  			this.$router.push({ path:`editar-usuario/${usuario.id_usuario}`});
+  			this.$router.push({ name:'editar-usuario',
+			params: {
+				id: usuario.id_usuario,
+				nome: usuario.nome,
+				telefone: usuario.telefone,
+				cpf: usuario.cpf,
+				email: usuario.email,
+				senha: usuario.senha,
+				cidade: usuario.cidade,
+				estado: usuario.estado,
+				numero: usuario.numero,
+				rua: usuario.rua,
+				bairro: usuario.bairro,
+				complemento: usuario.complemento
+			}});
 		}		
 	},
 

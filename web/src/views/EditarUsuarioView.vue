@@ -143,25 +143,27 @@ export default {
     data() {
         return {
             form: {
-                id_usuario: '',
-				nome: '',
-				telefone: '',
-				cpf: '',
-				email: '',
+                id_usuario: this.$route.params.id,
+				nome: this.$route.params.nome,
+				telefone: this.$route.params.telefone,
+				cpf: this.$route.params.cpf,
+				email: this.$route.params.email,
 				senha: '',
-				cidade: '',
-				estado: '',
-				numero: '',
-				rua: '',
-				bairro: '',
-				complemento: ''
+				cidade: this.$route.params.cidade,
+				estado: this.$route.params.estado,
+				numero: this.$route.params.numero,
+				rua: this.$route.params.rua,
+				bairro: this.$route.params.bairro,
+				complemento: this.$route.params.complemento
             },
+			id:this.$route.params.id_usuario,
 			message:'',
 			messageState: false
         }
     },
 
     methods: {
+
 		updateData() {
             const erros = []
             try {
