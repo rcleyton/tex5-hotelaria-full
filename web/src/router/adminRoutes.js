@@ -51,6 +51,12 @@ export default {
 			component: () => import('../views/AdminUsuariosView.vue'),
 		},
 		{
+		path: '/editar-usuario/:id&:nome&:telefone&:cpf&:email&:senha&:cidade&:estado&:numero&:rua&:bairro&:complemento',
+		name: 'editar-usuario',
+		component: () => import('../views/EditarUsuarioView.vue'),
+		props: true,
+		},
+		{
 			path: '/admin-reservas',
 			name: 'AdminReservas',
 			component: () => import('../views/AdminReservasView.vue'),

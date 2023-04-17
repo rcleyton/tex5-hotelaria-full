@@ -11,6 +11,13 @@ module.exports = {
         res.send(data);
     },
 
+    getById: async (req, res) => {
+        const { id } = req.params
+        const usuarios = await UsuariosListaService.getById(id);
+        
+        res.send(usuarios);
+    },
+
     update: async (req, res) => {
         const { nome, telefone, cpf, email, senha, cidade, estado, numero,rua, bairro, complemento } = req.body;
         const { id_usuario } = req.params;
