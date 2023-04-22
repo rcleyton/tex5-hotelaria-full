@@ -13,6 +13,21 @@ module.exports = {
 		});
 	},
 
+	getAllByIdUsuario: (id_usuario) => {
+		return new Promise((resolve, reject) => {
+			db.query(
+				'SELECT * FROM perfil_listar_reservas WHERE id_usuario = ?',
+				[id_usuario],
+				(err, res) => {
+					if (err) {
+						reject(err);
+					}
+					resolve(res);
+				}
+			);
+		});
+	},
+
 	insert: (
 		check_in,
 		check_out,

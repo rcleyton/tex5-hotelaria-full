@@ -13,7 +13,7 @@
 	<li class="dropdown" v-else>
 		Olá, {{ usuario.nome }}
 		<ul>
-			<button type="button" @click="goToUser(id)">Perfil</button>
+			<router-link :to="{ name: 'perfil'}">Perfil</router-link>
 			<button type="button" @click="handleUserLogout">Sair</button>
 		</ul>
 	</li>
