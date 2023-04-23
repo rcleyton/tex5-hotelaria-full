@@ -83,11 +83,11 @@
 							<button
 								type="button"
 								class="confirmacao"
-								:disabled="reserva.confirmada"
-								@click="confirmarReserva"
+								:disabled="reserva.confirmacao"
+								@click="confirmarReserva(reserva.id_reserva)"
 							>
 								{{
-									reserva.confirmada
+									reserva.confirmacao
 										? 'Reserva Confirmada'
 										: 'Confirmar Reserva'
 								}}
@@ -119,10 +119,19 @@ export default {
 		...mapGetters(['usuario']),
 	},
 	methods: {
-		confirmarReserva() {
+		confirmarReserva(id_reserva) {
 			const confirmacao = window.confirm('Deseja confirmar reserva?');
 			if (confirmacao) {
-				console.log('works!');
+				axios
+					.put('http://localhost:3000/api/reservas/confirmar/' + id_reserva)
+					.then((res) => {
+						this.reservasUsuario.find(
+							(reserva) => reserva.id_reserva == id_reserva
+						).confirmacao = 1;
+					})
+					.catch((err) => {
+						alert(err.response.data.message);
+					});
 			}
 		},
 	},
@@ -194,8 +203,10 @@ export default {
 				color: black;
 			}
 
-			&:disbaled {
+			&:disabled {
 				cursor: auto;
+				background-color: lightgreen;
+				color: black;
 			}
 		}
 	}
