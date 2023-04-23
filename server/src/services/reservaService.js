@@ -127,4 +127,19 @@ module.exports = {
 			);
 		});
 	},
+
+	confirmarReserva: (id_reserva) => {
+		return new Promise((resolve, reject) => {
+			db.query(
+				'UPDATE reservas SET confirmacao = 1 WHERE id_reserva = ?',
+				[id_reserva],
+				(err, res) => {
+					if (err) {
+						reject(err);
+					}
+					resolve(res);
+				}
+			);
+		});
+	},
 };

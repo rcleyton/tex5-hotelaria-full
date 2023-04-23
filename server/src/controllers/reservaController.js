@@ -91,4 +91,20 @@ module.exports = {
 			console.log(error);
 		}
 	},
+
+	confirmarReserva: async (req, res) => {
+		const { id_reserva } = req.params;
+
+		try {
+			const confirmacao = await ReservasService.confirmarReserva(id_reserva);
+
+			if (confirmacao.affectedRows == 1) {
+				res.status(201).send();
+			} else {
+				res.status(400).send({ message: 'Erro ao confirmar reserva' });
+			}
+		} catch (err) {
+			console.log(err);
+		}
+	},
 };
