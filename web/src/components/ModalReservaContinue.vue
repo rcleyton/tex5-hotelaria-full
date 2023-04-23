@@ -51,6 +51,8 @@
 							:src="
 								'http://localhost:3000/static/' + dadosReserva.acomodacao.imagem
 							"
+							width="448"
+							height="196"
 							title="Quartos Hotel"
 						/>
 						{{ dadosReserva.acomodacao.descricao }}
@@ -100,12 +102,10 @@ export default {
 			reserva['quantidade_pessoas'] = this.dadosReserva.quantidadeDePessoas;
 			reserva['id_usuario'] = this.usuario.id_usuario;
 
-			axios
-				.post('http://localhost:3000/api/reservas', reserva)
-				.then((res) => {
-					this.handleResetDadosReserva();
-					router.push('/');
-				});
+			axios.post('http://localhost:3000/api/reservas', reserva).then((res) => {
+				this.handleResetDadosReserva();
+				router.push('/');
+			});
 		},
 	},
 };
