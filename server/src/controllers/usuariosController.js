@@ -19,7 +19,7 @@ module.exports = {
 		const dadosPerfil = [];
 
 		const [perfil] = await UsuarioService.getPerfilByIdUsuario(id_usuario);
-		const [reservas] = await ReservaService.getAllByIdUsuario(id_usuario);
+		const reservas = await ReservaService.getAllByIdUsuario(id_usuario);
 
 		dadosPerfil.push(perfil, reservas);
 
