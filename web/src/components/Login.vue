@@ -13,8 +13,15 @@
 	<li class="dropdown" v-else>
 		Olá, {{ usuario.nome }}
 		<ul>
-			<router-link :to="{ name: 'perfil' }">Perfil</router-link>
-			<button type="button" @click="handleUserLogout">Sair</button>
+			<li>
+				<router-link :to="{ name: 'perfil' }">Perfil</router-link>
+			</li>
+			<li v-if="this.usuario.role == 2">
+				<router-link :to="{ name: 'AdminView' }">Administração</router-link>
+			</li>
+			<li>
+				<button type="button" @click="handleUserLogout">Sair</button>
+			</li>
 		</ul>
 	</li>
 </template>
