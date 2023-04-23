@@ -61,7 +61,7 @@
 		</form>
 		<section class="reservas">
 			<h2>Minhas reservas</h2>
-			<ul>
+			<ul v-if="reservasUsuario.length > 0">
 				<li v-for="reserva in reservasUsuario" :key="reserva.id_reserva">
 					<div class="perfil__reserva__card">
 						<img :src="'http://localhost:3000/static/' + reserva.acom_imagem" />
@@ -92,6 +92,9 @@
 					</div>
 				</li>
 			</ul>
+			<div class="" v-else>
+				<router-link :to="{ name: 'reservas' }">Faça sua reserva!</router-link>
+			</div>
 		</section>
 	</div>
 </template>

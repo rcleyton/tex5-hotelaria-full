@@ -13,10 +13,10 @@
 			<div>
 				<ul>
 					<li class="resume__listItem">
-						Data de Entrada: {{ dadosReserva.checkIn }}
+						Data de Entrada: {{ formataData(dadosReserva.checkIn) }}
 					</li>
 					<li class="resume__listItem">
-						Data de Saída: {{ dadosReserva.checkOut }}
+						Data de Saída: {{ formataData(dadosReserva.checkOut) }}
 					</li>
 					<li class="resume__listItem">
 						Número de Hóspedes:
@@ -27,20 +27,20 @@
 						{{ !diarias ? '' : diarias > 1 ? 'dias' : 'dia' }}
 					</li>
 					<li class="resume__listItem">
-						Quarto: {{ dadosReserva.acomodacao?.nome }}
+						Quarto: {{ dadosReserva.acomodacao?.titulo }}
 					</li>
 					<li class="resume__listItem">
 						Valor do quarto:
-						{{ dadosReserva.acomodacao?.preco }}
+						{{ formataValor(dadosReserva.acomodacao?.preco) }}
 					</li>
 					<li class="resume__listItem">
 						Valor da hospedagem:
 						{{ formataValor(totalHospedagem) }}
 					</li>
-					<li class="resume__listItem">
+					<!-- <li class="resume__listItem">
 						Total Adicionais:
 						{{ formataValor(totalAdicionais) }}
-					</li>
+					</li> -->
 					<li class="resume__listItem">
 						Valor total:
 						{{ formataValor(total) }}
@@ -69,8 +69,9 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
 import { formataValor } from '@/helpers/formataValor';
+import { formataData } from '@/helpers/formataData';
+import { mapActions, mapGetters } from 'vuex';
 import axios from 'axios';
 import router from '@/router';
 
@@ -79,6 +80,7 @@ export default {
 	data() {
 		return {
 			showModal: false,
+			formataData,
 		};
 	},
 	computed: {
