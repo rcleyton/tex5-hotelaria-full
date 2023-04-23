@@ -1,46 +1,46 @@
 <template>
-	<div>
-		<div></div>
-		<h1>Perfil</h1>
+	<div class="container">
+		<h1>Meu Perfil</h1>
 		<form>
 			<fieldset>
 				<legend>Dados pessoais</legend>
-				<div>
+				<div class="form-control">
 					<label for="nome">Nome</label>
 					<input type="text" :value="dadosUsuario.nome" id="nome" />
 				</div>
-				<div>
+				<div class="form-control">
 					<label for="email">Email</label>
 					<input type="text" :value="dadosUsuario.email" id="email" />
 				</div>
-				<div>
+				<div class="form-control">
 					<label for="telefone">Telefone</label>
 					<input type="text" :value="dadosUsuario.telefone" id="telefone" />
 				</div>
-				<div>
+				<div class="form-control">
 					<label for="cpf">CPF</label>
 					<input type="text" :value="dadosUsuario.cpf" id="cpf" />
 				</div>
 			</fieldset>
 			<fieldset>
 				<legend>Endereço</legend>
-				<div>
+				<div class="form-control">
 					<label for="rua">Rua</label>
 					<input type="text" :value="dadosUsuario.rua" id="rua" />
 				</div>
-				<div>
+				<div class="form-control">
 					<label for="numero">Número</label>
 					<input type="text" :value="dadosUsuario.numero" id="rua" />
 				</div>
-				<div>
+				<div class="form-control">
 					<label for="complemento">Complemento</label>
 					<input type="text" :value="dadosUsuario.complemento" id="rua" />
 				</div>
-				<div>
+				<div class="form-control">
 					<label for="bairro">Bairro</label>
 					<input type="text" :value="dadosUsuario.bairro" id="rua" />
 				</div>
-				<div>
+				<div class="form-control">
+					<label for="estado">Estado</label>
 					<select
 						name="estado"
 						id="estado"
@@ -64,11 +64,7 @@
 			<ul>
 				<li v-for="reserva in reservasUsuario" :key="reserva.id_reserva">
 					<div class="perfil__reserva__card">
-						<img
-							:src="'http://localhost:3000/static/' + reserva.acom_imagem"
-							width="200"
-							height="100"
-						/>
+						<img :src="'http://localhost:3000/static/' + reserva.acom_imagem" />
 						<div class="conteudo">
 							<h3>{{ reserva.acom_titulo }}</h3>
 							<div class="datas">
@@ -148,7 +144,45 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@use '@/sass/sass-utils/helpers';
+
+form {
+	fieldset {
+		padding-block: 1rem;
+		padding-inline: 1rem;
+	}
+}
+.form-control {
+	width: 100%;
+	max-width: 24rem;
+
+	& + .form-control {
+		margin-block-start: 1rem;
+	}
+
+	label {
+		display: block;
+		margin-block-end: 0.5rem;
+	}
+
+	input {
+		border: 0;
+		border-bottom: 1px solid black;
+		padding-inline: 3px;
+		width: 100%;
+
+		&:focus {
+			border-bottom-color: blue;
+		}
+	}
+}
 .reservas {
+	margin-block: 2rem;
+
+	h2 {
+		margin-block-end: 1rem;
+	}
+
 	ul {
 		li {
 			margin-block-end: 1rem;
@@ -156,11 +190,17 @@ export default {
 	}
 }
 .perfil__reserva__card {
-	display: flex;
-	gap: 1rem;
+	display: block;
+
+	@media (min-width: 600px) {
+		display: flex;
+		gap: 1rem;
+	}
 
 	img {
 		border-radius: 6px;
+		display: block;
+		max-height: 10rem;
 		max-width: 288px;
 		width: 100%;
 	}
@@ -175,6 +215,7 @@ export default {
 		}
 
 		.datas {
+			margin-block-end: 1rem;
 			p {
 				display: inline-block;
 
