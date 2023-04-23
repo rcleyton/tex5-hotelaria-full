@@ -59,18 +59,49 @@
 				</div>
 			</fieldset>
 		</form>
-		<h2>Minhas reservas</h2>
-		<ul>
-			<li v-for="reserva in reservasUsuario">
-				{{ reserva }}
-			</li>
-		</ul>
-
-		{{ dadosUsuario }}
+		<section class="reservas">
+			<h2>Minhas reservas</h2>
+			<ul>
+				<li v-for="reserva in reservasUsuario" :key="reserva.id_reserva">
+					<div class="perfil__reserva__card">
+						<img
+							:src="'http://localhost:3000/static/' + reserva.acom_imagem"
+							width="200"
+							height="100"
+						/>
+						<div class="conteudo">
+							<h3>{{ reserva.acom_titulo }}</h3>
+							<div class="datas">
+								<p>
+									Check-in: <span>{{ reserva.check_in }}</span>
+								</p>
+								<p>
+									Check-out: <span>{{ reserva.check_out }}</span>
+								</p>
+							</div>
+							<p>Total: {{ formataValor(reserva.total) }}</p>
+							<button
+								type="button"
+								class="confirmacao"
+								:disabled="reserva.confirmada"
+								@click="confirmarReserva"
+							>
+								{{
+									reserva.confirmada
+										? 'Reserva Confirmada'
+										: 'Confirmar Reserva'
+								}}
+							</button>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</section>
 	</div>
 </template>
 <script>
 import { estados } from '@/components/constants/estados';
+import { formataValor } from '@/helpers/formataValor';
 import axios from 'axios';
 import { mapGetters } from 'vuex';
 
@@ -81,18 +112,92 @@ export default {
 			dadosUsuario: {},
 			reservasUsuario: [],
 			estados,
+			formataValor,
 		};
 	},
 	computed: {
 		...mapGetters(['usuario']),
+	},
+	methods: {
+		confirmarReserva() {
+			const confirmacao = window.confirm('Deseja confirmar reserva?');
+			if (confirmacao) {
+				console.log('works!');
+			}
+		},
 	},
 	created() {
 		axios
 			.get(
 				'http://localhost:3000/api/usuarios/perfil/' + this.usuario.id_usuario
 			)
-			.then((res) => (console.log(res.data)));
+			.then((res) => {
+				this.dadosUsuario = res.data[0];
+				this.reservasUsuario = res.data[1];
+			});
 	},
 };
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.reservas {
+	ul {
+		li {
+			margin-block-end: 1rem;
+		}
+	}
+}
+.perfil__reserva__card {
+	display: flex;
+	gap: 1rem;
+
+	img {
+		border-radius: 6px;
+		max-width: 288px;
+		width: 100%;
+	}
+
+	.conteudo {
+		padding-block: 1rem;
+
+		h3 {
+			margin: 0;
+			padding-block-end: 0.5rem;
+			border-bottom: 1px solid black;
+		}
+
+		.datas {
+			p {
+				display: inline-block;
+
+				span {
+					font-weight: bold;
+				}
+
+				& + p {
+					margin-inline-start: 1rem;
+				}
+			}
+		}
+
+		.confirmacao {
+			padding-inline: 1rem;
+			padding-block: 0.5rem;
+			border: 0;
+			border-radius: 6px;
+			background-color: red;
+			color: #fff;
+			cursor: pointer;
+			transition: all 100ms ease-in;
+
+			&:hover {
+				background-color: lightgreen;
+				color: black;
+			}
+
+			&:disbaled {
+				cursor: auto;
+			}
+		}
+	}
+}
+</style>
