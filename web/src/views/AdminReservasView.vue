@@ -147,29 +147,33 @@
 						<th>Total de desconto</th>
 						<th>Confirmação</th>
 						<th>Data de confirmação</th>
-						<th>Referência do cupom</th>
-						<th>Referência de acomodação</th>
-						<th>Referência de usuário</th>
-						<th>Referência de serviços adicionais</th>
-						<th>Editar</th>
-						<th>Excluir</th>
+						<th>Ações</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr v-for="reserva in reservasArr" :key="reserva.id_reserva">
 						<td>{{ reserva.id_reserva }}</td>
-						<td>{{ reserva.check_in }}</td>
-						<td>{{ reserva.check_out }}</td>
+						<td>{{ formataData(reserva.check_in) }}</td>
+						<td>{{ formataData(reserva.check_out) }}</td>
 						<td>{{ reserva.quantidade_pessoas }}</td>
 						<td>{{ reserva.total }}</td>
 						<td>{{ reserva.total_desconto }}</td>
-						<td>{{ reserva.confirmacao }}</td>
-						<td>{{ reserva.data_confirmacao }}</td>
-						<td>{{ reserva.cupom_id }}</td>
-						<td>{{ reserva.acomodacao_id }}</td>
-						<td>{{ reserva.usuario_id }}</td>
+						<td>{{ reserva.confirmacao ? 'Confirmado' : 'Pendente' }}</td>
 						<td>
-							{{ reserva.servicos_adicionais_id }}
+							{{
+								reserva.data_confirmacao
+									? formataData(reserva.data_confirmacao)
+									: ''
+							}}
+						</td>
+						<td>
+							<button
+								type="button"
+								@click="confirmarReserva(reserva.id_reserva)"
+							>
+								Confirmar
+							</button>
+							<button type="button">Cancelar</button>
 						</td>
 					</tr>
 				</tbody>
@@ -180,6 +184,7 @@
 
 <script>
 import axios from 'axios';
+import { formataData } from '@/helpers/formataData';
 export default {
 	name: 'AdminReservasView',
 	data() {
@@ -199,18 +204,36 @@ export default {
 				usuario_id: '',
 				servicos_adicionais_id: '',
 			},
+			formataData,
 		};
 	},
-
 	methods: {
-		async getData() {
-			await axios
+		confirmarReserva(id_reserva) {
+			const confirmacao = window.confirm('Deseja confirmar reserva?');
+			if (confirmacao) {
+				axios
+					.put('http://localhost:3000/api/reservas/confirmar/' + id_reserva)
+					.then((res) => {
+						const reserva = this.reservasArr.find(
+							(reserva) => reserva.id_reserva == id_reserva
+						);
+						reserva.confirmacao = 1;
+						reserva.data_confirmacao = new Date();
+					})
+					.catch((err) => {
+						alert(err.response.data.message);
+					});
+			}
+		},
+
+		getData() {
+			axios
 				.get('http://localhost:3000/api/reservas')
 				.then((res) => (this.reservasArr = res.data))
 				.catch((error) => console.log(error));
 		},
 
-		async sendData() {
+		sendData() {
 			const data = {
 				id_reserva: this.form.id_reserva,
 				check_in: this.form.check_in,
@@ -226,7 +249,7 @@ export default {
 				servicos_adicionais_id: this.form.servicos_adicionais_id,
 			};
 
-			await axios
+			axios
 				.post('http://localhost:3000/api/reservas', data)
 				.then((res) => res.data)
 				.catch((erro) => console.log(erro));
