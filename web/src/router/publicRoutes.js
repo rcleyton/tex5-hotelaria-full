@@ -38,5 +38,10 @@ export default {
 			name: 'cadastro',
 			component: () => import('../views/CadastroView.vue'),
 		},
+		{
+			path: '/perfil',
+			name: 'perfil',
+			component: () => import('../views/PerfilView.vue'),
+		},
 	],
 };

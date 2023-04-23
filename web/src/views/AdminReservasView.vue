@@ -4,11 +4,7 @@
 			<section class="form_main">
 				<div class="form_default">
 					<legend class="section_title">Cadastrar Reserva</legend>
-					<form
-						class="form_geral"
-						enctype="multipart/form-data"
-						@submit="sendData()"
-					>
+					<form class="form_geral" @submit.prevent="sendData()">
 						<div class="form_field">
 							<label for="check_in"></label>
 							<input
@@ -43,92 +39,20 @@
 							/>
 						</div>
 						<div class="form_field">
-							<label for="total"></label>
-							<input
-								class="input_form"
-								type="number"
-								name="total"
-								id="total"
-								placeholder="total"
-								v-model="form.total"
-							/>
-						</div>
-						<div class="form_field">
-							<label for="total_desconto"></label>
-							<input
-								class="input_form"
-								type="number"
-								name="total_desconto"
-								id="total_desconto"
-								placeholder="Total de desconto"
-								v-model="form.total_desconto"
-							/>
-						</div>
-						<div class="form_field">
-							<label for="confirmacao"></label>
-							<input
-								class="input_form"
-								type="number"
-								name="confirmacao"
-								id="confirmacao"
-								placeholder="Confirmação"
-								v-model="form.confirmacao"
-							/>
-						</div>
-						<div class="form_field">
-							<label for="data_confirmacao"></label>
-							<input
-								class="input_form"
-								type="date"
-								name="data_confirmacao"
-								id="data_confirmacao"
-								placeholder="data de confirmação"
-								v-model="form.data_confirmacao"
-							/>
-						</div>
-						<div class="form_field">
-							<label for="cupom_id"></label>
-							<input
-								class="input_form"
-								type="number"
-								name="cupom_id"
-								id="cupom_id"
-								placeholder="ID do cupom"
-								v-model="form.cupom_id"
-							/>
-						</div>
-						<div class="form_field">
-							<label for="acomodacao_id"></label>
-							<input
-								class="input_form"
-								type="number"
-								name="acomodacao_id"
-								id="acomodacao_id"
-								placeholder="ID da acomodação"
-								v-model="form.acomodacao_id"
-							/>
-						</div>
-						<div class="form_field">
-							<label for="usuario_id"></label>
-							<input
-								class="input_form"
-								type="number"
-								name="usuario_id"
-								id="usuario_id"
-								placeholder="ID do usuario"
-								v-model="form.usuario_id"
-							/>
-						</div>
-						<div class="form_field">
-							<label class="input_col" for="servicos_adicionais_id"></label>
-							<input
-								class="input_form"
-								type="number"
-								name="servicos_adicionais_id"
-								id="servicos_adicionais_id"
-								placeholder="ID de serviços adicionais"
-								v-model="form.servicos_adicionais_id"
-							/>
+							<label for="acomodacao"></label>
+							<select
+								id="acomodacao"
+								name="acomodacao"
+								v-model="form.id_acomodacao"
+							>
+								<option value="">Selecione uma acomodação</option>
+								<option
+									v-for="acomodacao in acomodacoesArr"
+									:value="acomodacao.id_acomodacao"
+								>
+									{{ acomodacao.titulo }}
+								</option>
+							</select>
 						</div>
 						<button class="button_form" type="submit">Cadastrar</button>
 					</form>
@@ -147,29 +71,33 @@
 						<th>Total de desconto</th>
 						<th>Confirmação</th>
 						<th>Data de confirmação</th>
-						<th>Referência do cupom</th>
-						<th>Referência de acomodação</th>
-						<th>Referência de usuário</th>
-						<th>Referência de serviços adicionais</th>
-						<th>Editar</th>
-						<th>Excluir</th>
+						<th>Ações</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr v-for="reserva in reservasArr" :key="reserva.id_reserva">
 						<td>{{ reserva.id_reserva }}</td>
-						<td>{{ reserva.check_in }}</td>
-						<td>{{ reserva.check_out }}</td>
+						<td>{{ formataData(reserva.check_in) }}</td>
+						<td>{{ formataData(reserva.check_out) }}</td>
 						<td>{{ reserva.quantidade_pessoas }}</td>
 						<td>{{ reserva.total }}</td>
 						<td>{{ reserva.total_desconto }}</td>
-						<td>{{ reserva.confirmacao }}</td>
-						<td>{{ reserva.data_confirmacao }}</td>
-						<td>{{ reserva.cupom_id }}</td>
-						<td>{{ reserva.acomodacao_id }}</td>
-						<td>{{ reserva.usuario_id }}</td>
+						<td>{{ reserva.confirmacao ? 'Confirmado' : 'Pendente' }}</td>
 						<td>
-							{{ reserva.servicos_adicionais_id }}
+							{{
+								reserva.data_confirmacao
+									? formataData(reserva.data_confirmacao)
+									: ''
+							}}
+						</td>
+						<td>
+							<button
+								type="button"
+								@click="confirmarReserva(reserva.id_reserva)"
+							>
+								Confirmar
+							</button>
+							<button type="button">Cancelar</button>
 						</td>
 					</tr>
 				</tbody>
@@ -180,53 +108,61 @@
 
 <script>
 import axios from 'axios';
+import { formataData } from '@/helpers/formataData';
+import { mapGetters } from 'vuex';
 export default {
 	name: 'AdminReservasView',
 	data() {
 		return {
 			reservasArr: '',
 			form: {
-				id_reserva: '',
 				check_in: '',
 				check_out: '',
 				quantidade_pessoas: '',
-				total: '',
-				total_desconto: '',
-				confirmacao: '',
-				data_confirmacao: '',
-				cupom_id: '',
-				acomodacao_id: '',
-				usuario_id: '',
-				servicos_adicionais_id: '',
+				id_acomodacao: '',
+				id_usuario: '',
 			},
+			acomodacoesArr: [],
+			formataData,
 		};
 	},
-
+	computed: mapGetters(['usuario']),
 	methods: {
-		async getData() {
-			await axios
+		confirmarReserva(id_reserva) {
+			const confirmacao = window.confirm('Deseja confirmar reserva?');
+			if (confirmacao) {
+				axios
+					.put('http://localhost:3000/api/reservas/confirmar/' + id_reserva)
+					.then((res) => {
+						const reserva = this.reservasArr.find(
+							(reserva) => reserva.id_reserva == id_reserva
+						);
+						reserva.confirmacao = 1;
+						reserva.data_confirmacao = new Date();
+					})
+					.catch((err) => {
+						alert(err.response.data.message);
+					});
+			}
+		},
+
+		getData() {
+			axios
 				.get('http://localhost:3000/api/reservas')
 				.then((res) => (this.reservasArr = res.data))
 				.catch((error) => console.log(error));
 		},
 
-		async sendData() {
+		sendData() {
 			const data = {
-				id_reserva: this.form.id_reserva,
 				check_in: this.form.check_in,
 				check_out: this.form.check_out,
 				quantidade_pessoas: this.form.quantidade_pessoas,
-				total: this.form.total,
-				total_desconto: this.form.total_desconto,
-				confirmacao: this.form.confirmacao,
-				data_confirmacao: this.form.data_confirmacao,
-				cupom_id: this.form.cupom_id,
-				acomodacao_id: this.form.acomodacao_id,
-				usuario_id: this.form.usuario_id,
-				servicos_adicionais_id: this.form.servicos_adicionais_id,
+				id_acomodacao: this.form.id_acomodacao,
+				id_usuario: this.usuario.id_usuario,
 			};
 
-			await axios
+			axios
 				.post('http://localhost:3000/api/reservas', data)
 				.then((res) => res.data)
 				.catch((erro) => console.log(erro));
@@ -235,6 +171,10 @@ export default {
 
 	mounted() {
 		this.getData();
+
+		axios
+			.get('http://localhost:3000/api/acomodacoes')
+			.then((res) => (this.acomodacoesArr = res.data));
 	},
 };
 </script>

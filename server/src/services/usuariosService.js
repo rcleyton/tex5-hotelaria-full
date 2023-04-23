@@ -14,28 +14,53 @@ module.exports = {
 		});
 	},
 
+	getPerfilByIdUsuario: (id_usuario) => {
+		return new Promise((resolve, reject) => {
+			db.query(
+				`SELECT * FROM perfil_usuario WHERE id_usuario = ?`,
+				[id_usuario],
+				(err, res) => {
+					if (err) {
+						reject(err);
+						return;
+					}
+					resolve(res);
+					return;
+				}
+			);
+		});
+	},
+
 	findByEmail: (email) => {
 		return new Promise((resolve, reject) => {
-			db.query(`SELECT id_usuario, nome, senha, id_role FROM usuarios WHERE email = ?`, [email], (err, res) => {
-				if (err) {
-					reject(err);
-				} else {
-					resolve(res);
+			db.query(
+				`SELECT id_usuario, nome, senha, id_role FROM usuarios WHERE email = ?`,
+				[email],
+				(err, res) => {
+					if (err) {
+						reject(err);
+					} else {
+						resolve(res);
+					}
 				}
-			});
+			);
 		});
 	},
 
 	auth: (id_usuario, email, senha) => {
 		return new Promise((resolve, reject) => {
-			db.query(`SELECT email, senha WHERE id_usuario = ?`, [id_usuario], (err, res) => {
-				if(err) {
-					reject();
-				} else {
-					resolve();
+			db.query(
+				`SELECT email, senha WHERE id_usuario = ?`,
+				[id_usuario],
+				(err, res) => {
+					if (err) {
+						reject();
+					} else {
+						resolve();
+					}
 				}
-			})
-		})
+			);
+		});
 	},
 
 	insert: (nome, telefone, cpf, email, senha) => {

@@ -1,7 +1,7 @@
 <template>
 	<div class="container">
-		<nav class="menu">
-			<router-link :to="{ name: 'CadastroAcomodacao' }" class="btn"
+		<nav class="menu" style="margin-block-start: 2rem">
+			<router-link :to="{ name: 'CadastroAcomodacao' }"
 				>Cadastrar nova acomodação</router-link
 			>
 		</nav>
@@ -87,7 +87,11 @@ export default {
 }
 
 .menu {
-	margin-block-end: 2rem;
+	margin-block: 2rem;
+
+	a {
+		text-decoration: underline;
+	}
 }
 
 .btn {

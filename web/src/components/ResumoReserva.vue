@@ -7,15 +7,13 @@
 					<li class="resume__listItem">
 						Data de Entrada:
 						<span class="feature_color">
-							{{ new Date(dadosReserva.checkIn).toLocaleDateString('pt-BR') }}</span
+							{{ formataData(dadosReserva.checkIn) }}</span
 						>
 					</li>
 					<li class="resume__listItem">
 						Data de Saída:
 						<span class="feature_color">
-							{{
-								new Date(dadosReserva.checkOut).toLocaleDateString('pt-BR')
-							}}</span
+							{{ formataData(dadosReserva.checkOut) }}</span
 						>
 					</li>
 					<li class="resume__listItem">
@@ -31,7 +29,9 @@
 							{{ !diarias ? '' : diarias > 1 ? 'dias' : 'dia' }}</span
 						>
 					</li>
-					<li class="resume__listItem">Quarto: {{ dadosReserva.acomodacao?.titulo }}</li>
+					<li class="resume__listItem">
+						Quarto: {{ dadosReserva.acomodacao?.titulo }}
+					</li>
 					<li class="resume__listItem">
 						Valor do quarto:
 						<span class="feature_color">
@@ -45,17 +45,15 @@
 						>
 					</li>
 				</ul>
-				<AditionalServicesModal />
-
-				<DiscountCode />
-
+				<!-- <AditionalServicesModal /> -->
+				<!-- <DiscountCode /> -->
 				<ul class="resume__total">
-					<li class="resume__listItem">
+					<!-- <li class="resume__listItem">
 						Total Adicionais:
 						<span class="feature_color">
 							{{ formatCurrency(totalAdicionais) }}</span
 						>
-					</li>
+					</li> -->
 					<li class="resume__listItem">
 						Valor total:
 						<span class="feature_color">{{ formatCurrency(total) }}</span>
@@ -71,10 +69,16 @@ import { mapGetters } from 'vuex';
 import AditionalServicesModal from './AditionalServicesModal.vue';
 import ModalReservaContinue from './ModalReservaContinue.vue';
 import DiscountCode from './DiscountCode.vue';
+import { formataData } from '@/helpers/formataData';
 
 export default {
 	name: 'ResumoReserva',
 	components: { AditionalServicesModal, ModalReservaContinue, DiscountCode },
+	data() {
+		return {
+			formataData,
+		};
+	},
 	computed: {
 		...mapGetters([
 			'dadosReserva',
