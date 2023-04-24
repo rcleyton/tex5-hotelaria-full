@@ -13,7 +13,7 @@ module.exports = {
 
 	insert: async (req, res) => {
 		const { titulo, descricao, preco } = req.body;
-		const { filename: imagem } = req.file;
+		let { filename: imagem } = req.file ?? '';
 
 		try {
 			const id = await AcomodacoesService.insert(
