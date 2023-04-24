@@ -87,7 +87,7 @@ module.exports = {
 		});
 	},
 
-	update: (nome, telefone, cpf, email, senha, endereco_id, id_usuario) => {
+	update: (nome, telefone, cpf, email, id_usuario) => {
 		return new Promise((resolve, reject) => {
 			db.query(
 				`
@@ -95,11 +95,9 @@ module.exports = {
             SET nome = ?,
                 telefone = ?,
                 cpf = ?,
-                email = ?,
-                senha = ?,
-                endereco_id = ?
+                email = ?
             WHERE id_usuario = ?`,
-				[nome, telefone, cpf, email, senha, endereco_id, id_usuario],
+				[nome, telefone, cpf, email, id_usuario],
 				(erro, res) => {
 					if (erro) {
 						reject(erro);

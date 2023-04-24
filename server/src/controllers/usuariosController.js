@@ -62,7 +62,7 @@ module.exports = {
 	},
 
 	update: async (req, res) => {
-		const { nome, telefone, cpf, email, senha, endereco_id } = req.body;
+		const { nome, telefone, cpf, email } = req.body;
 		const { id_usuario } = req.params;
 
 		try {
@@ -71,8 +71,6 @@ module.exports = {
 				telefone,
 				cpf,
 				email,
-				senha,
-				endereco_id,
 				id_usuario
 			);
 
@@ -81,8 +79,6 @@ module.exports = {
 				telefone,
 				cpf,
 				email,
-				senha,
-				endereco_id,
 				id_usuario,
 			};
 			res.send(usuario);
