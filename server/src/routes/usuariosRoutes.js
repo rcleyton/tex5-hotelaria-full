@@ -5,7 +5,7 @@ const UsuariosController = require('../controllers/usuariosController');
 const validacaoUsuario = require('../middlewares/users')
 
 usuariosRoutes.get('', UsuariosController.getAll);
-
+usuariosRoutes.get('/perfil/:id_usuario', UsuariosController.getPerfilById);
 
 usuariosRoutes.post('',  validacaoUsuario.validateRegister, UsuariosController.insert);
 

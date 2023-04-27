@@ -13,6 +13,21 @@ module.exports = {
 		});
 	},
 
+	getAllByIdUsuario: (id_usuario) => {
+		return new Promise((resolve, reject) => {
+			db.query(
+				'SELECT * FROM perfil_listar_reservas WHERE id_usuario = ?',
+				[id_usuario],
+				(err, res) => {
+					if (err) {
+						reject(err);
+					}
+					resolve(res);
+				}
+			);
+		});
+	},
+
 	insert: (
 		check_in,
 		check_out,
@@ -106,6 +121,21 @@ module.exports = {
 					if (erro) {
 						reject(erro);
 						return;
+					}
+					resolve(res);
+				}
+			);
+		});
+	},
+
+	confirmarReserva: (id_reserva) => {
+		return new Promise((resolve, reject) => {
+			db.query(
+				'UPDATE reservas SET confirmacao = 1, data_confirmacao = ? WHERE id_reserva = ?',
+				[new Date(), id_reserva],
+				(err, res) => {
+					if (err) {
+						reject(err);
 					}
 					resolve(res);
 				}

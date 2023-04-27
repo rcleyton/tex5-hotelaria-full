@@ -13,8 +13,15 @@
 	<li class="dropdown" v-else>
 		Olá, {{ usuario.nome }}
 		<ul>
-			<button type="button" @click="goToUser(id)">Perfil</button>
-			<button type="button" @click="handleUserLogout">Sair</button>
+			<li>
+				<router-link :to="{ name: 'perfil' }">Perfil</router-link>
+			</li>
+			<li v-if="this.usuario.role == 2">
+				<router-link :to="{ name: 'AdminView' }">Administração</router-link>
+			</li>
+			<li>
+				<button type="button" @click="handleUserLogout">Sair</button>
+			</li>
 		</ul>
 	</li>
 </template>
@@ -24,14 +31,8 @@ import { mapActions, mapGetters } from 'vuex';
 
 export default {
 	name: 'LoginComponent',
-	data() {
-		usuario: localStorage.getItem("usuario");
-	},
 	methods: {
 		...mapActions(['handleUserLogout']),
-		goToUser(id){
-			this.$router.push({ path:`editar-usuario/${this.usuario.id_usuario}`});
-		}
 	},
 	computed: {
 		...mapGetters(['usuario']),

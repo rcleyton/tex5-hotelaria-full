@@ -20,7 +20,8 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@use '@/sass/base/_normalize';
 html {
 	box-sizing: border-box;
 	font-size: 16px;

@@ -13,7 +13,7 @@ module.exports = {
 
 	insert: async (req, res) => {
 		const { titulo, descricao, preco } = req.body;
-		const { filename: imagem } = req.file;
+		let { filename: imagem } = req.file ?? '';
 
 		try {
 			const id = await AcomodacoesService.insert(
@@ -40,7 +40,6 @@ module.exports = {
 		const { id_acomodacao, titulo, preco, descricao, status, imagem } =
 			req.body;
 
-			console.log('43:',req.body);
 		if (req.file && req.file.filename) {
 			imagem = req.file.filename;
 		}

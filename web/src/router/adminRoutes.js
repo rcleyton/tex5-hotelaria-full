@@ -14,10 +14,12 @@ export default {
 	path: '/admin',
 	component: () => import('../layouts/AdminLayout.vue'),
 	beforeEnter: (to, from, next) => {
-		if (!usuario) return router.push('');
-		if (autorizado(usuario.role)) {
-			next();
+		const permissao = autorizado(usuario.role);
+		if (!permissao) {
+			alert("Acesso negado")
+			router.push('');
 		};
+		next();
 	},
 	children: [
 		{
@@ -41,12 +43,12 @@ export default {
 			component: () => import('../views/EditarAcomodacaoView.vue'),
 		},
 		{
-			path: '/admin-servicos-adicionais',
+			path: 'servicosAdicionais',
 			name: 'AdminServicosAdicionais',
 			component: () => import('../views/AdminServicosAdicionaisView.vue'),
 		},
 		{
-			path: '/admin-usuarios',
+			path: 'usuarios',
 			name: 'AdminUsuarios',
 			component: () => import('../views/AdminUsuariosView.vue'),
 		},
@@ -57,17 +59,17 @@ export default {
 		props: true,
 		},
 		{
-			path: '/admin-reservas',
+			path: 'reservas',
 			name: 'AdminReservas',
 			component: () => import('../views/AdminReservasView.vue'),
 		},
 		{
-			path: '/admin-enderecos',
+			path: 'enderecos',
 			name: 'AdminEnderecos',
 			component: () => import('../views/AdminEnderecosView.vue'),
 		},
 		{
-			path: '/admin-consumo',
+			path: 'consumo',
 			name: 'AdminConsumo',
 			component: () => import('../views/AdminConsumoView.vue'),
 		},
